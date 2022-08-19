@@ -26,13 +26,13 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Writing {
     @Id
     private String id;
     private String name;
     @DBRef
     @ManyToMany
+    @JoinTable(name = "writing_has_authors")
     private Set<Author> authors;
     private String description;
     private LocalDateTime created_at;
