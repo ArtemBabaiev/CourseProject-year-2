@@ -22,6 +22,10 @@ import java.time.LocalDateTime;
 public class Adult extends Reader{
     private String workPlace;
 
+    public Adult(String id) {
+        super(id);
+    }
+
     public Adult(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at, String workPlace) {
         super(firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, update_at);
         this.workPlace = workPlace;

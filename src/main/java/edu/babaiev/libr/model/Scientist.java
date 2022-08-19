@@ -23,6 +23,10 @@ public class Scientist extends Reader{
     private String profession;
     private String organisation;
 
+    public Scientist(String id) {
+        super(id);
+    }
+
     public Scientist(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at, String profession, String organisation) {
         super(firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, update_at);
         this.profession = profession;

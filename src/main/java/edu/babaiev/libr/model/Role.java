@@ -34,6 +34,10 @@ public class Role {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public Role(String id) {
+        this.id = id;
+    }
+
     public Role(String name, String description, LocalDateTime created_at, LocalDateTime update_at) {
         this.name = name;
         this.description = description;

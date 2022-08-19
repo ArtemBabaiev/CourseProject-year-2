@@ -23,6 +23,10 @@ public class Pupil extends Reader {
     private String school;
     private String form;
 
+    public Pupil(String id) {
+        super(id);
+    }
+
     public Pupil(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at, String school, String form) {
         super(firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, update_at);
         this.school = school;

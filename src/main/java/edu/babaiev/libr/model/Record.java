@@ -45,6 +45,10 @@ public class Record {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public Record(String id) {
+        this.id = id;
+    }
+
     public Record(Reader reader, Employee lendBy, Employee acceptedBy, Literature literature, LocalDateTime lend_at, LocalDateTime returned_at, LocalDateTime created_at, LocalDateTime update_at) {
         this.reader = reader;
         this.lendBy = lendBy;

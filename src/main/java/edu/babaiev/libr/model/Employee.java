@@ -38,6 +38,10 @@ public class Employee {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public Employee(String id) {
+        this.id = id;
+    }
+
     public Employee(String name, ReadingRoom readingRoom, Key key, LocalDateTime created_at, LocalDateTime update_at) {
         this.name = name;
         this.readingRoom = readingRoom;

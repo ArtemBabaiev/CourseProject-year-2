@@ -35,6 +35,10 @@ public class Shelf {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public Shelf(String id) {
+        this.id = id;
+    }
+
     public Shelf(String number, BookCase bookCase, LocalDateTime created_at, LocalDateTime update_at) {
         this.number = number;
         this.bookCase = bookCase;

@@ -34,6 +34,10 @@ public class CollectionType {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public CollectionType(String id) {
+        this.id = id;
+    }
+
     public CollectionType(String name, String description, LocalDateTime created_at, LocalDateTime update_at) {
         this.name = name;
         this.description = description;

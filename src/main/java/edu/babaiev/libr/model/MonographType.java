@@ -34,6 +34,10 @@ public class MonographType {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public MonographType(String id) {
+        this.id = id;
+    }
+
     public MonographType(String name, String description, LocalDateTime created_at, LocalDateTime update_at) {
         this.name = name;
         this.description = description;

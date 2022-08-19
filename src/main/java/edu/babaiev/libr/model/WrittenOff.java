@@ -39,6 +39,10 @@ public class WrittenOff {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public WrittenOff(String id) {
+        this.id = id;
+    }
+
     public WrittenOff(String isn, String name, int publishingYear, Publisher publisher, int quantity, int numberOfPages, String description, LocalDateTime created_at, LocalDateTime update_at) {
         this.isn = isn;
         this.name = name;

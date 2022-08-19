@@ -26,6 +26,10 @@ public class Student extends Reader{
     private int course;
     private String group;
 
+    public Student(String id) {
+        super(id);
+    }
+
     public Student(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at, String university, String faculty, int course, String group) {
         super(firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, update_at);
         this.university = university;

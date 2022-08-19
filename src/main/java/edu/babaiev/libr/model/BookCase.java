@@ -35,6 +35,10 @@ public class BookCase {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public BookCase(String id) {
+        this.id = id;
+    }
+
     public BookCase(String number, ReadingRoom readingRoom, LocalDateTime created_at, LocalDateTime update_at) {
         this.number = number;
         this.readingRoom = readingRoom;

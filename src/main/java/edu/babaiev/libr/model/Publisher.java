@@ -34,6 +34,10 @@ public class Publisher {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public Publisher(String id) {
+        this.id = id;
+    }
+
     public Publisher(String name, String description, LocalDateTime created_at, LocalDateTime update_at) {
         this.name = name;
         this.description = description;

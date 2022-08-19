@@ -35,6 +35,10 @@ public abstract class Reader {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public Reader(String id) {
+        this.id = id;
+    }
+
     public Reader(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at) {
         this.firstName = firstName;
         this.lastName = lastName;

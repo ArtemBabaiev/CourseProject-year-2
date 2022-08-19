@@ -34,6 +34,10 @@ public class Library {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public Library(String id) {
+        this.id = id;
+    }
+
     public Library(String number, String address, LocalDateTime created_at, LocalDateTime update_at) {
         this.number = number;
         this.address = address;

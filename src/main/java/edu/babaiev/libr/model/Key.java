@@ -37,6 +37,10 @@ public class Key {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public Key(String id) {
+        this.id = id;
+    }
+
     public Key(String login, String password, Role role, LocalDateTime created_at, LocalDateTime update_at) {
         this.login = login;
         this.password = password;

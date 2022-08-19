@@ -35,6 +35,10 @@ public class ReadingRoom {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public ReadingRoom(String id) {
+        this.id = id;
+    }
+
     public ReadingRoom(String number, Library library, LocalDateTime created_at, LocalDateTime update_at) {
         this.number = number;
         this.library = library;

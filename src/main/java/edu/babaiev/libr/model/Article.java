@@ -38,6 +38,10 @@ public class Article {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public Article(String id) {
+        this.id = id;
+    }
+
     public Article(String name, Set<Author> authors, String description, LocalDateTime created_at, LocalDateTime update_at) {
         this.name = name;
         this.authors = authors;

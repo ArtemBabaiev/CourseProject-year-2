@@ -34,6 +34,10 @@ public class PeriodicalType {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public PeriodicalType(String id) {
+        this.id = id;
+    }
+
     public PeriodicalType(String name, String description, LocalDateTime created_at, LocalDateTime update_at) {
         this.name = name;
         this.description = description;

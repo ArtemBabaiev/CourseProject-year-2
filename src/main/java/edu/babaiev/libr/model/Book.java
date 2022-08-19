@@ -31,6 +31,10 @@ public class Book extends Literature {
     @ManyToOne
     private Writing writing;
 
+    public Book(String id) {
+        super(id);
+    }
+
     public Book(String isn, String name, int publishingYear, Publisher publisher, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at, Genre genre, BookType bookType, Writing writing) {
         super(isn, name, publishingYear, publisher, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, update_at);
         this.genre = genre;

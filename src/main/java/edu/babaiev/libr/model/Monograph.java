@@ -29,6 +29,10 @@ public class Monograph extends Literature{
     private String branch;
     private String defenseCity;
 
+    public Monograph(String id) {
+        super(id);
+    }
+
     public Monograph(String isn, String name, int publishingYear, Publisher publisher, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at, Author author, MonographType monographType, String branch, String defenseCity) {
         super(isn, name, publishingYear, publisher, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, update_at);
         this.author = author;

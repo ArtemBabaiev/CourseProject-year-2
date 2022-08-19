@@ -33,6 +33,10 @@ public class Periodical extends Literature{
     @JoinTable(name = "periodical_has_articles")
     private Set<Article> articles;
 
+    public Periodical(String id) {
+        super(id);
+    }
+
     public Periodical(String isn, String name, int publishingYear, Publisher publisher, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at, String issue, Subject subject, PeriodicalType periodicalType, Set<Article> articles) {
         super(isn, name, publishingYear, publisher, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, update_at);
         this.issue = issue;

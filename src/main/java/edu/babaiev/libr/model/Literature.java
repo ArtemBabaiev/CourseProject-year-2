@@ -41,6 +41,10 @@ public abstract class Literature {
     private LocalDateTime created_at;
     private LocalDateTime update_at;
 
+    public Literature(String id) {
+        this.id = id;
+    }
+
     public Literature(String isn, String name, int publishingYear, Publisher publisher, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at) {
         this.isn = isn;
         this.name = name;
