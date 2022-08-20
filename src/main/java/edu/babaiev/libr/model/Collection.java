@@ -36,15 +36,15 @@ public class Collection extends Literature {
         super(id);
     }
 
-    public Collection(String isn, String name, int publishingYear, Publisher publisher, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at, Genre genre, CollectionType collectionType, Set<Writing> writings) {
-        super(isn, name, publishingYear, publisher, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, update_at);
+    public Collection(String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at, Genre genre, CollectionType collectionType, Set<Writing> writings) {
+        super(isn, name, publishingYear, publisher, shelf, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, update_at);
         this.genre = genre;
         this.collectionType = collectionType;
         this.writings = writings;
     }
 
-    public Collection(String id, String isn, String name, int publishingYear, Publisher publisher, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at, Genre genre, CollectionType collectionType, Set<Writing> writings) {
-        super(id, isn, name, publishingYear, publisher, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, update_at);
+    public Collection(String id, String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at, Genre genre, CollectionType collectionType, Set<Writing> writings) {
+        super(id, isn, name, publishingYear, publisher, shelf, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, update_at);
         this.genre = genre;
         this.collectionType = collectionType;
         this.writings = writings;

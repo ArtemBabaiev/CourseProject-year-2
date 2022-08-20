@@ -33,6 +33,9 @@ public abstract class Literature {
     @DBRef
     @ManyToOne
     private Publisher publisher;
+    @DBRef
+    @ManyToOne
+    private Shelf shelf;
     private int stock;
     private boolean isLendable;
     private int numberOfPages;
@@ -45,11 +48,12 @@ public abstract class Literature {
         this.id = id;
     }
 
-    public Literature(String isn, String name, int publishingYear, Publisher publisher, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at) {
+    public Literature(String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at) {
         this.isn = isn;
         this.name = name;
         this.publishingYear = publishingYear;
         this.publisher = publisher;
+        this.shelf = shelf;
         this.stock = stock;
         this.isLendable = isLendable;
         this.numberOfPages = numberOfPages;
@@ -59,12 +63,13 @@ public abstract class Literature {
         this.update_at = update_at;
     }
 
-    public Literature(String id, String isn, String name, int publishingYear, Publisher publisher, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at) {
+    public Literature(String id, String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at) {
         this.id = id;
         this.isn = isn;
         this.name = name;
         this.publishingYear = publishingYear;
         this.publisher = publisher;
+        this.shelf = shelf;
         this.stock = stock;
         this.isLendable = isLendable;
         this.numberOfPages = numberOfPages;
