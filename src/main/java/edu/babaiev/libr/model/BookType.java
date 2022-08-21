@@ -32,17 +32,17 @@ public class BookType {
     private String name;
     private String description;
     private LocalDateTime created_at;
-    private LocalDateTime update_at;
+    private LocalDateTime updated_at;
 
     public BookType(String id) {
         this.id = id;
     }
 
-    public BookType(String name, String description, LocalDateTime created_at, LocalDateTime update_at) {
+    public BookType(String name, String description, LocalDateTime created_at, LocalDateTime updated_at) {
         this.name = name;
         this.description = description;
         this.created_at = created_at;
-        this.update_at = update_at;
+        this.updated_at = updated_at;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class BookType {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", created_at=" + created_at +
-                ", update_at=" + update_at +
+                ", update_at=" + updated_at +
                 '}';
     }
 }

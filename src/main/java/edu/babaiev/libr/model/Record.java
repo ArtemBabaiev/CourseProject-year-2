@@ -43,13 +43,13 @@ public class Record {
     private LocalDateTime lend_at;
     private LocalDateTime returned_at;
     private LocalDateTime created_at;
-    private LocalDateTime update_at;
+    private LocalDateTime updated_at;
 
     public Record(String id) {
         this.id = id;
     }
 
-    public Record(Reader reader, Employee lendBy, Employee acceptedBy, Literature literature, LocalDateTime lend_at, LocalDateTime returned_at, LocalDateTime created_at, LocalDateTime update_at) {
+    public Record(Reader reader, Employee lendBy, Employee acceptedBy, Literature literature, LocalDateTime lend_at, LocalDateTime returned_at, LocalDateTime created_at, LocalDateTime updated_at) {
         this.reader = reader;
         this.lendBy = lendBy;
         this.acceptedBy = acceptedBy;
@@ -57,7 +57,7 @@ public class Record {
         this.lend_at = lend_at;
         this.returned_at = returned_at;
         this.created_at = created_at;
-        this.update_at = update_at;
+        this.updated_at = updated_at;
     }
 
     @Override
@@ -84,7 +84,7 @@ public class Record {
                 ", lend_at=" + lend_at +
                 ", returned_at=" + returned_at +
                 ", created_at=" + created_at +
-                ", update_at=" + update_at +
+                ", update_at=" + updated_at +
                 '}';
     }
 }

@@ -42,13 +42,13 @@ public abstract class Literature {
     private int lendPeriodInDays;
     private String description;
     private LocalDateTime created_at;
-    private LocalDateTime update_at;
+    private LocalDateTime updated_at;
 
     public Literature(String id) {
         this.id = id;
     }
 
-    public Literature(String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at) {
+    public Literature(String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at) {
         this.isn = isn;
         this.name = name;
         this.publishingYear = publishingYear;
@@ -60,10 +60,10 @@ public abstract class Literature {
         this.lendPeriodInDays = lendPeriodInDays;
         this.description = description;
         this.created_at = created_at;
-        this.update_at = update_at;
+        this.updated_at = updated_at;
     }
 
-    public Literature(String id, String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at) {
+    public Literature(String id, String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at) {
         this.id = id;
         this.isn = isn;
         this.name = name;
@@ -76,7 +76,7 @@ public abstract class Literature {
         this.lendPeriodInDays = lendPeriodInDays;
         this.description = description;
         this.created_at = created_at;
-        this.update_at = update_at;
+        this.updated_at = updated_at;
     }
 
     @Override
@@ -93,7 +93,7 @@ public abstract class Literature {
                 ", lendPeriodInDays=" + lendPeriodInDays +
                 ", description='" + description + '\'' +
                 ", created_at=" + created_at +
-                ", update_at=" + update_at +
+                ", update_at=" + updated_at +
                 '}';
     }
 

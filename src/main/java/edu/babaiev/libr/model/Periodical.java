@@ -37,16 +37,16 @@ public class Periodical extends Literature{
         super(id);
     }
 
-    public Periodical(String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at, String issue, Subject subject, PeriodicalType periodicalType, Set<Article> articles) {
-        super(isn, name, publishingYear, publisher, shelf, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, update_at);
+    public Periodical(String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, String issue, Subject subject, PeriodicalType periodicalType, Set<Article> articles) {
+        super(isn, name, publishingYear, publisher, shelf, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, updated_at);
         this.issue = issue;
         this.subject = subject;
         this.periodicalType = periodicalType;
         this.articles = articles;
     }
 
-    public Periodical(String id, String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime update_at, String issue, Subject subject, PeriodicalType periodicalType, Set<Article> articles) {
-        super(id, isn, name, publishingYear, publisher, shelf, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, update_at);
+    public Periodical(String id, String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, String issue, Subject subject, PeriodicalType periodicalType, Set<Article> articles) {
+        super(id, isn, name, publishingYear, publisher, shelf, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, updated_at);
         this.issue = issue;
         this.subject = subject;
         this.periodicalType = periodicalType;

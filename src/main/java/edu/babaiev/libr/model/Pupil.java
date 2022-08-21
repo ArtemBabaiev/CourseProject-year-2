@@ -27,14 +27,14 @@ public class Pupil extends Reader {
         super(id);
     }
 
-    public Pupil(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at, String school, String form) {
-        super(firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, update_at);
+    public Pupil(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime updated_at, String school, String form) {
+        super(firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, updated_at);
         this.school = school;
         this.form = form;
     }
 
-    public Pupil(String id, String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at, String school, String form) {
-        super(id, firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, update_at);
+    public Pupil(String id, String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime updated_at, String school, String form) {
+        super(id, firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, updated_at);
         this.school = school;
         this.form = form;
     }

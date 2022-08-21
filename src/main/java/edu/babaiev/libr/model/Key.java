@@ -35,18 +35,18 @@ public class Key {
     @DBRef
     private Role role;
     private LocalDateTime created_at;
-    private LocalDateTime update_at;
+    private LocalDateTime updated_at;
 
     public Key(String id) {
         this.id = id;
     }
 
-    public Key(String login, String password, Role role, LocalDateTime created_at, LocalDateTime update_at) {
+    public Key(String login, String password, Role role, LocalDateTime created_at, LocalDateTime updated_at) {
         this.login = login;
         this.password = password;
         this.role = role;
         this.created_at = created_at;
-        this.update_at = update_at;
+        this.updated_at = updated_at;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Key {
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 ", created_at=" + created_at +
-                ", update_at=" + update_at +
+                ", update_at=" + updated_at +
                 '}';
     }
 }

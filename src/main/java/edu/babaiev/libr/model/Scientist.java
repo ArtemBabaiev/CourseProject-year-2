@@ -27,14 +27,14 @@ public class Scientist extends Reader{
         super(id);
     }
 
-    public Scientist(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at, String profession, String organisation) {
-        super(firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, update_at);
+    public Scientist(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime updated_at, String profession, String organisation) {
+        super(firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, updated_at);
         this.profession = profession;
         this.organisation = organisation;
     }
 
-    public Scientist(String id, String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at, String profession, String organisation) {
-        super(id, firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, update_at);
+    public Scientist(String id, String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime updated_at, String profession, String organisation) {
+        super(id, firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, updated_at);
         this.profession = profession;
         this.organisation = organisation;
     }

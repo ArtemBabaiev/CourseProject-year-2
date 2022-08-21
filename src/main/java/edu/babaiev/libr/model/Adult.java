@@ -26,13 +26,13 @@ public class Adult extends Reader{
         super(id);
     }
 
-    public Adult(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at, String workPlace) {
-        super(firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, update_at);
+    public Adult(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime updated_at, String workPlace) {
+        super(firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, updated_at);
         this.workPlace = workPlace;
     }
 
-    public Adult(String id, String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at, String workPlace) {
-        super(id, firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, update_at);
+    public Adult(String id, String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime updated_at, String workPlace) {
+        super(id, firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, updated_at);
         this.workPlace = workPlace;
     }
 

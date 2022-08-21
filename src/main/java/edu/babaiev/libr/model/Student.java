@@ -30,16 +30,16 @@ public class Student extends Reader{
         super(id);
     }
 
-    public Student(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at, String university, String faculty, int course, String group) {
-        super(firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, update_at);
+    public Student(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime updated_at, String university, String faculty, int course, String group) {
+        super(firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, updated_at);
         this.university = university;
         this.faculty = faculty;
         this.course = course;
         this.group = group;
     }
 
-    public Student(String id, String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at, String university, String faculty, int course, String group) {
-        super(id, firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, update_at);
+    public Student(String id, String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime updated_at, String university, String faculty, int course, String group) {
+        super(id, firstName, lastName, address, readerTicket, phoneNumber, birthday, created_at, updated_at);
         this.university = university;
         this.faculty = faculty;
         this.course = course;

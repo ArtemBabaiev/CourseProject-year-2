@@ -37,13 +37,13 @@ public class WrittenOff {
     private int numberOfPages;
     private String description;
     private LocalDateTime created_at;
-    private LocalDateTime update_at;
+    private LocalDateTime updated_at;
 
     public WrittenOff(String id) {
         this.id = id;
     }
 
-    public WrittenOff(String isn, String name, int publishingYear, Publisher publisher, int quantity, int numberOfPages, String description, LocalDateTime created_at, LocalDateTime update_at) {
+    public WrittenOff(String isn, String name, int publishingYear, Publisher publisher, int quantity, int numberOfPages, String description, LocalDateTime created_at, LocalDateTime updated_at) {
         this.isn = isn;
         this.name = name;
         this.publishingYear = publishingYear;
@@ -52,10 +52,10 @@ public class WrittenOff {
         this.numberOfPages = numberOfPages;
         this.description = description;
         this.created_at = created_at;
-        this.update_at = update_at;
+        this.updated_at = updated_at;
     }
 
-    public WrittenOff(String id, String isn, String name, int publishingYear, Publisher publisher, int quantity, int numberOfPages, String description, LocalDateTime created_at, LocalDateTime update_at) {
+    public WrittenOff(String id, String isn, String name, int publishingYear, Publisher publisher, int quantity, int numberOfPages, String description, LocalDateTime created_at, LocalDateTime updated_at) {
         this.id = id;
         this.isn = isn;
         this.name = name;
@@ -65,7 +65,7 @@ public class WrittenOff {
         this.numberOfPages = numberOfPages;
         this.description = description;
         this.created_at = created_at;
-        this.update_at = update_at;
+        this.updated_at = updated_at;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class WrittenOff {
                 ", numberOfPages=" + numberOfPages +
                 ", description='" + description + '\'' +
                 ", created_at=" + created_at +
-                ", update_at=" + update_at +
+                ", update_at=" + updated_at +
                 '}';
     }
 

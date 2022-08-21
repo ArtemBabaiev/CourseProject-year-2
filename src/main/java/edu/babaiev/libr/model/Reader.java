@@ -3,6 +3,7 @@ package edu.babaiev.libr.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
@@ -33,13 +34,13 @@ public abstract class Reader {
     private String phoneNumber;
     private LocalDate birthday;
     private LocalDateTime created_at;
-    private LocalDateTime update_at;
+    private LocalDateTime updated_at;
 
     public Reader(String id) {
         this.id = id;
     }
 
-    public Reader(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at) {
+    public Reader(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime updated_at) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -47,10 +48,10 @@ public abstract class Reader {
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
         this.created_at = created_at;
-        this.update_at = update_at;
+        this.updated_at = updated_at;
     }
 
-    public Reader(String id, String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime update_at) {
+    public Reader(String id, String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime created_at, LocalDateTime updated_at) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -59,7 +60,7 @@ public abstract class Reader {
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
         this.created_at = created_at;
-        this.update_at = update_at;
+        this.updated_at = updated_at;
     }
 
     @Override
@@ -86,7 +87,7 @@ public abstract class Reader {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", birthday=" + birthday +
                 ", created_at=" + created_at +
-                ", update_at=" + update_at +
+                ", update_at=" + updated_at +
                 '}';
     }
 }
