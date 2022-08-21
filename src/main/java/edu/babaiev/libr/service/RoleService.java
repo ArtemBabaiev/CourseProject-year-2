@@ -42,7 +42,7 @@ public class RoleService {
     }
 
     public Role update(Role role) {
-        role.setUpdate_at(LocalDateTime.now());
+        role.setUpdated_at(LocalDateTime.now());
         roleMongoRepository.save(role);
         return roleSqlRepository.save(role);
     }

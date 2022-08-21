@@ -42,7 +42,7 @@ public class CollectionService {
     }
 
     public Collection update(Collection collection) {
-        collection.setUpdate_at(LocalDateTime.now());
+        collection.setUpdated_at(LocalDateTime.now());
         collectionMongoRepository.save(collection);
         return collectionSqlRepository.save(collection);
     }

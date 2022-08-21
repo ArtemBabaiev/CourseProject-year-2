@@ -42,7 +42,7 @@ public class EmployeeService {
     }
 
     public Employee update(Employee employee) {
-        employee.setUpdate_at(LocalDateTime.now());
+        employee.setUpdated_at(LocalDateTime.now());
         employeeMongoRepository.save(employee);
         return employeeSqlRepository.save(employee);
     }

@@ -42,7 +42,7 @@ public class ReadingRoomService {
     }
 
     public ReadingRoom update(ReadingRoom readingRoom) {
-        readingRoom.setUpdate_at(LocalDateTime.now());
+        readingRoom.setUpdated_at(LocalDateTime.now());
         readingRoomMongoRepository.save(readingRoom);
         return readingRoomSqlRepository.save(readingRoom);
     }

@@ -2,8 +2,6 @@ package edu.babaiev.libr.service;
 
 import edu.babaiev.libr.model.Author;
 import edu.babaiev.libr.repository.mongo.AuthorMongoRepository;
-import edu.babaiev.libr.repository.mongo.AuthorMongoRepository;
-import edu.babaiev.libr.repository.sql.AuthorSqlRepository;
 import edu.babaiev.libr.repository.sql.AuthorSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +42,7 @@ public class AuthorService {
     }
 
     public Author update(Author author) {
-        author.setUpdate_at(LocalDateTime.now());
+        author.setUpdated_at(LocalDateTime.now());
         authorMongoRepository.save(author);
         return authorSqlRepository.save(author);
     }

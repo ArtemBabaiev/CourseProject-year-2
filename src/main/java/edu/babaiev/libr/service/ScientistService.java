@@ -42,7 +42,7 @@ public class ScientistService {
     }
 
     public Scientist update(Scientist scientist) {
-        scientist.setUpdate_at(LocalDateTime.now());
+        scientist.setUpdated_at(LocalDateTime.now());
         scientistMongoRepository.save(scientist);
         return scientistSqlRepository.save(scientist);
     }

@@ -42,7 +42,7 @@ public class GenreService {
     }
 
     public Genre update(Genre genre) {
-        genre.setUpdate_at(LocalDateTime.now());
+        genre.setUpdated_at(LocalDateTime.now());
         genreMongoRepository.save(genre);
         return genreSqlRepository.save(genre);
     }

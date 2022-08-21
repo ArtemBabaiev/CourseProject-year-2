@@ -42,7 +42,7 @@ public class LiteratureService {
     }
 
     public Literature update(Literature literature) {
-        literature.setUpdate_at(LocalDateTime.now());
+        literature.setUpdated_at(LocalDateTime.now());
         literatureMongoRepository.save(literature);
         return literatureSqlRepository.save(literature);
     }

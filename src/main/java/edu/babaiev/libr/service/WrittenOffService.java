@@ -42,7 +42,7 @@ public class WrittenOffService {
     }
 
     public WrittenOff update(WrittenOff writtenOff) {
-        writtenOff.setUpdate_at(LocalDateTime.now());
+        writtenOff.setUpdated_at(LocalDateTime.now());
         writtenOffMongoRepository.save(writtenOff);
         return writtenOffSqlRepository.save(writtenOff);
     }

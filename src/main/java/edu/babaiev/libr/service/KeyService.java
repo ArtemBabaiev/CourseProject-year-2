@@ -42,7 +42,7 @@ public class KeyService {
     }
 
     public Key update(Key key) {
-        key.setUpdate_at(LocalDateTime.now());
+        key.setUpdated_at(LocalDateTime.now());
         keyMongoRepository.save(key);
         return keySqlRepository.save(key);
     }

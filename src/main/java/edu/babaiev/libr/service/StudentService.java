@@ -42,7 +42,7 @@ public class StudentService {
     }
 
     public Student update(Student student) {
-        student.setUpdate_at(LocalDateTime.now());
+        student.setUpdated_at(LocalDateTime.now());
         studentMongoRepository.save(student);
         return studentSqlRepository.save(student);
     }

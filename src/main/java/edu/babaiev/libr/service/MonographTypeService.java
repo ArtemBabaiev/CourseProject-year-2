@@ -42,7 +42,7 @@ public class MonographTypeService {
     }
 
     public MonographType update(MonographType monographType) {
-        monographType.setUpdate_at(LocalDateTime.now());
+        monographType.setUpdated_at(LocalDateTime.now());
         monographTypeMongoRepository.save(monographType);
         return monographTypeSqlRepository.save(monographType);
     }

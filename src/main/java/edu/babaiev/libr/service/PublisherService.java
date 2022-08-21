@@ -42,7 +42,7 @@ public class PublisherService {
     }
 
     public Publisher update(Publisher publisher) {
-        publisher.setUpdate_at(LocalDateTime.now());
+        publisher.setUpdated_at(LocalDateTime.now());
         publisherMongoRepository.save(publisher);
         return publisherSqlRepository.save(publisher);
     }

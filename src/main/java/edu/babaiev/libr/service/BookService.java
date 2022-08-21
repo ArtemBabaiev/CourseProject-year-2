@@ -42,7 +42,7 @@ public class BookService {
     }
 
     public Book update(Book book) {
-        book.setUpdate_at(LocalDateTime.now());
+        book.setUpdated_at(LocalDateTime.now());
         bookMongoRepository.save(book);
         return bookSqlRepository.save(book);
     }

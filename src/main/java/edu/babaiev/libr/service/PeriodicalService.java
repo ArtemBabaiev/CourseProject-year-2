@@ -42,7 +42,7 @@ public class PeriodicalService {
     }
 
     public Periodical update(Periodical periodical) {
-        periodical.setUpdate_at(LocalDateTime.now());
+        periodical.setUpdated_at(LocalDateTime.now());
         periodicalMongoRepository.save(periodical);
         return periodicalSqlRepository.save(periodical);
     }

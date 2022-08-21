@@ -42,7 +42,7 @@ public class ShelfService {
     }
 
     public Shelf update(Shelf shelf) {
-        shelf.setUpdate_at(LocalDateTime.now());
+        shelf.setUpdated_at(LocalDateTime.now());
         shelfMongoRepository.save(shelf);
         return shelfSqlRepository.save(shelf);
     }

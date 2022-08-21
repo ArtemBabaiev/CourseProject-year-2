@@ -42,7 +42,7 @@ public class SubjectService {
     }
 
     public Subject update(Subject subject) {
-        subject.setUpdate_at(LocalDateTime.now());
+        subject.setUpdated_at(LocalDateTime.now());
         subjectMongoRepository.save(subject);
         return subjectSqlRepository.save(subject);
     }

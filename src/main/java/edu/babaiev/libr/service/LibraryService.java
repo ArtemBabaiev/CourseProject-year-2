@@ -42,7 +42,7 @@ public class LibraryService {
     }
 
     public Library update(Library library) {
-        library.setUpdate_at(LocalDateTime.now());
+        library.setUpdated_at(LocalDateTime.now());
         libraryMongoRepository.save(library);
         return librarySqlRepository.save(library);
     }

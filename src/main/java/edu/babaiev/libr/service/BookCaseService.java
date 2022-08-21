@@ -42,7 +42,7 @@ public class BookCaseService {
     }
 
     public BookCase update(BookCase bookCase) {
-        bookCase.setUpdate_at(LocalDateTime.now());
+        bookCase.setUpdated_at(LocalDateTime.now());
         bookCaseMongoRepository.save(bookCase);
         return bookCaseSqlRepository.save(bookCase);
     }

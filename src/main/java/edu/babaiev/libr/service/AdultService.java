@@ -42,7 +42,7 @@ public class AdultService {
     }
 
     public Adult update(Adult adult) {
-        adult.setUpdate_at(LocalDateTime.now());
+        adult.setUpdated_at(LocalDateTime.now());
         adultMongoRepository.save(adult);
         return adultSqlRepository.save(adult);
     }

@@ -42,7 +42,7 @@ public class RecordService {
     }
 
     public Record update(Record record) {
-        record.setUpdate_at(LocalDateTime.now());
+        record.setUpdated_at(LocalDateTime.now());
         recordMongoRepository.save(record);
         return recordSqlRepository.save(record);
     }

@@ -42,7 +42,7 @@ public class CollectionTypeService {
     }
 
     public CollectionType update(CollectionType collectionType) {
-        collectionType.setUpdate_at(LocalDateTime.now());
+        collectionType.setUpdated_at(LocalDateTime.now());
         collectionTypeMongoRepository.save(collectionType);
         return collectionTypeSqlRepository.save(collectionType);
     }

@@ -42,7 +42,7 @@ public class WritingService {
     }
 
     public Writing update(Writing writing) {
-        writing.setUpdate_at(LocalDateTime.now());
+        writing.setUpdated_at(LocalDateTime.now());
         writingMongoRepository.save(writing);
         return writingSqlRepository.save(writing);
     }

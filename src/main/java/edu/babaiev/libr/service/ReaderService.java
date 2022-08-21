@@ -42,7 +42,7 @@ public class ReaderService {
     }
 
     public Reader update(Reader reader) {
-        reader.setUpdate_at(LocalDateTime.now());
+        reader.setUpdated_at(LocalDateTime.now());
         readerMongoRepository.save(reader);
         return readerSqlRepository.save(reader);
     }
