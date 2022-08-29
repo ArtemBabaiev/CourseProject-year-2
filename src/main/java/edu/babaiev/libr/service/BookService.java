@@ -32,7 +32,9 @@ public class BookService {
     }
 
     public Book create(Book book) {
-        book.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        book.setCreated_at(time);
+        book.setUpdated_at(time);
         bookMongoRepository.save(book);
         return bookSqlRepository.save(book);
     }

@@ -32,7 +32,9 @@ public class RoleService {
     }
 
     public Role create(Role role) {
-        role.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        role.setCreated_at(time);
+        role.setUpdated_at(time);
         roleMongoRepository.save(role);
         return roleSqlRepository.save(role);
     }

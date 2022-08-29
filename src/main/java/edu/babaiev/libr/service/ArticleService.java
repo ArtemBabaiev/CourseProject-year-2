@@ -32,7 +32,9 @@ public class ArticleService {
     }
 
     public Article create(Article article) {
-        article.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        article.setCreated_at(time);
+        article.setUpdated_at(time);
         articleMongoRepository.save(article);
         return articleSqlRepository.save(article);
     }

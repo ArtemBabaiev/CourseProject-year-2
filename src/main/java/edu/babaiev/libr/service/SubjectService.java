@@ -32,7 +32,9 @@ public class SubjectService {
     }
 
     public Subject create(Subject subject) {
-        subject.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        subject.setCreated_at(time);
+        subject.setUpdated_at(time);
         subjectMongoRepository.save(subject);
         return subjectSqlRepository.save(subject);
     }

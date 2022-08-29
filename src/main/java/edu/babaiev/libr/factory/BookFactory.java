@@ -34,6 +34,7 @@ public class BookFactory {
                     faker.lorem().toString(),
                     LocalDateTime.now(),
                     LocalDateTime.now(),
+                    new Author(faker.random().nextInt(1, QuantityConfig.AUTHOR.getValue())+""),
                     new Genre(faker.random().nextInt(1, QuantityConfig.GENRE.getValue()) + ""),
                     new BookType(faker.random().nextInt(1, QuantityConfig.BOOK_TYPE.getValue()) + ""),
                     new Writing(faker.random().nextInt(1, QuantityConfig.WRITING.getValue()) + "")));

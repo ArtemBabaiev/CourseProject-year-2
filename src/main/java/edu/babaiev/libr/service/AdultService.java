@@ -32,7 +32,9 @@ public class AdultService {
     }
 
     public Adult create(Adult adult) {
-        adult.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        adult.setCreated_at(time);
+        adult.setUpdated_at(time);
         adultMongoRepository.save(adult);
         return adultSqlRepository.save(adult);
     }

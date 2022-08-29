@@ -32,7 +32,9 @@ public class WrittenOffService {
     }
 
     public WrittenOff create(WrittenOff writtenOff) {
-        writtenOff.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        writtenOff.setCreated_at(time);
+        writtenOff.setUpdated_at(time);
         writtenOffMongoRepository.save(writtenOff);
         return writtenOffSqlRepository.save(writtenOff);
     }

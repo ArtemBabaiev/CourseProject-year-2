@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Література</title>
+    <!-- CSS only -->
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <form th:action="@{/literature/create}" th:method="GET">
+            <input type="submit" th:value="Створити" class="btn btn-primary">
+        </form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>ISN</th>
+                <th>Тип</th>
+                <th>Назва</th>
+                <th>Рік видавництва</th>
+                <th>Видавництво</th>
+                <th>Повна інформація</th>
+                <th>Редагувати</th>
+                <th>Видалити</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="one, iterator: ${literature}">
+                <td th:text="${iterator.index} + 1"></td>
+                <td th:text="${one.getIsn()}"></td>
+                <td th:text="${one.getClass().getSimpleName()}"></td>
+                <td th:text="${one.getName()}"></td>
+                <td th:text="${one.getPublishingYear()}"></td>
+                <td th:text="${one.getPublisher().getName()}"></td>
+                <td>
+                    <form th:action="@{/literature/show/{id}(id=${one.getId()})}" method="get">
+                        <button type="submit" class="btn btn-sm btn-outline-info">Повна інформація</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/literature/edit/{id}(id=${one.getId()})}" method="get">
+                        <button type="submit" class="btn btn-sm btn-outline-warning">Редагувати</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/literature/delete/{id}(id=${one.getId()})}" th:method="DELETE">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Видалити</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

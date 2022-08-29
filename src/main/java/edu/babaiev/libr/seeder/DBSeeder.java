@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @date 20.08.2022 04:16
  * @class DBSeeder
  */
-//@Component
+@Component
 public class DBSeeder implements CommandLineRunner {
     ArticleSeeder articleSeeder;
     AuthorSeeder authorSeeder;
@@ -93,8 +93,8 @@ public class DBSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("!!!SEEDING STARTED!!!");
+        /*System.out.println("!!!SEEDING STARTED!!!");
         Seed();
-        System.out.println("!!!SEEDING ENDED!!!");
+        System.out.println("!!!SEEDING ENDED!!!");*/
     }
 }

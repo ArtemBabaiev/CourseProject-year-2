@@ -85,15 +85,16 @@ public abstract class Literature {
                 "id='" + id + '\'' +
                 ", isn='" + isn + '\'' +
                 ", name='" + name + '\'' +
-                ", publishingYear='" + publishingYear + '\'' +
+                ", publishingYear=" + publishingYear +
                 ", publisher=" + publisher +
+                ", shelf=" + shelf +
                 ", stock=" + stock +
                 ", isLendable=" + isLendable +
                 ", numberOfPages=" + numberOfPages +
                 ", lendPeriodInDays=" + lendPeriodInDays +
                 ", description='" + description + '\'' +
                 ", created_at=" + created_at +
-                ", update_at=" + updated_at +
+                ", updated_at=" + updated_at +
                 '}';
     }
 

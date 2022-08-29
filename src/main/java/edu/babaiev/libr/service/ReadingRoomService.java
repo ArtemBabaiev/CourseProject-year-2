@@ -32,7 +32,9 @@ public class ReadingRoomService {
     }
 
     public ReadingRoom create(ReadingRoom readingRoom) {
-        readingRoom.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        readingRoom.setCreated_at(time);
+        readingRoom.setUpdated_at(time);
         readingRoomMongoRepository.save(readingRoom);
         return readingRoomSqlRepository.save(readingRoom);
     }

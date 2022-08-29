@@ -32,7 +32,9 @@ public class PeriodicalTypeService {
     }
 
     public PeriodicalType create(PeriodicalType periodicalType) {
-        periodicalType.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        periodicalType.setCreated_at(time);
+        periodicalType.setUpdated_at(time);
         periodicalTypeMongoRepository.save(periodicalType);
         return periodicalTypeSqlRepository.save(periodicalType);
     }

@@ -32,7 +32,9 @@ public class MonographService {
     }
 
     public Monograph create(Monograph monograph) {
-        monograph.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        monograph.setCreated_at(time);
+        monograph.setUpdated_at(time);
         monographMongoRepository.save(monograph);
         return monographSqlRepository.save(monograph);
     }
