@@ -32,7 +32,9 @@ public class PupilService {
     }
 
     public Pupil create(Pupil pupil) {
-        pupil.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        pupil.setCreated_at(time);
+        pupil.setUpdated_at(time);
         pupilMongoRepository.save(pupil);
         return pupilSqlRepository.save(pupil);
     }

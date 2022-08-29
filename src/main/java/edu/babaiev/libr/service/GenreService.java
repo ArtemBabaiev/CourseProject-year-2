@@ -32,7 +32,9 @@ public class GenreService {
     }
 
     public Genre create(Genre genre) {
-        genre.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        genre.setCreated_at(time);
+        genre.setUpdated_at(time);
         genreMongoRepository.save(genre);
         return genreSqlRepository.save(genre);
     }

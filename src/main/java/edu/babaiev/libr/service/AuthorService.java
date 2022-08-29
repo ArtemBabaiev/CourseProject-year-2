@@ -32,7 +32,9 @@ public class AuthorService {
     }
 
     public Author create(Author author) {
-        author.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        author.setCreated_at(time);
+        author.setUpdated_at(time);
         authorMongoRepository.save(author);
         return authorSqlRepository.save(author);
     }

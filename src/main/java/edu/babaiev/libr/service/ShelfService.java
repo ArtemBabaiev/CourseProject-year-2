@@ -32,7 +32,9 @@ public class ShelfService {
     }
 
     public Shelf create(Shelf shelf) {
-        shelf.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        shelf.setCreated_at(time);
+        shelf.setUpdated_at(time);
         shelfMongoRepository.save(shelf);
         return shelfSqlRepository.save(shelf);
     }

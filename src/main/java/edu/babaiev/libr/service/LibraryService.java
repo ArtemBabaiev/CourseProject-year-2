@@ -32,7 +32,9 @@ public class LibraryService {
     }
 
     public Library create(Library library) {
-        library.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        library.setCreated_at(time);
+        library.setUpdated_at(time);
         libraryMongoRepository.save(library);
         return librarySqlRepository.save(library);
     }

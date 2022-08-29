@@ -32,7 +32,9 @@ public class RecordService {
     }
 
     public Record create(Record record) {
-        record.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        record.setCreated_at(time);
+        record.setUpdated_at(time);
         recordMongoRepository.save(record);
         return recordSqlRepository.save(record);
     }

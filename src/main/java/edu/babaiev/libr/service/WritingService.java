@@ -32,7 +32,9 @@ public class WritingService {
     }
 
     public Writing create(Writing writing) {
-        writing.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        writing.setCreated_at(time);
+        writing.setUpdated_at(time);
         writingMongoRepository.save(writing);
         return writingSqlRepository.save(writing);
     }

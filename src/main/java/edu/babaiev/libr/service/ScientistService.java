@@ -32,7 +32,9 @@ public class ScientistService {
     }
 
     public Scientist create(Scientist scientist) {
-        scientist.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        scientist.setCreated_at(time);
+        scientist.setUpdated_at(time);
         scientistMongoRepository.save(scientist);
         return scientistSqlRepository.save(scientist);
     }

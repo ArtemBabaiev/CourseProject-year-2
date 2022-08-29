@@ -32,7 +32,9 @@ public class BookCaseService {
     }
 
     public BookCase create(BookCase bookCase) {
-        bookCase.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        bookCase.setCreated_at(time);
+        bookCase.setUpdated_at(time);
         bookCaseMongoRepository.save(bookCase);
         return bookCaseSqlRepository.save(bookCase);
     }

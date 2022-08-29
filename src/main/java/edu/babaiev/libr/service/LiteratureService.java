@@ -32,7 +32,9 @@ public class LiteratureService {
     }
 
     public Literature create(Literature literature) {
-        literature.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        literature.setCreated_at(time);
+        literature.setUpdated_at(time);
         literatureMongoRepository.save(literature);
         return literatureSqlRepository.save(literature);
     }

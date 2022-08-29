@@ -32,7 +32,9 @@ public class CollectionService {
     }
 
     public Collection create(Collection collection) {
-        collection.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        collection.setCreated_at(time);
+        collection.setUpdated_at(time);
         collectionMongoRepository.save(collection);
         return collectionSqlRepository.save(collection);
     }

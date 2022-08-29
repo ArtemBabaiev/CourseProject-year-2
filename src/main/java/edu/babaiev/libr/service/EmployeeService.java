@@ -32,7 +32,9 @@ public class EmployeeService {
     }
 
     public Employee create(Employee employee) {
-        employee.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        employee.setCreated_at(time);
+        employee.setUpdated_at(time);
         employeeMongoRepository.save(employee);
         return employeeSqlRepository.save(employee);
     }

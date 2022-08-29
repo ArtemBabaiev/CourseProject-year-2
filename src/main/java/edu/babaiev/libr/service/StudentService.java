@@ -32,7 +32,9 @@ public class StudentService {
     }
 
     public Student create(Student student) {
-        student.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        student.setCreated_at(time);
+        student.setUpdated_at(time);
         studentMongoRepository.save(student);
         return studentSqlRepository.save(student);
     }

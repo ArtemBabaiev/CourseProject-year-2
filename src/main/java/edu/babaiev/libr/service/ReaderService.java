@@ -32,7 +32,9 @@ public class ReaderService {
     }
 
     public Reader create(Reader reader) {
-        reader.setCreated_at(LocalDateTime.now());
+        LocalDateTime time = LocalDateTime.now();
+        reader.setCreated_at(time);
+        reader.setUpdated_at(time);
         readerMongoRepository.save(reader);
         return readerSqlRepository.save(reader);
     }
