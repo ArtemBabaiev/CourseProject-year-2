@@ -1,4 +1,4 @@
-package edu.babaiev.libr;
+package edu.babaiev.libr.config;
 
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
