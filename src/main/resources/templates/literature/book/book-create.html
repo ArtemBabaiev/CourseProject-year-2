@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Додати книгу</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <form th:action="@{/literature/create/book}" th:method="POST" th:object="${book}">
+            <div layout:insert="~{/literature/book/book-form :: form(${book})}">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

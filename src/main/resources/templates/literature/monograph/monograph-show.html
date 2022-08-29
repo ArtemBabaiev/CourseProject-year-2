@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Монографія ' + ${monograph.getName()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div class="container">
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>ISN</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.getIsn()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Назва</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Рік видавництва</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.getPublishingYear()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Видавництво</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.getPublisher().getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Кількість у наявності</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.getStock()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Місце читання</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.isLendable()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Кількість сторінок</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.getNumberOfPages()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Період видачі</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.getLendPeriodInDays()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Жанр</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.getAuthor().getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Тип монографії</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.getMonographType().getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Відділ</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.getBranch()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Місце захисту</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.getDefenseCity()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Місце зберігання</p>
+                </div>
+                <div class="col">
+                    <p>Полиця: <span th:text="${monograph.getShelf().getNumber()}"></span></p>
+                    <p>Стелаж: <span th:text="${monograph.getShelf().getBookCase().getNumber()}"></span></p>
+                    <p>Зала: <span
+                            th:text="${monograph.getShelf().getBookCase().getReadingRoom().getNumber()}"></span>
+                    </p>
+                    <p>Бібліотека: <span
+                            th:text="${monograph.getShelf().getBookCase().getReadingRoom().getLibrary().getNumber()}"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Опис</p>
+                </div>
+                <div class="col">
+                    <p th:text="${monograph.getDescription()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

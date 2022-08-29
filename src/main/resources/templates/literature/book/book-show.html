@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Книга ' + ${book.getName()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div class="container">
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>ISN</p>
+                </div>
+                <div class="col">
+                    <p th:text="${book.getIsn()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Назва</p>
+                </div>
+                <div class="col">
+                    <p th:text="${book.getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Рік видавництва</p>
+                </div>
+                <div class="col">
+                    <p th:text="${book.getPublishingYear()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Видавництво</p>
+                </div>
+                <div class="col">
+                    <p th:text="${book.getPublisher().getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Кількість у наявності</p>
+                </div>
+                <div class="col">
+                    <p th:text="${book.getStock()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Місце читання</p>
+                </div>
+                <div class="col">
+                    <p th:text="${book.isLendable()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Кількість сторінок</p>
+                </div>
+                <div class="col">
+                    <p th:text="${book.getNumberOfPages()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Період видачі</p>
+                </div>
+                <div class="col">
+                    <p th:text="${book.getLendPeriodInDays()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Жанр</p>
+                </div>
+                <div class="col">
+                    <p th:text="${book.getGenre().getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Тип книги</p>
+                </div>
+                <div class="col">
+                    <p th:text="${book.getBookType().getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Твір</p>
+                </div>
+                <div class="col">
+                    <p th:text="${book.getWriting().getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Автор(-и)</p>
+                </div>
+                <div class="col">
+                    <div th:each="author: ${book.getWriting().getAuthors()}">
+                        <p th:text="${author.getName()}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Місце зберігання</p>
+                </div>
+                <div class="col">
+                    <p>Полиця: <span th:text="${book.getShelf().getNumber()}"></span></p>
+                    <p>Стелаж: <span th:text="${book.getShelf().getBookCase().getNumber()}"></span></p>
+                    <p>Зала: <span th:text="${book.getShelf().getBookCase().getReadingRoom().getNumber()}"></span></p>
+                    <p>Бібліотека: <span
+                            th:text="${book.getShelf().getBookCase().getReadingRoom().getLibrary().getNumber()}"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Опис</p>
+                </div>
+                <div class="col">
+                    <p th:text="${book.getDescription()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

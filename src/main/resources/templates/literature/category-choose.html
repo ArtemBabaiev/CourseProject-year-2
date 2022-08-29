@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Обрати категорію</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div style="padding-top:15%;">
+            <form th:action="@{/literature/create}" th:method="post" th:object="${categoryChooseForm}"
+                  style="margin-left: auto; margin-right: auto;  width: 50%; padding-bottom: 10px;
+                  padding-top: 10px"
+                  class="border border-2 rounded">
+                <div class="container">
+                    <div class="row mt-2">
+                        <div class="col d-flex justify-content-center">
+                            <input type="radio" class="form-check-input" id="Book" name="category" value="Book"
+                                   th:field="*{category}">
+                            <label for="Book" class="form-check-label">Книга</label>
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            <input type="radio" class="form-check-input" id="Collection" name="category"
+                                   value="Collection"
+                                   th:field="*{category}">
+                            <label for="Collection" class="form-check-label">Збірник</label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col d-flex justify-content-center">
+                            <input type="radio" class="form-check-input" id="Monograph" name="category"
+                                   value="Monograph"
+                                   th:field="*{category}">
+                            <label for="Monograph" class="form-check-label">Монографія</label>
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            <input type="radio" class="form-check-input" id="Periodical" name="category"
+                                   value="Periodical"
+                                   th:field="*{category}">
+                            <label for="Periodical" class="form-check-label">Публіцистика</label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col d-flex justify-content-center">
+                            <input type="submit" class="btn btn-primary" value="Далі">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>
