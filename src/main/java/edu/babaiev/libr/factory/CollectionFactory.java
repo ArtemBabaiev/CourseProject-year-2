@@ -37,6 +37,7 @@ public class CollectionFactory {
                             faker.lorem().toString(),
                             LocalDateTime.now(),
                             LocalDateTime.now(),
+                            new Author(faker.random().nextInt(1, QuantityConfig.AUTHOR.getValue())+""),
                             new Genre(faker.random().nextInt(1, QuantityConfig.GENRE.getValue()) + ""),
                             new CollectionType(faker.random().nextInt(1, QuantityConfig.COLLECTION_TYPE.getValue()) + ""),
                             new HashSet<Writing>(

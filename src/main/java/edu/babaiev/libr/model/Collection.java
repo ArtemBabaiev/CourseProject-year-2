@@ -23,6 +23,9 @@ import java.util.Set;
 public class Collection extends Literature {
     @DBRef
     @ManyToOne
+    private Author author;
+    @DBRef
+    @ManyToOne
     private Genre genre;
     @DBRef
     @ManyToOne
@@ -36,15 +39,17 @@ public class Collection extends Literature {
         super(id);
     }
 
-    public Collection(String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, Genre genre, CollectionType collectionType, Set<Writing> writings) {
+    public Collection(String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, Author author, Genre genre, CollectionType collectionType, Set<Writing> writings) {
         super(isn, name, publishingYear, publisher, shelf, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, updated_at);
+        this.author = author;
         this.genre = genre;
         this.collectionType = collectionType;
         this.writings = writings;
     }
 
-    public Collection(String id, String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, Genre genre, CollectionType collectionType, Set<Writing> writings) {
+    public Collection(String id, String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, Author author, Genre genre, CollectionType collectionType, Set<Writing> writings) {
         super(id, isn, name, publishingYear, publisher, shelf, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, updated_at);
+        this.author = author;
         this.genre = genre;
         this.collectionType = collectionType;
         this.writings = writings;
