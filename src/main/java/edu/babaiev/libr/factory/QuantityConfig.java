@@ -11,7 +11,7 @@ public enum QuantityConfig {
     ADULT(5), ARTICLE(5), AUTHOR(10),
     BOOK(5), BOOK_CASE(10), BOOK_TYPE(5),
     COLLECTION(5), COLLECTION_TYPE(3),
-    EMPLOYEE(5),
+    EMPLOYEE(5), EXEMPLAR(30),
     GENRE(5),
     KEY(5),
     LIBRARY(2),

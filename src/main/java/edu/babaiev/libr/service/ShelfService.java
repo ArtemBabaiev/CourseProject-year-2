@@ -44,6 +44,8 @@ public class ShelfService {
     }
 
     public Shelf update(Shelf shelf) {
+        Shelf oldOne = get(shelf.getId());
+        shelf.setCreated_at(oldOne.getCreated_at());
         shelf.setUpdated_at(LocalDateTime.now());
         shelfMongoRepository.save(shelf);
         return shelfSqlRepository.save(shelf);

@@ -5,7 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 /**
@@ -33,16 +34,16 @@ public class Monograph extends Literature{
         super(id);
     }
 
-    public Monograph(String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, Author author, MonographType monographType, String branch, String defenseCity) {
-        super(isn, name, publishingYear, publisher, shelf, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, updated_at);
+    public Monograph(String isn, String name, int publishingYear, Publisher publisher, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, Author author, MonographType monographType, String branch, String defenseCity) {
+        super(isn, name, publishingYear, publisher, isLendable, numberOfPages, lendPeriodInDays, description, created_at, updated_at);
         this.author = author;
         this.monographType = monographType;
         this.branch = branch;
         this.defenseCity = defenseCity;
     }
 
-    public Monograph(String id, String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, Author author, MonographType monographType, String branch, String defenseCity) {
-        super(id, isn, name, publishingYear, publisher, shelf, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, updated_at);
+    public Monograph(String id, String isn, String name, int publishingYear, Publisher publisher, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, Author author, MonographType monographType, String branch, String defenseCity) {
+        super(id, isn, name, publishingYear, publisher, isLendable, numberOfPages, lendPeriodInDays, description, created_at, updated_at);
         this.author = author;
         this.monographType = monographType;
         this.branch = branch;

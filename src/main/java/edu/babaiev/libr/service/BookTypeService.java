@@ -44,6 +44,8 @@ public class BookTypeService {
     }
 
     public BookType update(BookType bookType) {
+        BookType oldOne = get(bookType.getId());
+        bookType.setCreated_at(oldOne.getCreated_at());
         bookType.setUpdated_at(LocalDateTime.now());
         bookTypeMongoRepository.save(bookType);
         return bookTypeSqlRepository.save(bookType);

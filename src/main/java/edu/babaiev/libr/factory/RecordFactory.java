@@ -1,7 +1,7 @@
 package edu.babaiev.libr.factory;
 
-import edu.babaiev.libr.model.*;
 import com.github.javafaker.Faker;
+import edu.babaiev.libr.model.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -27,8 +27,7 @@ public class RecordFactory {
                                     new Scientist(faker.random().nextInt(11, 15) + ""),
                             new Employee(faker.random().nextInt(1, QuantityConfig.EMPLOYEE.getValue()) + ""),
                             new Employee(faker.random().nextInt(1, QuantityConfig.EMPLOYEE.getValue()) + ""),
-                            faker.random().nextBoolean() ? new Book(faker.random().nextInt(1, QuantityConfig.BOOK.getValue()) + "") :
-                                    new Collection(faker.random().nextInt(6, 2 * QuantityConfig.COLLECTION.getValue()) + ""),
+                            new Exemplar(faker.random().nextInt(1, QuantityConfig.EXEMPLAR.getValue()) + ""),
                             LocalDateTime.now(),
                             faker.random().nextBoolean()? LocalDateTime.now(): null,
                             LocalDateTime.now(),

@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.Literature;
 import edu.babaiev.libr.repository.mongo.LiteratureMongoRepository;
 import edu.babaiev.libr.repository.sql.LiteratureSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -44,6 +46,8 @@ public class LiteratureService {
     }
 
     public Literature update(Literature literature) {
+        Literature oldOne = get(literature.getId());
+        literature.setCreated_at(oldOne.getCreated_at());
         literature.setUpdated_at(LocalDateTime.now());
         literatureMongoRepository.save(literature);
         return literatureSqlRepository.save(literature);
@@ -56,5 +60,9 @@ public class LiteratureService {
 
     public List<Literature> getAll() {
         return literatureSqlRepository.findAll();
+    }
+
+    public Page<Literature> getAllPaginated(PageRequest pageRequest){
+        return literatureSqlRepository.findAll(pageRequest);
     }
 }

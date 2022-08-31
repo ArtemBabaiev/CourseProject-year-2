@@ -38,16 +38,16 @@ public class Book extends Literature {
         super(id);
     }
 
-    public Book(String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, Author author, Genre genre, BookType bookType, Writing writing) {
-        super(isn, name, publishingYear, publisher, shelf, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, updated_at);
+    public Book(String isn, String name, int publishingYear, Publisher publisher, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, Author author, Genre genre, BookType bookType, Writing writing) {
+        super(isn, name, publishingYear, publisher, isLendable, numberOfPages, lendPeriodInDays, description, created_at, updated_at);
         this.author = author;
         this.genre = genre;
         this.bookType = bookType;
         this.writing = writing;
     }
 
-    public Book(String id, String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, Author author, Genre genre, BookType bookType, Writing writing) {
-        super(id, isn, name, publishingYear, publisher, shelf, stock, isLendable, numberOfPages, lendPeriodInDays, description, created_at, updated_at);
+    public Book(String id, String isn, String name, int publishingYear, Publisher publisher, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at, Author author, Genre genre, BookType bookType, Writing writing) {
+        super(id, isn, name, publishingYear, publisher, isLendable, numberOfPages, lendPeriodInDays, description, created_at, updated_at);
         this.author = author;
         this.genre = genre;
         this.bookType = bookType;

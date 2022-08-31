@@ -44,6 +44,8 @@ public class LibraryService {
     }
 
     public Library update(Library library) {
+        Library oldOne = get(library.getId());
+        library.setCreated_at(oldOne.getCreated_at());
         library.setUpdated_at(LocalDateTime.now());
         libraryMongoRepository.save(library);
         return librarySqlRepository.save(library);

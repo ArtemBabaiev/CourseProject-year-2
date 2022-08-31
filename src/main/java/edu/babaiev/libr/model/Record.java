@@ -7,7 +7,10 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -39,7 +42,7 @@ public class Record {
     private Employee acceptedBy;
     @DBRef
     @ManyToOne
-    private Literature literature;
+    private Exemplar exemplar;
     private LocalDateTime lend_at;
     private LocalDateTime returned_at;
     private LocalDateTime created_at;
@@ -49,11 +52,11 @@ public class Record {
         this.id = id;
     }
 
-    public Record(Reader reader, Employee lendBy, Employee acceptedBy, Literature literature, LocalDateTime lend_at, LocalDateTime returned_at, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Record(Reader reader, Employee lendBy, Employee acceptedBy, Exemplar exemplar, LocalDateTime lend_at, LocalDateTime returned_at, LocalDateTime created_at, LocalDateTime updated_at) {
         this.reader = reader;
         this.lendBy = lendBy;
         this.acceptedBy = acceptedBy;
-        this.literature = literature;
+        this.exemplar = exemplar;
         this.lend_at = lend_at;
         this.returned_at = returned_at;
         this.created_at = created_at;
@@ -80,7 +83,7 @@ public class Record {
                 ", reader=" + reader +
                 ", lendBy=" + lendBy +
                 ", acceptedBy=" + acceptedBy +
-                ", literature=" + literature +
+                ", exemplar=" + exemplar +
                 ", lend_at=" + lend_at +
                 ", returned_at=" + returned_at +
                 ", created_at=" + created_at +

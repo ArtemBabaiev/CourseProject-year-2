@@ -44,6 +44,8 @@ public class ReaderService {
     }
 
     public Reader update(Reader reader) {
+        Reader oldOne = get(reader.getId());
+        reader.setCreated_at(oldOne.getCreated_at());
         reader.setUpdated_at(LocalDateTime.now());
         readerMongoRepository.save(reader);
         return readerSqlRepository.save(reader);

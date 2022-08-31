@@ -6,7 +6,10 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -26,17 +29,12 @@ import java.util.Objects;
 public abstract class Literature {
     @Id
     private String id;
-    @Column(unique = true)
     private String isn;
     private String name;
     private int publishingYear;
     @DBRef
     @ManyToOne
     private Publisher publisher;
-    @DBRef
-    @ManyToOne
-    private Shelf shelf;
-    private int stock;
     private boolean isLendable;
     private int numberOfPages;
     private int lendPeriodInDays;
@@ -48,13 +46,11 @@ public abstract class Literature {
         this.id = id;
     }
 
-    public Literature(String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Literature(String isn, String name, int publishingYear, Publisher publisher, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at) {
         this.isn = isn;
         this.name = name;
         this.publishingYear = publishingYear;
         this.publisher = publisher;
-        this.shelf = shelf;
-        this.stock = stock;
         this.isLendable = isLendable;
         this.numberOfPages = numberOfPages;
         this.lendPeriodInDays = lendPeriodInDays;
@@ -63,14 +59,12 @@ public abstract class Literature {
         this.updated_at = updated_at;
     }
 
-    public Literature(String id, String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Literature(String id, String isn, String name, int publishingYear, Publisher publisher, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at) {
         this.id = id;
         this.isn = isn;
         this.name = name;
         this.publishingYear = publishingYear;
         this.publisher = publisher;
-        this.shelf = shelf;
-        this.stock = stock;
         this.isLendable = isLendable;
         this.numberOfPages = numberOfPages;
         this.lendPeriodInDays = lendPeriodInDays;
@@ -87,8 +81,6 @@ public abstract class Literature {
                 ", name='" + name + '\'' +
                 ", publishingYear=" + publishingYear +
                 ", publisher=" + publisher +
-                ", shelf=" + shelf +
-                ", stock=" + stock +
                 ", isLendable=" + isLendable +
                 ", numberOfPages=" + numberOfPages +
                 ", lendPeriodInDays=" + lendPeriodInDays +

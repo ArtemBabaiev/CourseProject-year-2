@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.Author;
 import edu.babaiev.libr.repository.mongo.AuthorMongoRepository;
 import edu.babaiev.libr.repository.sql.AuthorSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -44,6 +46,8 @@ public class AuthorService {
     }
 
     public Author update(Author author) {
+        Author oldOne = get(author.getId());
+        author.setCreated_at(oldOne.getCreated_at());
         author.setUpdated_at(LocalDateTime.now());
         authorMongoRepository.save(author);
         return authorSqlRepository.save(author);
@@ -56,5 +60,9 @@ public class AuthorService {
 
     public List<Author> getAll() {
         return authorSqlRepository.findAll();
+    }
+
+    public Page<Author> getAllPaginated(PageRequest pageRequest){
+        return authorSqlRepository.findAll(pageRequest);
     }
 }

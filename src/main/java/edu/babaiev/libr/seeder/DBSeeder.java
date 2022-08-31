@@ -19,6 +19,7 @@ public class DBSeeder implements CommandLineRunner {
     BookTypeSeeder bookTypeSeeder;
     CollectionTypeSeeder collectionTypeSeeder;
     EmployeeSeeder employeeSeeder;
+    ExemplarSeeder exemplarSeeder;
     GenreSeeder genreSeeder;
     KeySeeder keySeeder;
     LibrarySeeder librarySeeder;
@@ -36,13 +37,18 @@ public class DBSeeder implements CommandLineRunner {
     WrittenOffSeeder writtenOffSeeder;
 
     @Autowired
-    public DBSeeder(ArticleSeeder articleSeeder, AuthorSeeder authorSeeder, BookCaseSeeder bookCaseSeeder, BookTypeSeeder bookTypeSeeder, CollectionTypeSeeder collectionTypeSeeder, EmployeeSeeder employeeSeeder, GenreSeeder genreSeeder, KeySeeder keySeeder, LibrarySeeder librarySeeder, LiteratureSeeder literatureSeeder, MonographTypeSeeder monographTypeSeeder, PeriodicalTypeSeeder periodicalTypeSeeder, PublisherSeeder publisherSeeder, ReaderSeeder readerSeeder, ReadingRoomSeeder readingRoomSeeder, RecordSeeder recordSeeder, RoleSeeder roleSeeder, ShelfSeeder shelfSeeder, SubjectSeeder subjectSeeder, WritingSeeder writingSeeder, WrittenOffSeeder writtenOffSeeder) {
+    public DBSeeder(ArticleSeeder articleSeeder, AuthorSeeder authorSeeder, BookCaseSeeder bookCaseSeeder,
+                    BookTypeSeeder bookTypeSeeder, CollectionTypeSeeder collectionTypeSeeder,
+                    EmployeeSeeder employeeSeeder, ExemplarSeeder exemplarSeeder,
+                    GenreSeeder genreSeeder, KeySeeder keySeeder, LibrarySeeder librarySeeder,
+                    LiteratureSeeder literatureSeeder, MonographTypeSeeder monographTypeSeeder, PeriodicalTypeSeeder periodicalTypeSeeder, PublisherSeeder publisherSeeder, ReaderSeeder readerSeeder, ReadingRoomSeeder readingRoomSeeder, RecordSeeder recordSeeder, RoleSeeder roleSeeder, ShelfSeeder shelfSeeder, SubjectSeeder subjectSeeder, WritingSeeder writingSeeder, WrittenOffSeeder writtenOffSeeder) {
         this.articleSeeder = articleSeeder;
         this.authorSeeder = authorSeeder;
         this.bookCaseSeeder = bookCaseSeeder;
         this.bookTypeSeeder = bookTypeSeeder;
         this.collectionTypeSeeder = collectionTypeSeeder;
         this.employeeSeeder = employeeSeeder;
+        this.exemplarSeeder = exemplarSeeder;
         this.genreSeeder = genreSeeder;
         this.keySeeder = keySeeder;
         this.librarySeeder = librarySeeder;
@@ -88,6 +94,7 @@ public class DBSeeder implements CommandLineRunner {
         articleSeeder.Seed();
 
         literatureSeeder.Seed();
+        exemplarSeeder.Seed();
         recordSeeder.Seed();
     }
 

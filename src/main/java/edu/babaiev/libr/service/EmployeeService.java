@@ -44,6 +44,8 @@ public class EmployeeService {
     }
 
     public Employee update(Employee employee) {
+        Employee oldOne = get(employee.getId());
+        employee.setCreated_at(oldOne.getCreated_at());
         employee.setUpdated_at(LocalDateTime.now());
         employeeMongoRepository.save(employee);
         return employeeSqlRepository.save(employee);

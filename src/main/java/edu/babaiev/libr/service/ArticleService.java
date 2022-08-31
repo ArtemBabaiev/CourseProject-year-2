@@ -44,6 +44,8 @@ public class ArticleService {
     }
 
     public Article update(Article article) {
+        Article oldOne = get(article.getId());
+        article.setCreated_at(oldOne.getCreated_at());
         article.setUpdated_at(LocalDateTime.now());
         articleMongoRepository.save(article);
         return articleSqlRepository.save(article);

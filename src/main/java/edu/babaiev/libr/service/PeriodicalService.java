@@ -44,6 +44,8 @@ public class PeriodicalService {
     }
 
     public Periodical update(Periodical periodical) {
+        Periodical oldOne = get(periodical.getId());
+        periodical.setCreated_at(oldOne.getCreated_at());
         periodical.setUpdated_at(LocalDateTime.now());
         periodicalMongoRepository.save(periodical);
         return periodicalSqlRepository.save(periodical);

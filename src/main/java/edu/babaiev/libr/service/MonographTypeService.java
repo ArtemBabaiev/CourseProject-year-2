@@ -44,6 +44,8 @@ public class MonographTypeService {
     }
 
     public MonographType update(MonographType monographType) {
+        MonographType oldOne = get(monographType.getId());
+        monographType.setCreated_at(oldOne.getCreated_at());
         monographType.setUpdated_at(LocalDateTime.now());
         monographTypeMongoRepository.save(monographType);
         return monographTypeSqlRepository.save(monographType);

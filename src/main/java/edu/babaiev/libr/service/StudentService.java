@@ -44,6 +44,8 @@ public class StudentService {
     }
 
     public Student update(Student student) {
+        Student oldOne = get(student.getId());
+        student.setCreated_at(oldOne.getCreated_at());
         student.setUpdated_at(LocalDateTime.now());
         studentMongoRepository.save(student);
         return studentSqlRepository.save(student);

@@ -44,6 +44,8 @@ public class RecordService {
     }
 
     public Record update(Record record) {
+        Record oldOne = get(record.getId());
+        record.setCreated_at(oldOne.getCreated_at());
         record.setUpdated_at(LocalDateTime.now());
         recordMongoRepository.save(record);
         return recordSqlRepository.save(record);

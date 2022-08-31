@@ -44,6 +44,8 @@ public class BookService {
     }
 
     public Book update(Book book) {
+        Book oldOne = get(book.getId());
+        book.setCreated_at(oldOne.getCreated_at());
         book.setUpdated_at(LocalDateTime.now());
         bookMongoRepository.save(book);
         return bookSqlRepository.save(book);

@@ -44,6 +44,8 @@ public class RoleService {
     }
 
     public Role update(Role role) {
+        Role oldOne = get(role.getId());
+        role.setCreated_at(oldOne.getCreated_at());
         role.setUpdated_at(LocalDateTime.now());
         roleMongoRepository.save(role);
         return roleSqlRepository.save(role);

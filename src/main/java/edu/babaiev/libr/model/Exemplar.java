@@ -18,33 +18,37 @@ import java.util.Objects;
  * @author artem
  * @version: 1.0.0
  * @project CourseProject-year-2
- * @date 15.08.2022 12:37
- * @class BookCase
+ * @date 31.08.2022 14:56
+ * @class Exemplar
  */
 @Entity
-@Table(name = "book_cases")
-@Document("book_cases")
+@Table(name = "exemplars")
+@Document("exemplars")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookCase {
+public class Exemplar {
     @Id
     private String id;
-    private String number;
+    private boolean isLend;
     @DBRef
     @ManyToOne
-    private ReadingRoom readingRoom;
+    private Shelf shelf;
+    @DBRef
+    @ManyToOne
+    private Literature literature;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
 
-    public BookCase(String id) {
+    public Exemplar(String id) {
         this.id = id;
     }
 
-    public BookCase(String number, ReadingRoom readingRoom, LocalDateTime created_at, LocalDateTime updated_at) {
-        this.number = number;
-        this.readingRoom = readingRoom;
+    public Exemplar(boolean isLend, Shelf shelf, Literature literature, LocalDateTime created_at, LocalDateTime updated_at) {
+        this.isLend = isLend;
+        this.shelf = shelf;
+        this.literature = literature;
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
@@ -53,8 +57,8 @@ public class BookCase {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BookCase bookCase = (BookCase) o;
-        return id.equals(bookCase.id);
+        Exemplar exemplar = (Exemplar) o;
+        return id.equals(exemplar.id);
     }
 
     @Override
@@ -64,12 +68,13 @@ public class BookCase {
 
     @Override
     public String toString() {
-        return "BookCase{" +
+        return "Exemplar{" +
                 "id='" + id + '\'' +
-                ", number='" + number + '\'' +
-                ", readingRoom=" + readingRoom +
+                ", isLend=" + isLend +
+                ", shelf=" + shelf +
+                ", literature=" + literature +
                 ", created_at=" + created_at +
-                ", update_at=" + updated_at +
+                ", updated_at=" + updated_at +
                 '}';
     }
 }

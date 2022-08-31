@@ -44,6 +44,8 @@ public class SubjectService {
     }
 
     public Subject update(Subject subject) {
+        Subject oldOne = get(subject.getId());
+        subject.setCreated_at(oldOne.getCreated_at());
         subject.setUpdated_at(LocalDateTime.now());
         subjectMongoRepository.save(subject);
         return subjectSqlRepository.save(subject);

@@ -44,6 +44,8 @@ public class AdultService {
     }
 
     public Adult update(Adult adult) {
+        Adult oldOne = get(adult.getId());
+        adult.setCreated_at(oldOne.getCreated_at());
         adult.setUpdated_at(LocalDateTime.now());
         adultMongoRepository.save(adult);
         return adultSqlRepository.save(adult);

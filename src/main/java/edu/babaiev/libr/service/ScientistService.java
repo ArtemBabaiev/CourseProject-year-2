@@ -44,6 +44,8 @@ public class ScientistService {
     }
 
     public Scientist update(Scientist scientist) {
+        Scientist oldOne = get(scientist.getId());
+        scientist.setCreated_at(oldOne.getCreated_at());
         scientist.setUpdated_at(LocalDateTime.now());
         scientistMongoRepository.save(scientist);
         return scientistSqlRepository.save(scientist);

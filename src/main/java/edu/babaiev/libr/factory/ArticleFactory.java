@@ -1,12 +1,15 @@
 package edu.babaiev.libr.factory;
 
+import com.github.javafaker.Faker;
 import edu.babaiev.libr.model.Article;
 import edu.babaiev.libr.model.Author;
-import com.github.javafaker.Faker;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * @author artem

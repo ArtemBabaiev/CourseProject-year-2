@@ -44,6 +44,8 @@ public class KeyService {
     }
 
     public Key update(Key key) {
+        Key oldOne = get(key.getId());
+        key.setCreated_at(oldOne.getCreated_at());
         key.setUpdated_at(LocalDateTime.now());
         keyMongoRepository.save(key);
         return keySqlRepository.save(key);

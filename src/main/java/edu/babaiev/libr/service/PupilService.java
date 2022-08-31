@@ -44,6 +44,8 @@ public class PupilService {
     }
 
     public Pupil update(Pupil pupil) {
+        Pupil oldOne = get(pupil.getId());
+        pupil.setCreated_at(oldOne.getCreated_at());
         pupil.setUpdated_at(LocalDateTime.now());
         pupilMongoRepository.save(pupil);
         return pupilSqlRepository.save(pupil);

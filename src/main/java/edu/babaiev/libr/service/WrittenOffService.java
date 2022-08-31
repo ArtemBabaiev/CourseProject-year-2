@@ -44,6 +44,8 @@ public class WrittenOffService {
     }
 
     public WrittenOff update(WrittenOff writtenOff) {
+        WrittenOff oldOne = get(writtenOff.getId());
+        writtenOff.setCreated_at(oldOne.getCreated_at());
         writtenOff.setUpdated_at(LocalDateTime.now());
         writtenOffMongoRepository.save(writtenOff);
         return writtenOffSqlRepository.save(writtenOff);

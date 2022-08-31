@@ -2,7 +2,6 @@ package edu.babaiev.libr.repository.sql;
 
 import edu.babaiev.libr.model.Writing;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * @author artem

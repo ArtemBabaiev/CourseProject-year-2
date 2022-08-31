@@ -44,6 +44,8 @@ public class PublisherService {
     }
 
     public Publisher update(Publisher publisher) {
+        Publisher oldOne = get(publisher.getId());
+        publisher.setCreated_at(oldOne.getCreated_at());
         publisher.setUpdated_at(LocalDateTime.now());
         publisherMongoRepository.save(publisher);
         return publisherSqlRepository.save(publisher);

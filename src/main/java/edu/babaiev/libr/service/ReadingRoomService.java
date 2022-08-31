@@ -44,6 +44,8 @@ public class ReadingRoomService {
     }
 
     public ReadingRoom update(ReadingRoom readingRoom) {
+        ReadingRoom oldOne = get(readingRoom.getId());
+        readingRoom.setCreated_at(oldOne.getCreated_at());
         readingRoom.setUpdated_at(LocalDateTime.now());
         readingRoomMongoRepository.save(readingRoom);
         return readingRoomSqlRepository.save(readingRoom);

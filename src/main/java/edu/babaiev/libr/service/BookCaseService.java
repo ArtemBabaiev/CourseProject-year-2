@@ -44,6 +44,8 @@ public class BookCaseService {
     }
 
     public BookCase update(BookCase bookCase) {
+        BookCase oldOne = get(bookCase.getId());
+        bookCase.setCreated_at(oldOne.getCreated_at());
         bookCase.setUpdated_at(LocalDateTime.now());
         bookCaseMongoRepository.save(bookCase);
         return bookCaseSqlRepository.save(bookCase);

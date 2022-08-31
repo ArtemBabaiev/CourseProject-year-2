@@ -44,6 +44,8 @@ public class WritingService {
     }
 
     public Writing update(Writing writing) {
+        Writing oldOne = get(writing.getId());
+        writing.setCreated_at(oldOne.getCreated_at());
         writing.setUpdated_at(LocalDateTime.now());
         writingMongoRepository.save(writing);
         return writingSqlRepository.save(writing);

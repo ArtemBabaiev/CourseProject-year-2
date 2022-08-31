@@ -44,6 +44,8 @@ public class CollectionService {
     }
 
     public Collection update(Collection collection) {
+        Collection oldOne = get(collection.getId());
+        collection.setCreated_at(oldOne.getCreated_at());
         collection.setUpdated_at(LocalDateTime.now());
         collectionMongoRepository.save(collection);
         return collectionSqlRepository.save(collection);
