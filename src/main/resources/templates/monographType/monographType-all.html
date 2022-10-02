@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Типи монографії</title>
+</head>
+<body>
+<section layout:fragment="content">
+  <div class="section-container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="d-flex justify-content-start align-items-center">
+        <h2>Типи монографії</h2>
+      </div>
+      <div class="d-flex justify-content-end align-items-center" style="column-gap: 15px">
+      </div>
+    </div>
+    <div class="container pb-2 border-bottom">
+      <div class="row">
+        <div class="col">
+          <form th:action="@{/monographTypes/show}" th:method="GET" class="d-flex" style="column-gap: 5px">
+            <input type="search" id="name" name="name" class="form-control"
+                   th:value="${#httpServletRequest.getParameter('name')}">
+            <button class="btn btn-outline-success" type="submit">
+              <!--SEARCH ICON-->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                   class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <form th:action="@{/monographTypes/create}" th:method="GET">
+            <input type="submit" th:value="Створити" class="btn btn-primary">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Назва</th>
+        <th>Повна інформація</th>
+        <th>Редагувати</th>
+        <th>Видалити</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="monographType: ${monographTypes}">
+        <td th:text="${monographType.getName()}"></td>
+        <td>
+          <form th:action="@{/monographTypes/show/{id}(id=${monographType.getId()})}" method="get">
+            <button type="submit" class="btn btn-sm btn-outline-info">Повна інформація</button>
+          </form>
+        </td>
+        <td>
+          <form th:action="@{/monographTypes/edit/{id}(id=${monographType.getId()})}" method="get">
+            <button type="submit" class="btn btn-sm btn-outline-warning">Редагувати</button>
+          </form>
+        </td>
+        <td>
+          <form th:action="@{/monographTypes/delete/{id}(id=${monographType.getId()})}" th:method="DELETE">
+            <button type="submit" class="btn btn-sm btn-outline-danger">Видалити</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <nav aria-label="Pagination" th:if="${monographTypes.totalPages gt 0}">
+      <ul class="pagination justify-content-center font-weight-medium">
+        <li class="page-item" th:classappend="${monographTypes.number eq 0} ? 'disabled'">
+          <a class="page-link svg-icon"
+             th:href="@{/monographTypes/show?page={id}&name={toSearch}(id=${monographTypes.number lt 2 ? 1 : monographTypes.number}, toSearch = ${#httpServletRequest.getParameter('toSearch')})}"
+             aria-label="Previous"
+             title="Previous Page" rel="tooltip">
+            <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item" th:if="${monographTypes.number + 1 > 5}">
+          <a class="page-link"
+             th:href="@{/monographTypes/show?page={id}&name={toSearch}(id=${1}, toSearch = ${#httpServletRequest.getParameter('toSearch')})}"
+             th:text="${1}"
+             th:title="${'Page '+ 1}"
+             rel="tooltip"></a>
+        </li>
+        <li class="page-item disabled" th:if="${monographTypes.number + 1 > 6}">
+          <a class="page-link svg-icon" href="#">
+            <span data-feather="more-horizontal" width="20" height="20">...</span>
+          </a>
+        </li>
+        <li class="page-item"
+            th:each="i : ${#numbers.sequence( monographTypes.number + 1 > 5 ? monographTypes.number + 1 - 4: 1 , monographTypes.totalPages > 5 + monographTypes.number ? monographTypes.number + 5 : monographTypes.totalPages, 1)}"
+            th:classappend="${i eq monographTypes.number + 1} ? 'active'">
+          <a class="page-link"
+             th:href="@{/monographTypes/show?page={id}&name={toSearch}(id=${i}, toSearch = ${#httpServletRequest.getParameter('toSearch')})}"
+             th:text="${i}"
+             th:title="${'Page '+ i}"
+             rel="tooltip"></a>
+        </li>
+        <li class="page-item disabled" th:if="${monographTypes.number + 1 < monographTypes.totalPages - 5}">
+          <a class="page-link svg-icon" href="#">
+            <span data-feather="more-horizontal" width="20" height="20">...</span>
+          </a>
+        </li>
+        <li class="page-item" th:if="${monographTypes.number + 1 < monographTypes.totalPages - 4}">
+          <a class="page-link"
+             th:href="@{/monographTypes/show?page={id}&name={toSearch}(id=${monographTypes.totalPages}, toSearch = ${#httpServletRequest.getParameter('toSearch')})}"
+             th:text="${monographTypes.totalPages}"
+             th:title="${'Page '+ monographTypes.totalPages}"
+             rel="tooltip"></a>
+        </li>
+        <li class="page-item" th:classappend="${monographTypes.number + 1 eq monographTypes.totalPages} ? 'disabled'">
+          <a class="page-link svg-icon"
+             th:href="@{/monographTypes/show?page={id}&name={toSearch}(id=${monographTypes.number + 2}, toSearch = ${#httpServletRequest.getParameter('toSearch')})}"
+             aria-label="Next"
+             title="Next Page" rel="tooltip">
+            <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+</body>
+</html>

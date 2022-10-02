@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.Publisher;
 import edu.babaiev.libr.repository.mongo.PublisherMongoRepository;
 import edu.babaiev.libr.repository.sql.PublisherSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class PublisherService {
 
     public Publisher create(Publisher publisher) {
         LocalDateTime time = LocalDateTime.now();
-        publisher.setCreated_at(time);
-        publisher.setUpdated_at(time);
+        publisher.setCreatedAt(time);
+        publisher.setUpdatedAt(time);
         publisherMongoRepository.save(publisher);
         return publisherSqlRepository.save(publisher);
     }
@@ -45,8 +47,8 @@ public class PublisherService {
 
     public Publisher update(Publisher publisher) {
         Publisher oldOne = get(publisher.getId());
-        publisher.setCreated_at(oldOne.getCreated_at());
-        publisher.setUpdated_at(LocalDateTime.now());
+        publisher.setCreatedAt(oldOne.getCreatedAt());
+        publisher.setUpdatedAt(LocalDateTime.now());
         publisherMongoRepository.save(publisher);
         return publisherSqlRepository.save(publisher);
     }
@@ -58,5 +60,9 @@ public class PublisherService {
 
     public List<Publisher> getAll() {
         return publisherSqlRepository.findAll();
+    }
+
+    public Page<Publisher> getByNameContainingPaginated(String name, PageRequest pageRequest){
+        return publisherSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 }

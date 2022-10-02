@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="'Бібліотека №' + ${library.getNumber()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+  <div class="section-container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="d-flex justify-content-start align-items-center">
+        <h2 th:text="'Бібліотека №' + ${library.getNumber()}"/>
+      </div>
+      <div class="d-flex justify-content-end align-items-center" style="column-gap: 15px">
+        <a th:href="@{/libraries/edit/{id}(id = ${library.getId()})}" class="btn btn-outline-warning">Редагувати</a>
+        <form th:action="@{/libraries/delete/{id}(id = ${library.getId()})}" th:method="DELETE">
+          <input type="submit" class="btn btn-outline-danger" value="Видалити">
+        </form>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row border-bottom">
+        <div class="col">
+          <p>Номер</p>
+        </div>
+        <div class="col">
+          <p th:text="${library.getNumber()}"></p>
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col">
+          <p>Адреса</p>
+        </div>
+        <div class="col">
+          <p th:text="${library.getAddress()}"></p>
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col">
+          <p>Читальні зали</p>
+        </div>
+        <div class="col">
+          <p th:each="readingRoom: ${readingRooms}">
+            <a th:href="@{/readingRooms/show/{id}(id = ${readingRoom.getId()})}" th:text="'№ ' + ${readingRoom.getNumber()}"></a>
+          </p>
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col">
+          <p>Створено</p>
+        </div>
+        <div class="col">
+          <p th:text="${library.getCreatedAt()}"></p>
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col">
+          <p>Оновленно</p>
+        </div>
+        <div class="col">
+          <p th:text="${library.getUpdatedAt()}"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

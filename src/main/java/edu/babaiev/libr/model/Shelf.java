@@ -35,18 +35,18 @@ public class Shelf {
     @DBRef
     @ManyToOne
     private BookCase bookCase;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public Shelf(String id) {
         this.id = id;
     }
 
-    public Shelf(String number, BookCase bookCase, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Shelf(String number, BookCase bookCase, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.number = number;
         this.bookCase = bookCase;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -55,8 +55,8 @@ public class Shelf {
                 "id='" + id + '\'' +
                 ", number='" + number + '\'' +
                 ", bookCase=" + bookCase +
-                ", created_at=" + created_at +
-                ", update_at=" + updated_at +
+                ", created_at=" + createdAt +
+                ", update_at=" + updatedAt +
                 '}';
     }
 

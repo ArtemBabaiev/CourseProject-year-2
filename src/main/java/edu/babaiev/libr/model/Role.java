@@ -31,18 +31,18 @@ public class Role {
     private String id;
     private String name;
     private String description;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public Role(String id) {
         this.id = id;
     }
 
-    public Role(String name, String description, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Role(String name, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.name = name;
         this.description = description;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -64,8 +64,8 @@ public class Role {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", created_at=" + created_at +
-                ", update_at=" + updated_at +
+                ", created_at=" + createdAt +
+                ", update_at=" + updatedAt +
                 '}';
     }
 }

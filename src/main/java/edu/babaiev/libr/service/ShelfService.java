@@ -1,9 +1,12 @@
 package edu.babaiev.libr.service;
 
+import edu.babaiev.libr.model.BookCase;
 import edu.babaiev.libr.model.Shelf;
 import edu.babaiev.libr.repository.mongo.ShelfMongoRepository;
 import edu.babaiev.libr.repository.sql.ShelfSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +36,8 @@ public class ShelfService {
 
     public Shelf create(Shelf shelf) {
         LocalDateTime time = LocalDateTime.now();
-        shelf.setCreated_at(time);
-        shelf.setUpdated_at(time);
+        shelf.setCreatedAt(time);
+        shelf.setUpdatedAt(time);
         shelfMongoRepository.save(shelf);
         return shelfSqlRepository.save(shelf);
     }
@@ -45,8 +48,8 @@ public class ShelfService {
 
     public Shelf update(Shelf shelf) {
         Shelf oldOne = get(shelf.getId());
-        shelf.setCreated_at(oldOne.getCreated_at());
-        shelf.setUpdated_at(LocalDateTime.now());
+        shelf.setCreatedAt(oldOne.getCreatedAt());
+        shelf.setUpdatedAt(LocalDateTime.now());
         shelfMongoRepository.save(shelf);
         return shelfSqlRepository.save(shelf);
     }
@@ -58,5 +61,13 @@ public class ShelfService {
 
     public List<Shelf> getAll() {
         return shelfSqlRepository.findAll();
+    }
+
+    public Page<Shelf> getByNumberContainingPaginated(String number, PageRequest pageRequest){
+        return shelfSqlRepository.findAllByNumberContainingIgnoreCase(number, pageRequest);
+    }
+
+    public List<Shelf> getByBookCase(BookCase bookCase){
+        return shelfSqlRepository.findAllByBookCase(bookCase);
     }
 }

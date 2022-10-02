@@ -1,9 +1,12 @@
 package edu.babaiev.libr.service;
 
+import edu.babaiev.libr.model.Library;
 import edu.babaiev.libr.model.ReadingRoom;
 import edu.babaiev.libr.repository.mongo.ReadingRoomMongoRepository;
 import edu.babaiev.libr.repository.sql.ReadingRoomSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +36,8 @@ public class ReadingRoomService {
 
     public ReadingRoom create(ReadingRoom readingRoom) {
         LocalDateTime time = LocalDateTime.now();
-        readingRoom.setCreated_at(time);
-        readingRoom.setUpdated_at(time);
+        readingRoom.setCreatedAt(time);
+        readingRoom.setUpdatedAt(time);
         readingRoomMongoRepository.save(readingRoom);
         return readingRoomSqlRepository.save(readingRoom);
     }
@@ -45,8 +48,8 @@ public class ReadingRoomService {
 
     public ReadingRoom update(ReadingRoom readingRoom) {
         ReadingRoom oldOne = get(readingRoom.getId());
-        readingRoom.setCreated_at(oldOne.getCreated_at());
-        readingRoom.setUpdated_at(LocalDateTime.now());
+        readingRoom.setCreatedAt(oldOne.getCreatedAt());
+        readingRoom.setUpdatedAt(LocalDateTime.now());
         readingRoomMongoRepository.save(readingRoom);
         return readingRoomSqlRepository.save(readingRoom);
     }
@@ -58,5 +61,14 @@ public class ReadingRoomService {
 
     public List<ReadingRoom> getAll() {
         return readingRoomSqlRepository.findAll();
+    }
+
+    public Page<ReadingRoom> getByNumberContainingPaginated(String number, PageRequest pageRequest){
+        return readingRoomSqlRepository.findAllByNumberContainingIgnoreCase(number, pageRequest);
+    }
+
+    public List<ReadingRoom> getByLibrary(Library library){
+        return readingRoomSqlRepository.findAllByLibrary(library);
+
     }
 }

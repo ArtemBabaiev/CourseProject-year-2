@@ -6,10 +6,7 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -29,6 +26,7 @@ import java.util.Objects;
 public abstract class Literature {
     @Id
     private String id;
+    @Column(unique = true)
     private String isn;
     private String name;
     private int publishingYear;
@@ -39,14 +37,14 @@ public abstract class Literature {
     private int numberOfPages;
     private int lendPeriodInDays;
     private String description;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public Literature(String id) {
         this.id = id;
     }
 
-    public Literature(String isn, String name, int publishingYear, Publisher publisher, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Literature(String isn, String name, int publishingYear, Publisher publisher, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.isn = isn;
         this.name = name;
         this.publishingYear = publishingYear;
@@ -55,11 +53,11 @@ public abstract class Literature {
         this.numberOfPages = numberOfPages;
         this.lendPeriodInDays = lendPeriodInDays;
         this.description = description;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public Literature(String id, String isn, String name, int publishingYear, Publisher publisher, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Literature(String id, String isn, String name, int publishingYear, Publisher publisher, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.isn = isn;
         this.name = name;
@@ -69,8 +67,8 @@ public abstract class Literature {
         this.numberOfPages = numberOfPages;
         this.lendPeriodInDays = lendPeriodInDays;
         this.description = description;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -85,8 +83,8 @@ public abstract class Literature {
                 ", numberOfPages=" + numberOfPages +
                 ", lendPeriodInDays=" + lendPeriodInDays +
                 ", description='" + description + '\'' +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
+                ", created_at=" + createdAt +
+                ", updated_at=" + updatedAt +
                 '}';
     }
 

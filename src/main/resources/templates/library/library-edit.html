@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Редагувати бібліотеку</title>
+</head>
+<body>
+<section layout:fragment="content">
+  <div class="section-container">
+    <form th:href="@{/libraries/edit/{id}(id=${library.getId()})}" th:method="PUT" th:object="${library}">
+      <div layout:insert="~{/library/library-form :: form(${library})}">
+      </div>
+    </form>
+  </div>
+</section>
+</body>
+</html>

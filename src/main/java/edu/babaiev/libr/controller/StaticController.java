@@ -10,11 +10,11 @@ import org.springframework.web.servlet.view.RedirectView;
  * @version: 1.0.0
  * @project CourseProject-year-2
  * @date 22.08.2022 19:01
- * @class HomeController
+ * @class StaticController
  */
 @Controller
 @RequestMapping("/")
-public class HomeController {
+public class StaticController {
 
     @GetMapping("")
     public RedirectView showDefaultHome() {
@@ -24,5 +24,9 @@ public class HomeController {
     @GetMapping("/home")
     public String showHome() {
         return "home";
+    }
+    @GetMapping("/resources")
+    public String showResources(){
+        return "resources";
     }
 }

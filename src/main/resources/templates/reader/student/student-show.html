@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Читач: ' + ${student.getLastName()} + ' ' + ${student.getFirstName()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div layout:insert="~{/reader/control-panel :: panel(${student})}">
+        </div>
+        <div class="container">
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Номер читацького квитка</p>
+                </div>
+                <div class="col">
+                    <p th:text="${student.getReaderTicket()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Прізвище</p>
+                </div>
+                <div class="col">
+                    <p th:text="${student.getLastName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Ім'я</p>
+                </div>
+                <div class="col">
+                    <p th:text="${student.getFirstName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Дата народження</p>
+                </div>
+                <div class="col">
+                    <p th:text="${student.getBirthday()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Адреса</p>
+                </div>
+                <div class="col">
+                    <p th:text="${student.getAddress()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Номер телефону</p>
+                </div>
+                <div class="col">
+                    <p th:text="${student.getPhoneNumber()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Університет</p>
+                </div>
+                <div class="col">
+                    <p th:text="${student.getUniversity()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Факультет</p>
+                </div>
+                <div class="col">
+                    <p th:text="${student.getFaculty()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Курс</p>
+                </div>
+                <div class="col">
+                    <p th:text="${student.getCourse()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Група</p>
+                </div>
+                <div class="col">
+                    <p th:text="${student.getGroup()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Створено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${student.getCreatedAt()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Оновлено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${student.getUpdatedAt()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

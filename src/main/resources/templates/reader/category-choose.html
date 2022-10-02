@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Обрати вид читача</title>
+</head>
+<body>
+<section layout:fragment="content">
+  <div class="section-container">
+    <div style="padding-top:15%;">
+      <form th:action="@{/readers/create}" th:method="post" th:object="${readerCategory}"
+            style="margin-left: auto; margin-right: auto;  width: 50%; padding-bottom: 10px;
+                  padding-top: 10px"
+            class="border border-2 rounded">
+        <div class="container">
+          <div class="row mt-2">
+            <div class="col d-flex justify-content-center">
+              <input type="radio" class="form-check-input" id="Adult" name="category" value="Adult"
+                     th:field="*{category}">
+              <label for="Adult" class="form-check-label">Дорослий</label>
+            </div>
+            <div class="col d-flex justify-content-center">
+              <input type="radio" class="form-check-input" id="Pupil" name="category"
+                     value="Pupil"
+                     th:field="*{category}">
+              <label for="Pupil" class="form-check-label">Учень</label>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col d-flex justify-content-center">
+              <input type="radio" class="form-check-input" id="Scientist" name="category"
+                     value="Scientist"
+                     th:field="*{category}">
+              <label for="Scientist" class="form-check-label">Науковець</label>
+            </div>
+            <div class="col d-flex justify-content-center">
+              <input type="radio" class="form-check-input" id="Student" name="category"
+                     value="Student"
+                     th:field="*{category}">
+              <label for="Student" class="form-check-label">Студент</label>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col d-flex justify-content-center">
+              <input type="submit" class="btn btn-primary" value="Далі">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</body>
+</html>

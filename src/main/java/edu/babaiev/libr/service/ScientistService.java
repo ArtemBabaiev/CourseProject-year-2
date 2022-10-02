@@ -33,8 +33,8 @@ public class ScientistService {
 
     public Scientist create(Scientist scientist) {
         LocalDateTime time = LocalDateTime.now();
-        scientist.setCreated_at(time);
-        scientist.setUpdated_at(time);
+        scientist.setCreatedAt(time);
+        scientist.setUpdatedAt(time);
         scientistMongoRepository.save(scientist);
         return scientistSqlRepository.save(scientist);
     }
@@ -45,8 +45,8 @@ public class ScientistService {
 
     public Scientist update(Scientist scientist) {
         Scientist oldOne = get(scientist.getId());
-        scientist.setCreated_at(oldOne.getCreated_at());
-        scientist.setUpdated_at(LocalDateTime.now());
+        scientist.setCreatedAt(oldOne.getCreatedAt());
+        scientist.setUpdatedAt(LocalDateTime.now());
         scientistMongoRepository.save(scientist);
         return scientistSqlRepository.save(scientist);
     }

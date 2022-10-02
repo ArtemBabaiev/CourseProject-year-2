@@ -33,8 +33,8 @@ public class RoleService {
 
     public Role create(Role role) {
         LocalDateTime time = LocalDateTime.now();
-        role.setCreated_at(time);
-        role.setUpdated_at(time);
+        role.setCreatedAt(time);
+        role.setUpdatedAt(time);
         roleMongoRepository.save(role);
         return roleSqlRepository.save(role);
     }
@@ -45,8 +45,8 @@ public class RoleService {
 
     public Role update(Role role) {
         Role oldOne = get(role.getId());
-        role.setCreated_at(oldOne.getCreated_at());
-        role.setUpdated_at(LocalDateTime.now());
+        role.setCreatedAt(oldOne.getCreatedAt());
+        role.setUpdatedAt(LocalDateTime.now());
         roleMongoRepository.save(role);
         return roleSqlRepository.save(role);
     }

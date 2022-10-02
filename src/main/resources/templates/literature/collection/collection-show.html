@@ -10,6 +10,8 @@
 <body>
 <section layout:fragment="content">
     <div class="section-container">
+        <div layout:insert="~{/literature/control-panel :: panel(${collection})}">
+        </div>
         <div class="container">
             <div class="row border-bottom">
                 <div class="col">
@@ -41,14 +43,6 @@
                 </div>
                 <div class="col">
                     <p th:text="${collection.getPublisher().getName()}"></p>
-                </div>
-            </div>
-            <div class="row border-bottom">
-                <div class="col">
-                    <p>Кількість у наявності</p>
-                </div>
-                <div class="col">
-                    <p th:text="${collection.getStock()}"></p>
                 </div>
             </div>
             <div class="row border-bottom">
@@ -111,21 +105,6 @@
                             <p th:text="${author.getName()}"></p>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row border-bottom">
-                <div class="col">
-                    <p>Місце зберігання</p>
-                </div>
-                <div class="col">
-                    <p>Полиця: <span th:text="${collection.getShelf().getNumber()}"></span></p>
-                    <p>Стелаж: <span th:text="${collection.getShelf().getBookCase().getNumber()}"></span></p>
-                    <p>Зала: <span
-                            th:text="${collection.getShelf().getBookCase().getReadingRoom().getNumber()}"></span>
-                    </p>
-                    <p>Бібліотека: <span
-                            th:text="${collection.getShelf().getBookCase().getReadingRoom().getLibrary().getNumber()}"></span>
-                    </p>
                 </div>
             </div>
             <div class="row border-bottom">

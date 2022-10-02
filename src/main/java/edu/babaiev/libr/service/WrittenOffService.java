@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.WrittenOff;
 import edu.babaiev.libr.repository.mongo.WrittenOffMongoRepository;
 import edu.babaiev.libr.repository.sql.WrittenOffSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class WrittenOffService {
 
     public WrittenOff create(WrittenOff writtenOff) {
         LocalDateTime time = LocalDateTime.now();
-        writtenOff.setCreated_at(time);
-        writtenOff.setUpdated_at(time);
+        writtenOff.setCreatedAt(time);
+        writtenOff.setUpdatedAt(time);
         writtenOffMongoRepository.save(writtenOff);
         return writtenOffSqlRepository.save(writtenOff);
     }
@@ -45,8 +47,8 @@ public class WrittenOffService {
 
     public WrittenOff update(WrittenOff writtenOff) {
         WrittenOff oldOne = get(writtenOff.getId());
-        writtenOff.setCreated_at(oldOne.getCreated_at());
-        writtenOff.setUpdated_at(LocalDateTime.now());
+        writtenOff.setCreatedAt(oldOne.getCreatedAt());
+        writtenOff.setUpdatedAt(LocalDateTime.now());
         writtenOffMongoRepository.save(writtenOff);
         return writtenOffSqlRepository.save(writtenOff);
     }
@@ -58,5 +60,9 @@ public class WrittenOffService {
 
     public List<WrittenOff> getAll() {
         return writtenOffSqlRepository.findAll();
+    }
+
+    public Page<WrittenOff> getByNameContainingPaginated(String name, PageRequest pageRequest){
+        return writtenOffSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 }

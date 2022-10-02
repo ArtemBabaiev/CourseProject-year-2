@@ -1,0 +1,24 @@
+<div layout:fragment="form(record)"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     xmlns:th="http://www.thymeleaf.org"
+     th:object="${record}">
+    <!--/*@thymesVar id="record" type="edu.babaiev.libr.model.Record"*/-->
+    <div class="row mt-4">
+        <div class="col">
+            <label for="exemplar" class="form-label">Книга, екзмпляр</label>
+            <input type="text" id="exemplar" class="form-control"
+                   th:field="*{exemplar}">
+        </div>
+        <div class="col">
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-end">
+            <a th:href="@{/records/show}" class="btn btn-danger">Скасувати</a>
+        </div>
+        <div class="col d-flex justify-content-start">
+            <input type="submit" value="Підтвердити" class="btn btn-success">
+        </div>
+    </div>
+</div>

@@ -10,6 +10,8 @@
 <body>
 <section layout:fragment="content">
     <div class="section-container">
+        <div layout:insert="~{/literature/control-panel :: panel(${book})}">
+        </div>
         <div class="container">
             <div class="row border-bottom">
                 <div class="col">
@@ -41,14 +43,6 @@
                 </div>
                 <div class="col">
                     <p th:text="${book.getPublisher().getName()}"></p>
-                </div>
-            </div>
-            <div class="row border-bottom">
-                <div class="col">
-                    <p>Кількість у наявності</p>
-                </div>
-                <div class="col">
-                    <p th:text="${book.getStock()}"></p>
                 </div>
             </div>
             <div class="row border-bottom">
@@ -104,22 +98,15 @@
                     <p>Автор(-и)</p>
                 </div>
                 <div class="col">
-                    <div th:each="author: ${book.getWriting().getAuthors()}">
-                        <p th:text="${author.getName()}"></p>
-                    </div>
+                    <p th:each="author: ${book.getWriting().getAuthors()}" th:text="${author.getName()}"></p>
                 </div>
             </div>
             <div class="row border-bottom">
                 <div class="col">
-                    <p>Місце зберігання</p>
+                    <p>Екземпляри</p>
                 </div>
                 <div class="col">
-                    <p>Полиця: <span th:text="${book.getShelf().getNumber()}"></span></p>
-                    <p>Стелаж: <span th:text="${book.getShelf().getBookCase().getNumber()}"></span></p>
-                    <p>Зала: <span th:text="${book.getShelf().getBookCase().getReadingRoom().getNumber()}"></span></p>
-                    <p>Бібліотека: <span
-                            th:text="${book.getShelf().getBookCase().getReadingRoom().getLibrary().getNumber()}"></span>
-                    </p>
+                    <p th:each="pair: ${exemplarCountByLibrary}" th:text="${pair.getValue()} + ' шт. у бібліотеці №' + ${pair.getKey().getNumber()}"></p>
                 </div>
             </div>
             <div class="row border-bottom">

@@ -35,18 +35,18 @@ public class ReadingRoom {
     @DBRef
     @ManyToOne
     private Library library;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public ReadingRoom(String id) {
         this.id = id;
     }
 
-    public ReadingRoom(String number, Library library, LocalDateTime created_at, LocalDateTime updated_at) {
+    public ReadingRoom(String number, Library library, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.number = number;
         this.library = library;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -68,8 +68,8 @@ public class ReadingRoom {
                 "id='" + id + '\'' +
                 ", number='" + number + '\'' +
                 ", library=" + library +
-                ", created_at=" + created_at +
-                ", update_at=" + updated_at +
+                ", created_at=" + createdAt +
+                ", update_at=" + updatedAt +
                 '}';
     }
 }

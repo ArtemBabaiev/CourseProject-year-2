@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.Article;
 import edu.babaiev.libr.repository.mongo.ArticleMongoRepository;
 import edu.babaiev.libr.repository.sql.ArticleSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class ArticleService {
 
     public Article create(Article article) {
         LocalDateTime time = LocalDateTime.now();
-        article.setCreated_at(time);
-        article.setUpdated_at(time);
+        article.setCreatedAt(time);
+        article.setUpdatedAt(time);
         articleMongoRepository.save(article);
         return articleSqlRepository.save(article);
     }
@@ -45,8 +47,8 @@ public class ArticleService {
 
     public Article update(Article article) {
         Article oldOne = get(article.getId());
-        article.setCreated_at(oldOne.getCreated_at());
-        article.setUpdated_at(LocalDateTime.now());
+        article.setCreatedAt(oldOne.getCreatedAt());
+        article.setUpdatedAt(LocalDateTime.now());
         articleMongoRepository.save(article);
         return articleSqlRepository.save(article);
     }
@@ -58,5 +60,8 @@ public class ArticleService {
 
     public List<Article> getAll() {
         return articleSqlRepository.findAll();
+    }
+    public Page<Article> getByNameContainingPaginated(String name, PageRequest pageRequest){
+        return articleSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 }

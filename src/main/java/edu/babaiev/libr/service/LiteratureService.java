@@ -35,8 +35,8 @@ public class LiteratureService {
 
     public Literature create(Literature literature) {
         LocalDateTime time = LocalDateTime.now();
-        literature.setCreated_at(time);
-        literature.setUpdated_at(time);
+        literature.setCreatedAt(time);
+        literature.setUpdatedAt(time);
         literatureMongoRepository.save(literature);
         return literatureSqlRepository.save(literature);
     }
@@ -47,8 +47,8 @@ public class LiteratureService {
 
     public Literature update(Literature literature) {
         Literature oldOne = get(literature.getId());
-        literature.setCreated_at(oldOne.getCreated_at());
-        literature.setUpdated_at(LocalDateTime.now());
+        literature.setCreatedAt(oldOne.getCreatedAt());
+        literature.setUpdatedAt(LocalDateTime.now());
         literatureMongoRepository.save(literature);
         return literatureSqlRepository.save(literature);
     }
@@ -62,7 +62,8 @@ public class LiteratureService {
         return literatureSqlRepository.findAll();
     }
 
-    public Page<Literature> getAllPaginated(PageRequest pageRequest){
-        return literatureSqlRepository.findAll(pageRequest);
+    public Page<Literature> getByNameContainingPaginated(String name ,PageRequest pageRequest){
+        return literatureSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
+
 }

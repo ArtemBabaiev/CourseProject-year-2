@@ -36,14 +36,14 @@ public class WrittenOff {
     private int quantity;
     private int numberOfPages;
     private String description;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public WrittenOff(String id) {
         this.id = id;
     }
 
-    public WrittenOff(String isn, String name, int publishingYear, Publisher publisher, int quantity, int numberOfPages, String description, LocalDateTime created_at, LocalDateTime updated_at) {
+    public WrittenOff(String isn, String name, int publishingYear, Publisher publisher, int quantity, int numberOfPages, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.isn = isn;
         this.name = name;
         this.publishingYear = publishingYear;
@@ -51,11 +51,11 @@ public class WrittenOff {
         this.quantity = quantity;
         this.numberOfPages = numberOfPages;
         this.description = description;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public WrittenOff(String id, String isn, String name, int publishingYear, Publisher publisher, int quantity, int numberOfPages, String description, LocalDateTime created_at, LocalDateTime updated_at) {
+    public WrittenOff(String id, String isn, String name, int publishingYear, Publisher publisher, int quantity, int numberOfPages, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.isn = isn;
         this.name = name;
@@ -64,8 +64,8 @@ public class WrittenOff {
         this.quantity = quantity;
         this.numberOfPages = numberOfPages;
         this.description = description;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -79,8 +79,8 @@ public class WrittenOff {
                 ", quantity=" + quantity +
                 ", numberOfPages=" + numberOfPages +
                 ", description='" + description + '\'' +
-                ", created_at=" + created_at +
-                ", update_at=" + updated_at +
+                ", created_at=" + createdAt +
+                ", update_at=" + updatedAt +
                 '}';
     }
 

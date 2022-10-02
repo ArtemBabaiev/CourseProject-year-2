@@ -1,6 +1,8 @@
 package edu.babaiev.libr.service;
 
 import edu.babaiev.libr.model.Exemplar;
+import edu.babaiev.libr.model.Literature;
+import edu.babaiev.libr.model.Shelf;
 import edu.babaiev.libr.repository.mongo.ExemplarMongoRepository;
 import edu.babaiev.libr.repository.sql.ExemplarSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +37,8 @@ public class ExemplarService {
 
     public Exemplar create(Exemplar exemplar) {
         LocalDateTime time = LocalDateTime.now();
-        exemplar.setCreated_at(time);
-        exemplar.setUpdated_at(time);
+        exemplar.setCreatedAt(time);
+        exemplar.setUpdatedAt(time);
         exemplarMongoRepository.save(exemplar);
         return exemplarSqlRepository.save(exemplar);
     }
@@ -47,8 +49,8 @@ public class ExemplarService {
 
     public Exemplar update(Exemplar exemplar) {
         Exemplar oldOne = get(exemplar.getId());
-        exemplar.setCreated_at(oldOne.getCreated_at());
-        exemplar.setUpdated_at(LocalDateTime.now());
+        exemplar.setCreatedAt(oldOne.getCreatedAt());
+        exemplar.setUpdatedAt(LocalDateTime.now());
         exemplarMongoRepository.save(exemplar);
         return exemplarSqlRepository.save(exemplar);
     }
@@ -62,7 +64,18 @@ public class ExemplarService {
         return exemplarSqlRepository.findAll();
     }
 
-    public Page<Exemplar> getAllPaginated(PageRequest pageRequest){
+    public Page<Exemplar> getAllPaginated(PageRequest pageRequest) {
         return exemplarSqlRepository.findAll(pageRequest);
+    }
+
+    public List<Exemplar> getAllByLiterature(Literature literature) {
+        return exemplarSqlRepository.findAllByLiterature(literature);
+    }
+
+    public Page<Exemplar> getAllByLiteratureContainingIdPaginated(Literature literature, String id, PageRequest pageRequest) {
+        return exemplarSqlRepository.findAllByLiteratureAndIdContaining(literature, id, pageRequest);
+    }
+    public List<Exemplar> getAllByShelf(Shelf shelf){
+        return exemplarSqlRepository.findAllByShelf(shelf);
     }
 }

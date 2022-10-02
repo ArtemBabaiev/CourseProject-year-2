@@ -35,8 +35,8 @@ public class AuthorService {
 
     public Author create(Author author) {
         LocalDateTime time = LocalDateTime.now();
-        author.setCreated_at(time);
-        author.setUpdated_at(time);
+        author.setCreatedAt(time);
+        author.setUpdatedAt(time);
         authorMongoRepository.save(author);
         return authorSqlRepository.save(author);
     }
@@ -47,8 +47,8 @@ public class AuthorService {
 
     public Author update(Author author) {
         Author oldOne = get(author.getId());
-        author.setCreated_at(oldOne.getCreated_at());
-        author.setUpdated_at(LocalDateTime.now());
+        author.setCreatedAt(oldOne.getCreatedAt());
+        author.setUpdatedAt(LocalDateTime.now());
         authorMongoRepository.save(author);
         return authorSqlRepository.save(author);
     }
@@ -62,7 +62,7 @@ public class AuthorService {
         return authorSqlRepository.findAll();
     }
 
-    public Page<Author> getAllPaginated(PageRequest pageRequest){
-        return authorSqlRepository.findAll(pageRequest);
+    public Page<Author> getByNameContainingPaginated(String name, PageRequest pageRequest){
+        return authorSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 }

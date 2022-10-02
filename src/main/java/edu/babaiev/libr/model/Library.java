@@ -31,18 +31,18 @@ public class Library {
     private String id;
     private String number;
     private String address;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public Library(String id) {
         this.id = id;
     }
 
-    public Library(String number, String address, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Library(String number, String address, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.number = number;
         this.address = address;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -64,8 +64,8 @@ public class Library {
                 "id='" + id + '\'' +
                 ", number='" + number + '\'' +
                 ", address='" + address + '\'' +
-                ", created_at=" + created_at +
-                ", update_at=" + updated_at +
+                ", created_at=" + createdAt +
+                ", update_at=" + updatedAt +
                 '}';
     }
 }

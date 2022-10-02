@@ -1,6 +1,8 @@
 package edu.babaiev.libr.repository.sql;
 
 import edu.babaiev.libr.model.Record;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -11,4 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @class RecordSqlRepository
  */
 public interface RecordSqlRepository extends JpaRepository<Record, String> {
+    Page<Record> findAllByReader_LastNameContainingIgnoreCase(String lastName, Pageable pageable);
 }

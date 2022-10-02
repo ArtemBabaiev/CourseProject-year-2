@@ -35,19 +35,19 @@ public class Writing {
     @JoinTable(name = "writing_has_authors")
     private Set<Author> authors;
     private String description;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public Writing(String id) {
         this.id = id;
     }
 
-    public Writing(String name, Set<Author> authors, String description, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Writing(String name, Set<Author> authors, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.name = name;
         this.authors = authors;
         this.description = description;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -70,8 +70,8 @@ public class Writing {
                 ", name='" + name + '\'' +
                 ", authors=" + authors +
                 ", description='" + description + '\'' +
-                ", created_at=" + created_at +
-                ", update_at=" + updated_at +
+                ", created_at=" + createdAt +
+                ", update_at=" + updatedAt +
                 '}';
     }
 }

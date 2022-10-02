@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.Book;
 import edu.babaiev.libr.repository.mongo.BookMongoRepository;
 import edu.babaiev.libr.repository.sql.BookSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class BookService {
 
     public Book create(Book book) {
         LocalDateTime time = LocalDateTime.now();
-        book.setCreated_at(time);
-        book.setUpdated_at(time);
+        book.setCreatedAt(time);
+        book.setUpdatedAt(time);
         bookMongoRepository.save(book);
         return bookSqlRepository.save(book);
     }
@@ -45,8 +47,8 @@ public class BookService {
 
     public Book update(Book book) {
         Book oldOne = get(book.getId());
-        book.setCreated_at(oldOne.getCreated_at());
-        book.setUpdated_at(LocalDateTime.now());
+        book.setCreatedAt(oldOne.getCreatedAt());
+        book.setUpdatedAt(LocalDateTime.now());
         bookMongoRepository.save(book);
         return bookSqlRepository.save(book);
     }
@@ -58,5 +60,8 @@ public class BookService {
 
     public List<Book> getAll() {
         return bookSqlRepository.findAll();
+    }
+    public Page<Book> getByNameContainingPaginated(String name, PageRequest pageRequest){
+        return bookSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 }

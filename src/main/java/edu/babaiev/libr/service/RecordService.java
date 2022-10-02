@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.Record;
 import edu.babaiev.libr.repository.mongo.RecordMongoRepository;
 import edu.babaiev.libr.repository.sql.RecordSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class RecordService {
 
     public Record create(Record record) {
         LocalDateTime time = LocalDateTime.now();
-        record.setCreated_at(time);
-        record.setUpdated_at(time);
+        record.setCreatedAt(time);
+        record.setUpdatedAt(time);
         recordMongoRepository.save(record);
         return recordSqlRepository.save(record);
     }
@@ -45,8 +47,8 @@ public class RecordService {
 
     public Record update(Record record) {
         Record oldOne = get(record.getId());
-        record.setCreated_at(oldOne.getCreated_at());
-        record.setUpdated_at(LocalDateTime.now());
+        record.setCreatedAt(oldOne.getCreatedAt());
+        record.setUpdatedAt(LocalDateTime.now());
         recordMongoRepository.save(record);
         return recordSqlRepository.save(record);
     }
@@ -58,5 +60,9 @@ public class RecordService {
 
     public List<Record> getAll() {
         return recordSqlRepository.findAll();
+    }
+
+    public Page<Record> getAllByReaderLastNameContainingPaginated(String lastName, PageRequest pageRequest){
+        return recordSqlRepository.findAllByReader_LastNameContainingIgnoreCase(lastName, pageRequest);
     }
 }

@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.MonographType;
 import edu.babaiev.libr.repository.mongo.MonographTypeMongoRepository;
 import edu.babaiev.libr.repository.sql.MonographTypeSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class MonographTypeService {
 
     public MonographType create(MonographType monographType) {
         LocalDateTime time = LocalDateTime.now();
-        monographType.setCreated_at(time);
-        monographType.setUpdated_at(time);
+        monographType.setCreatedAt(time);
+        monographType.setUpdatedAt(time);
         monographTypeMongoRepository.save(monographType);
         return monographTypeSqlRepository.save(monographType);
     }
@@ -45,8 +47,8 @@ public class MonographTypeService {
 
     public MonographType update(MonographType monographType) {
         MonographType oldOne = get(monographType.getId());
-        monographType.setCreated_at(oldOne.getCreated_at());
-        monographType.setUpdated_at(LocalDateTime.now());
+        monographType.setCreatedAt(oldOne.getCreatedAt());
+        monographType.setUpdatedAt(LocalDateTime.now());
         monographTypeMongoRepository.save(monographType);
         return monographTypeSqlRepository.save(monographType);
     }
@@ -58,5 +60,9 @@ public class MonographTypeService {
 
     public List<MonographType> getAll() {
         return monographTypeSqlRepository.findAll();
+    }
+
+    public Page<MonographType> getByNameContainingPaginated(String name, PageRequest pageRequest){
+        return monographTypeSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 }

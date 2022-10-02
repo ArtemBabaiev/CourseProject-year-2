@@ -1,0 +1,59 @@
+<div layout:fragment="form(scientist)"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     xmlns:th="http://www.thymeleaf.org"
+     th:object="${scientist}">
+    <!--/*@thymesVar id="scientist" type="edu.babaiev.libr.model.Scientist"*/-->
+    <div class="row mt-4">
+        <div class="col">
+            <label for="lastName" class="form-label">Прізвище</label>
+            <input type="text" id="lastName" class="form-control"
+                   th:field="*{lastName}">
+        </div>
+        <div class="col">
+            <label for="firstName" class="form-label">Ім'я</label>
+            <input type="text" id="firstName" class="form-control"
+                   th:field="*{firstName}">
+        </div>
+        <div class="col">
+            <label for="birthday" class="form-label">Дата народження</label>
+            <input type="date" id="birthday" class="form-control"
+                   th:field="*{birthday}">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <label for="address" class="form-label">Адреса</label>
+            <input type="text" id="address" class="form-control"
+                   th:field="*{address}">
+        </div>
+        <div class="col">
+            <label for="phoneNumber" class="form-label">Номер телефону</label>
+            <input type="tel" id="phoneNumber" class="form-control"
+                   th:field="*{phoneNumber}">
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <label for="profession" class="form-label">Професія</label>
+            <input type="text" id="profession" class="form-control"
+                   th:field="*{profession}">
+        </div>
+        <div class="col">
+            <label for="organisation" class="form-label">Організація</label>
+            <input type="tel" id="organisation" class="form-control"
+                   th:field="*{organisation}">
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-end">
+            <a th:href="@{/readers/show}" class="btn btn-danger">Скасувати</a>
+        </div>
+        <div class="col d-flex justify-content-start">
+            <input type="submit" value="Підтвердити" class="btn btn-success">
+        </div>
+    </div>
+</div>

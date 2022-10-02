@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Редагувати читача</title>
+</head>
+<body>
+<section layout:fragment="content">
+  <div class="section-container">
+    <form th:action="@{/readers/edit/{id}/pupil(id=${pupil.getId()})}" th:method="PUT" th:object="${pupil}">
+      <div layout:insert="~{/reader/pupil/pupil-form :: form(${pupil})}">
+      </div>
+    </form>
+  </div>
+</section>
+</body>
+</html>

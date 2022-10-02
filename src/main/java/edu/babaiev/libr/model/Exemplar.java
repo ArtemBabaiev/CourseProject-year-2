@@ -38,19 +38,19 @@ public class Exemplar {
     @DBRef
     @ManyToOne
     private Literature literature;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public Exemplar(String id) {
         this.id = id;
     }
 
-    public Exemplar(boolean isLend, Shelf shelf, Literature literature, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Exemplar(boolean isLend, Shelf shelf, Literature literature, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.isLend = isLend;
         this.shelf = shelf;
         this.literature = literature;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -73,8 +73,8 @@ public class Exemplar {
                 ", isLend=" + isLend +
                 ", shelf=" + shelf +
                 ", literature=" + literature +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
+                ", created_at=" + createdAt +
+                ", updated_at=" + updatedAt +
                 '}';
     }
 }
