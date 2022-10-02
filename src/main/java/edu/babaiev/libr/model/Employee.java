@@ -35,19 +35,19 @@ public class Employee {
     @DBRef
     @OneToOne
     private Key key;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public Employee(String id) {
         this.id = id;
     }
 
-    public Employee(String name, ReadingRoom readingRoom, Key key, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Employee(String name, ReadingRoom readingRoom, Key key, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.name = name;
         this.readingRoom = readingRoom;
         this.key = key;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -70,8 +70,8 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", readingRoom=" + readingRoom +
                 ", key=" + key +
-                ", created_at=" + created_at +
-                ", update_at=" + updated_at +
+                ", created_at=" + createdAt +
+                ", update_at=" + updatedAt +
                 '}';
     }
 }

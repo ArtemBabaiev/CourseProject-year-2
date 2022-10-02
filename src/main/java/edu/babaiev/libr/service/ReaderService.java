@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.Reader;
 import edu.babaiev.libr.repository.mongo.ReaderMongoRepository;
 import edu.babaiev.libr.repository.sql.ReaderSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class ReaderService {
 
     public Reader create(Reader reader) {
         LocalDateTime time = LocalDateTime.now();
-        reader.setCreated_at(time);
-        reader.setUpdated_at(time);
+        reader.setCreatedAt(time);
+        reader.setUpdatedAt(time);
         readerMongoRepository.save(reader);
         return readerSqlRepository.save(reader);
     }
@@ -44,7 +46,9 @@ public class ReaderService {
     }
 
     public Reader update(Reader reader) {
-        reader.setUpdated_at(LocalDateTime.now());
+        Reader oldOne = get(reader.getId());
+        reader.setCreatedAt(oldOne.getCreatedAt());
+        reader.setUpdatedAt(LocalDateTime.now());
         readerMongoRepository.save(reader);
         return readerSqlRepository.save(reader);
     }
@@ -56,5 +60,9 @@ public class ReaderService {
 
     public List<Reader> getAll() {
         return readerSqlRepository.findAll();
+    }
+
+    public Page<Reader> getByLastNameContainingPaginated(String lastname, PageRequest pageRequest){
+        return readerSqlRepository.findAllByLastNameContaining(lastname, pageRequest);
     }
 }

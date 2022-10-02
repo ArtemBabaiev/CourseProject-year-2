@@ -1,9 +1,12 @@
 package edu.babaiev.libr.service;
 
 import edu.babaiev.libr.model.BookCase;
+import edu.babaiev.libr.model.ReadingRoom;
 import edu.babaiev.libr.repository.mongo.BookCaseMongoRepository;
 import edu.babaiev.libr.repository.sql.BookCaseSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +36,8 @@ public class BookCaseService {
 
     public BookCase create(BookCase bookCase) {
         LocalDateTime time = LocalDateTime.now();
-        bookCase.setCreated_at(time);
-        bookCase.setUpdated_at(time);
+        bookCase.setCreatedAt(time);
+        bookCase.setUpdatedAt(time);
         bookCaseMongoRepository.save(bookCase);
         return bookCaseSqlRepository.save(bookCase);
     }
@@ -44,7 +47,9 @@ public class BookCaseService {
     }
 
     public BookCase update(BookCase bookCase) {
-        bookCase.setUpdated_at(LocalDateTime.now());
+        BookCase oldOne = get(bookCase.getId());
+        bookCase.setCreatedAt(oldOne.getCreatedAt());
+        bookCase.setUpdatedAt(LocalDateTime.now());
         bookCaseMongoRepository.save(bookCase);
         return bookCaseSqlRepository.save(bookCase);
     }
@@ -56,5 +61,12 @@ public class BookCaseService {
 
     public List<BookCase> getAll() {
         return bookCaseSqlRepository.findAll();
+    }
+
+    public Page<BookCase> getByNumberContainingPaginated(String number, PageRequest pageRequest){
+        return bookCaseSqlRepository.findAllByNumberContainingIgnoreCase(number, pageRequest);
+    }
+    public List<BookCase> getByReadingRoom(ReadingRoom readingRoom){
+        return bookCaseSqlRepository.findAllByReadingRoom(readingRoom);
     }
 }

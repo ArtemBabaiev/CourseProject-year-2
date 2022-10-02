@@ -1,7 +1,7 @@
 package edu.babaiev.libr.factory;
 
-import edu.babaiev.libr.model.*;
 import com.github.javafaker.Faker;
+import edu.babaiev.libr.model.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -29,8 +29,6 @@ public class CollectionFactory {
                             faker.book().title(),
                             faker.random().nextInt(1990, 2022),
                             new Publisher(faker.random().nextInt(1, QuantityConfig.PUBLISHER.getValue()) + ""),
-                            new Shelf(faker.random().nextInt(1, QuantityConfig.SHELF.getValue()) + ""),
-                            faker.random().nextInt(50),
                             faker.random().nextBoolean(),
                             faker.random().nextInt(50, 300),
                             faker.random().nextInt(0, 31),

@@ -1,0 +1,28 @@
+<div layout:fragment="form(monographType)"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     xmlns:th="http://www.thymeleaf.org"
+     th:object="${monographType}">
+    <!--/*@thymesVar id="monographType" type="edu.babaiev.libr.model.MonographType"*/-->
+    <div class="row mt-4">
+        <div class="col">
+            <label for="name" class="form-label">Назва</label>
+            <input type="text" id="name" class="form-control"
+                   th:field="*{name}">
+        </div>
+        <div class="col">
+            <label for="description" class="form-label">Опис</label>
+            <textarea class="form-control" id="description"
+                      th:rows="3" th:maxlength="255"
+                      th:field="*{description}"></textarea>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-end">
+            <a th:href="@{/monographTypes/show/{id}(id=${monographType.getId()})}" class="btn btn-danger">Скасувати</a>
+        </div>
+        <div class="col d-flex justify-content-start">
+            <input type="submit" value="Підтвердити" class="btn btn-success">
+        </div>
+    </div>
+</div>

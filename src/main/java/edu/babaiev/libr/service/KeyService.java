@@ -33,8 +33,8 @@ public class KeyService {
 
     public Key create(Key key) {
         LocalDateTime time = LocalDateTime.now();
-        key.setCreated_at(time);
-        key.setUpdated_at(time);
+        key.setCreatedAt(time);
+        key.setUpdatedAt(time);
         keyMongoRepository.save(key);
         return keySqlRepository.save(key);
     }
@@ -44,7 +44,9 @@ public class KeyService {
     }
 
     public Key update(Key key) {
-        key.setUpdated_at(LocalDateTime.now());
+        Key oldOne = get(key.getId());
+        key.setCreatedAt(oldOne.getCreatedAt());
+        key.setUpdatedAt(LocalDateTime.now());
         keyMongoRepository.save(key);
         return keySqlRepository.save(key);
     }

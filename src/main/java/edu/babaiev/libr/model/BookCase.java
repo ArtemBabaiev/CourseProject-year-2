@@ -7,7 +7,10 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -32,18 +35,18 @@ public class BookCase {
     @DBRef
     @ManyToOne
     private ReadingRoom readingRoom;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public BookCase(String id) {
         this.id = id;
     }
 
-    public BookCase(String number, ReadingRoom readingRoom, LocalDateTime created_at, LocalDateTime updated_at) {
+    public BookCase(String number, ReadingRoom readingRoom, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.number = number;
         this.readingRoom = readingRoom;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -65,8 +68,8 @@ public class BookCase {
                 "id='" + id + '\'' +
                 ", number='" + number + '\'' +
                 ", readingRoom=" + readingRoom +
-                ", created_at=" + created_at +
-                ", update_at=" + updated_at +
+                ", created_at=" + createdAt +
+                ", update_at=" + updatedAt +
                 '}';
     }
 }

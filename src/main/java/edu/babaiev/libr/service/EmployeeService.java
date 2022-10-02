@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.Employee;
 import edu.babaiev.libr.repository.mongo.EmployeeMongoRepository;
 import edu.babaiev.libr.repository.sql.EmployeeSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class EmployeeService {
 
     public Employee create(Employee employee) {
         LocalDateTime time = LocalDateTime.now();
-        employee.setCreated_at(time);
-        employee.setUpdated_at(time);
+        employee.setCreatedAt(time);
+        employee.setUpdatedAt(time);
         employeeMongoRepository.save(employee);
         return employeeSqlRepository.save(employee);
     }
@@ -44,7 +46,9 @@ public class EmployeeService {
     }
 
     public Employee update(Employee employee) {
-        employee.setUpdated_at(LocalDateTime.now());
+        Employee oldOne = get(employee.getId());
+        employee.setCreatedAt(oldOne.getCreatedAt());
+        employee.setUpdatedAt(LocalDateTime.now());
         employeeMongoRepository.save(employee);
         return employeeSqlRepository.save(employee);
     }
@@ -56,5 +60,8 @@ public class EmployeeService {
 
     public List<Employee> getAll() {
         return employeeSqlRepository.findAll();
+    }
+    public Page<Employee> getByNameContainingPaginated(String name, PageRequest pageRequest){
+        return employeeSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 }

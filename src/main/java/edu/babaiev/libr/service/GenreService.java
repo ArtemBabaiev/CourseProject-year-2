@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.Genre;
 import edu.babaiev.libr.repository.mongo.GenreMongoRepository;
 import edu.babaiev.libr.repository.sql.GenreSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class GenreService {
 
     public Genre create(Genre genre) {
         LocalDateTime time = LocalDateTime.now();
-        genre.setCreated_at(time);
-        genre.setUpdated_at(time);
+        genre.setCreatedAt(time);
+        genre.setUpdatedAt(time);
         genreMongoRepository.save(genre);
         return genreSqlRepository.save(genre);
     }
@@ -44,7 +46,9 @@ public class GenreService {
     }
 
     public Genre update(Genre genre) {
-        genre.setUpdated_at(LocalDateTime.now());
+        Genre oldOne = get(genre.getId());
+        genre.setCreatedAt(oldOne.getCreatedAt());
+        genre.setUpdatedAt(LocalDateTime.now());
         genreMongoRepository.save(genre);
         return genreSqlRepository.save(genre);
     }
@@ -56,5 +60,8 @@ public class GenreService {
 
     public List<Genre> getAll() {
         return genreSqlRepository.findAll();
+    }
+    public Page<Genre> getByNameContainingPaginated(String name, PageRequest pageRequest){
+        return genreSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 }

@@ -33,8 +33,8 @@ public class StudentService {
 
     public Student create(Student student) {
         LocalDateTime time = LocalDateTime.now();
-        student.setCreated_at(time);
-        student.setUpdated_at(time);
+        student.setCreatedAt(time);
+        student.setUpdatedAt(time);
         studentMongoRepository.save(student);
         return studentSqlRepository.save(student);
     }
@@ -44,7 +44,9 @@ public class StudentService {
     }
 
     public Student update(Student student) {
-        student.setUpdated_at(LocalDateTime.now());
+        Student oldOne = get(student.getId());
+        student.setCreatedAt(oldOne.getCreatedAt());
+        student.setUpdatedAt(LocalDateTime.now());
         studentMongoRepository.save(student);
         return studentSqlRepository.save(student);
     }

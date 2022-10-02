@@ -10,6 +10,8 @@
 <body>
 <section layout:fragment="content">
     <div class="section-container">
+        <div layout:insert="~{/literature/control-panel :: panel(${monograph})}">
+        </div>
         <div class="container">
             <div class="row border-bottom">
                 <div class="col">
@@ -41,14 +43,6 @@
                 </div>
                 <div class="col">
                     <p th:text="${monograph.getPublisher().getName()}"></p>
-                </div>
-            </div>
-            <div class="row border-bottom">
-                <div class="col">
-                    <p>Кількість у наявності</p>
-                </div>
-                <div class="col">
-                    <p th:text="${monograph.getStock()}"></p>
                 </div>
             </div>
             <div class="row border-bottom">
@@ -105,21 +99,6 @@
                 </div>
                 <div class="col">
                     <p th:text="${monograph.getDefenseCity()}"></p>
-                </div>
-            </div>
-            <div class="row border-bottom">
-                <div class="col">
-                    <p>Місце зберігання</p>
-                </div>
-                <div class="col">
-                    <p>Полиця: <span th:text="${monograph.getShelf().getNumber()}"></span></p>
-                    <p>Стелаж: <span th:text="${monograph.getShelf().getBookCase().getNumber()}"></span></p>
-                    <p>Зала: <span
-                            th:text="${monograph.getShelf().getBookCase().getReadingRoom().getNumber()}"></span>
-                    </p>
-                    <p>Бібліотека: <span
-                            th:text="${monograph.getShelf().getBookCase().getReadingRoom().getLibrary().getNumber()}"></span>
-                    </p>
                 </div>
             </div>
             <div class="row border-bottom">

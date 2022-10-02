@@ -1,6 +1,9 @@
 package edu.babaiev.libr.repository.sql;
 
+import edu.babaiev.libr.model.Library;
 import edu.babaiev.libr.model.Monograph;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -11,4 +14,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @class MonographSqlRepository
  */
 public interface MonographSqlRepository extends JpaRepository<Monograph, String> {
+    Page<Monograph> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
 }

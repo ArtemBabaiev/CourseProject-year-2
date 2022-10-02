@@ -1,0 +1,59 @@
+<div layout:fragment="form(pupil)"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     xmlns:th="http://www.thymeleaf.org"
+     th:object="${pupil}">
+    <!--/*@thymesVar id="pupil" type="edu.babaiev.libr.model.Pupil"*/-->
+    <div class="row mt-4">
+        <div class="col">
+            <label for="lastName" class="form-label">Прізвище</label>
+            <input type="text" id="lastName" class="form-control"
+                   th:field="*{lastName}">
+        </div>
+        <div class="col">
+            <label for="firstName" class="form-label">Ім'я</label>
+            <input type="text" id="firstName" class="form-control"
+                   th:field="*{firstName}">
+        </div>
+        <div class="col">
+            <label for="birthday" class="form-label">Дата народження</label>
+            <input type="date" id="birthday" class="form-control"
+                   th:field="*{birthday}">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <label for="address" class="form-label">Адреса</label>
+            <input type="text" id="address" class="form-control"
+                   th:field="*{address}">
+        </div>
+        <div class="col">
+            <label for="phoneNumber" class="form-label">Номер телефону</label>
+            <input type="tel" id="phoneNumber" class="form-control"
+                   th:field="*{phoneNumber}">
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <label for="school" class="form-label">Школа</label>
+            <input type="text" id="school" class="form-control"
+                   th:field="*{school}">
+        </div>
+        <div class="col">
+            <label for="form" class="form-label">Клас</label>
+            <input type="text" id="form" class="form-control"
+                   th:field="*{form}">
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-end">
+            <a th:href="@{/readers/show}" class="btn btn-danger">Скасувати</a>
+        </div>
+        <div class="col d-flex justify-content-start">
+            <input type="submit" value="Підтвердити" class="btn btn-success">
+        </div>
+    </div>
+</div>

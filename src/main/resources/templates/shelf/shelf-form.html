@@ -1,0 +1,56 @@
+<div layout:fragment="form(shelf)"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     xmlns:th="http://www.thymeleaf.org"
+     th:object="${shelf}">
+    <!--/*@thymesVar id="shelf" type="edu.babaiev.libr.model.Shelf"*/-->
+    <div class="row mt-4">
+        <div class="col">
+            <label for="name" class="form-label">Номер</label>
+            <input type="text" id="name" class="form-control"
+                   th:field="*{number}">
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <label for="library" class="form-label">Бібліотека</label>
+            <select class="form-select" id="library">
+                <option selected value="" hidden>----ОБЕРІТЬ БІБЛІОТЕКУ----</option>
+                <option th:each="library: ${libraries}"
+                        th:value="${library.getId()}"
+                        th:text="${library.getNumber()}"
+                        th:selected="(${library.getId()} == *{bookCase?.getReadingRoom()?.getLibrary()?.getId()})"/>
+            </select>
+        </div>
+        <div class="col">
+            <label for="readingRoom" class="form-label">Читална зала</label>
+            <select class="form-select" id="readingRoom">
+                <option selected value="" hidden>----ОБЕРІТЬ ЧИТАЛЬНУ ЗАЛУ----</option>
+                <option th:each="readingRoom: ${readingRooms}"
+                        th:value="${readingRoom.getId()}"
+                        th:text="${readingRoom.getNumber()}"
+                        th:attr="data-parent='\'' + ${readingRoom.getLibrary().getId()}+ '\''"
+                        th:selected="(${readingRoom.getId()} == *{bookCase?.getReadingRoom()?.getId()})"/>
+            </select>
+        </div>
+        <div class="col">
+            <label for="bookCase" class="form-label">Стелаж</label>
+            <select class="form-select" id="bookCase" th:field="*{bookCase}">
+                <option selected value="" hidden>----ОБЕРІТЬ СТЕЛАЖ----</option>
+                <option th:each="bookCase: ${bookCases}"
+                        th:value="${bookCase.getId()}"
+                        th:text="${bookCase.getNumber()}"
+                        th:attr="data-parent='\'' + ${bookCase.getReadingRoom.getId()}+ '\''"/>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-end">
+            <a th:href="@{/shelves/show/{id}(id=${shelf.getId()})}" class="btn btn-danger">Скасувати</a>
+        </div>
+        <div class="col d-flex justify-content-start">
+            <input type="submit" value="Підтвердити" class="btn btn-success">
+        </div>
+    </div>
+</div>

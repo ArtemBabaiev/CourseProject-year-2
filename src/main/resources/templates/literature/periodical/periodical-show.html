@@ -10,6 +10,8 @@
 <body>
 <section layout:fragment="content">
     <div class="section-container">
+        <div layout:insert="~{/literature/control-panel :: panel(${periodical})}">
+        </div>
         <div class="container">
             <div class="row border-bottom">
                 <div class="col">
@@ -41,14 +43,6 @@
                 </div>
                 <div class="col">
                     <p th:text="${periodical.getPublisher().getName()}"></p>
-                </div>
-            </div>
-            <div class="row border-bottom">
-                <div class="col">
-                    <p>Кількість у наявності</p>
-                </div>
-                <div class="col">
-                    <p th:text="${periodical.getStock()}"></p>
                 </div>
             </div>
             <div class="row border-bottom">
@@ -107,21 +101,6 @@
                     <div th:each="article: ${periodical.getArticles()}">
                             <p th:text="${article.getName()}"></p>
                     </div>
-                </div>
-            </div>
-            <div class="row border-bottom">
-                <div class="col">
-                    <p>Місце зберігання</p>
-                </div>
-                <div class="col">
-                    <p>Полиця: <span th:text="${periodical.getShelf().getNumber()}"></span></p>
-                    <p>Стелаж: <span th:text="${periodical.getShelf().getBookCase().getNumber()}"></span></p>
-                    <p>Зала: <span
-                            th:text="${periodical.getShelf().getBookCase().getReadingRoom().getNumber()}"></span>
-                    </p>
-                    <p>Бібліотека: <span
-                            th:text="${periodical.getShelf().getBookCase().getReadingRoom().getLibrary().getNumber()}"></span>
-                    </p>
                 </div>
             </div>
             <div class="row border-bottom">

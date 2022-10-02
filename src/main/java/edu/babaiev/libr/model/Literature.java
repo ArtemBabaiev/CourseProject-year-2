@@ -33,50 +33,42 @@ public abstract class Literature {
     @DBRef
     @ManyToOne
     private Publisher publisher;
-    @DBRef
-    @ManyToOne
-    private Shelf shelf;
-    private int stock;
     private boolean isLendable;
     private int numberOfPages;
     private int lendPeriodInDays;
     private String description;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public Literature(String id) {
         this.id = id;
     }
 
-    public Literature(String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Literature(String isn, String name, int publishingYear, Publisher publisher, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.isn = isn;
         this.name = name;
         this.publishingYear = publishingYear;
         this.publisher = publisher;
-        this.shelf = shelf;
-        this.stock = stock;
         this.isLendable = isLendable;
         this.numberOfPages = numberOfPages;
         this.lendPeriodInDays = lendPeriodInDays;
         this.description = description;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public Literature(String id, String isn, String name, int publishingYear, Publisher publisher, Shelf shelf, int stock, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime created_at, LocalDateTime updated_at) {
+    public Literature(String id, String isn, String name, int publishingYear, Publisher publisher, boolean isLendable, int numberOfPages, int lendPeriodInDays, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.isn = isn;
         this.name = name;
         this.publishingYear = publishingYear;
         this.publisher = publisher;
-        this.shelf = shelf;
-        this.stock = stock;
         this.isLendable = isLendable;
         this.numberOfPages = numberOfPages;
         this.lendPeriodInDays = lendPeriodInDays;
         this.description = description;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -87,14 +79,12 @@ public abstract class Literature {
                 ", name='" + name + '\'' +
                 ", publishingYear=" + publishingYear +
                 ", publisher=" + publisher +
-                ", shelf=" + shelf +
-                ", stock=" + stock +
                 ", isLendable=" + isLendable +
                 ", numberOfPages=" + numberOfPages +
                 ", lendPeriodInDays=" + lendPeriodInDays +
                 ", description='" + description + '\'' +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
+                ", created_at=" + createdAt +
+                ", updated_at=" + updatedAt +
                 '}';
     }
 

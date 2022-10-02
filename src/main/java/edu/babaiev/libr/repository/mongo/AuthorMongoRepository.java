@@ -1,6 +1,5 @@
 package edu.babaiev.libr.repository.mongo;
 
-import edu.babaiev.libr.model.Article;
 import edu.babaiev.libr.model.Author;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

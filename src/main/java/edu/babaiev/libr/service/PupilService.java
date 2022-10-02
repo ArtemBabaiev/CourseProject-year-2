@@ -33,8 +33,8 @@ public class PupilService {
 
     public Pupil create(Pupil pupil) {
         LocalDateTime time = LocalDateTime.now();
-        pupil.setCreated_at(time);
-        pupil.setUpdated_at(time);
+        pupil.setCreatedAt(time);
+        pupil.setUpdatedAt(time);
         pupilMongoRepository.save(pupil);
         return pupilSqlRepository.save(pupil);
     }
@@ -44,7 +44,9 @@ public class PupilService {
     }
 
     public Pupil update(Pupil pupil) {
-        pupil.setUpdated_at(LocalDateTime.now());
+        Pupil oldOne = get(pupil.getId());
+        pupil.setCreatedAt(oldOne.getCreatedAt());
+        pupil.setUpdatedAt(LocalDateTime.now());
         pupilMongoRepository.save(pupil);
         return pupilSqlRepository.save(pupil);
     }

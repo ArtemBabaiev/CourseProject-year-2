@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Додати екземпляри для ' + ${literature.getName()}"> </title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <form th:action="@{/exemplars/create/for/{id}(id = ${literature.getId()})}" th:method="POST" th:object="${exemplarForm}">
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="name" class="form-label">Кількість</label>
+                    <input type="text" id="name" class="form-control"
+                           th:field="*{quantity}">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="library" class="form-label">Бібліотека</label>
+                    <select class="form-select" id="library">
+                        <option selected value="" hidden>----ОБЕРІТЬ БІБЛІОТЕКУ----</option>
+                        <option th:each="library: ${libraries}"
+                                th:value="${library.getId()}"
+                                th:text="${library.getNumber()}"
+                                th:selected="(${library.getId()} == *{shelf?.getBookCase()?.getReadingRoom()?.getLibrary()?.getId()})"/>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="readingRoom" class="form-label">Читална зала</label>
+                    <select class="form-select" id="readingRoom">
+                        <option selected value="" hidden>----ОБЕРІТЬ ЧИТАЛЬНУ ЗАЛУ----</option>
+                        <option th:each="readingRoom: ${readingRooms}"
+                                th:value="${readingRoom.getId()}"
+                                th:text="${readingRoom.getNumber()}"
+                                th:attr="data-parent='\'' + ${readingRoom.getLibrary().getId()}+ '\''"
+                                th:selected="(${readingRoom.getId()} == *{shelf?.getBookCase()?.getReadingRoom()?.getId()})"/>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="bookCase" class="form-label">Стелаж</label>
+                    <select class="form-select" id="bookCase">
+                        <option selected value="" hidden>----ОБЕРІТЬ СТЕЛАЖ----</option>
+                        <option th:each="bookCase: ${bookCases}" th:value="${bookCase.getId()}"
+                                th:text="${bookCase.getNumber()}"
+                                th:attr="data-parent='\'' + ${bookCase.getReadingRoom().getId()}+ '\''"
+                                th:selected="(${bookCase.getId()} == *{shelf?.getBookCase()?.getId()})"/>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="shelf" class="form-label">Полиця</label>
+                    <select class="form-select" name="shelf" id="shelf" th:field="*{shelf}">
+                        <option selected value="" hidden>----ОБЕРІТЬ ПОЛИЦЮ----</option>
+                        <option th:each="shelf: ${shelves}" th:value="${shelf.getId()}"
+                                th:text="${shelf.getNumber()}"
+                                th:attr="data-parent='\'' + ${shelf.getBookCase().getId()}+ '\''"/>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col d-flex justify-content-end">
+                    <a th:href="@{/literature/show}" class="btn btn-danger">Скасувати</a>
+                </div>
+                <div class="col d-flex justify-content-start">
+                    <input type="submit" value="Підтвердити" class="btn btn-success">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

@@ -1,8 +1,10 @@
 package edu.babaiev.libr.repository.sql;
 
+import edu.babaiev.libr.model.PeriodicalType;
 import edu.babaiev.libr.model.Publisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * @author artem
@@ -12,4 +14,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @class PublisherSqlRepository
  */
 public interface PublisherSqlRepository extends JpaRepository<Publisher, String> {
+    Page<Publisher> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
 }

@@ -1,6 +1,9 @@
 package edu.babaiev.libr.repository.sql;
 
+import edu.babaiev.libr.model.BookType;
 import edu.babaiev.libr.model.Collection;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -11,4 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @class CollectionSqlRepository
  */
 public interface CollectionSqlRepository extends JpaRepository<Collection, String> {
+    Page<Collection> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
 }

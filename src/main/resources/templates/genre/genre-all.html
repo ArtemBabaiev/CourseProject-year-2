@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Жанри</title>
+</head>
+<body>
+<section layout:fragment="content">
+  <div class="section-container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="d-flex justify-content-start align-items-center">
+        <h2>Жанри</h2>
+      </div>
+      <div class="d-flex justify-content-end align-items-center" style="column-gap: 15px">
+      </div>
+    </div>
+    <div class="container pb-2 border-bottom">
+      <div class="row">
+        <div class="col">
+          <form th:action="@{/genres/show}" th:method="GET" class="d-flex" style="column-gap: 5px">
+            <input type="search" id="name" name="name" class="form-control"
+                   th:value="${#httpServletRequest.getParameter('name')}">
+            <button class="btn btn-outline-success" type="submit">
+              <!--SEARCH ICON-->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                   class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <form th:action="@{/genres/create}" th:method="GET">
+            <input type="submit" th:value="Створити" class="btn btn-primary">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Назва</th>
+        <th>Повна інформація</th>
+        <th>Редагувати</th>
+        <th>Видалити</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="genre: ${genres}">
+        <td th:text="${genre.getName()}"></td>
+        <td>
+          <form th:action="@{/genres/show/{id}(id=${genre.getId()})}" method="get">
+            <button type="submit" class="btn btn-sm btn-outline-info">Повна інформація</button>
+          </form>
+        </td>
+        <td>
+          <form th:action="@{/genres/edit/{id}(id=${genre.getId()})}" method="get">
+            <button type="submit" class="btn btn-sm btn-outline-warning">Редагувати</button>
+          </form>
+        </td>
+        <td>
+          <form th:action="@{/genres/delete/{id}(id=${genre.getId()})}" th:method="DELETE">
+            <button type="submit" class="btn btn-sm btn-outline-danger">Видалити</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <nav aria-label="Pagination" th:if="${genres.totalPages gt 0}">
+      <ul class="pagination justify-content-center font-weight-medium">
+        <li class="page-item" th:classappend="${genres.number eq 0} ? 'disabled'">
+          <a class="page-link svg-icon"
+             th:href="@{/genres/show?page={id}&name={toSearch}(id=${genres.number lt 2 ? 1 : genres.number}, toSearch = ${#httpServletRequest.getParameter('toSearch')})}"
+             aria-label="Previous"
+             title="Previous Page" rel="tooltip">
+            <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item" th:if="${genres.number + 1 > 5}">
+          <a class="page-link"
+             th:href="@{/genres/show?page={id}&name={toSearch}(id=${1}, toSearch = ${#httpServletRequest.getParameter('toSearch')})}"
+             th:text="${1}"
+             th:title="${'Page '+ 1}"
+             rel="tooltip"></a>
+        </li>
+        <li class="page-item disabled" th:if="${genres.number + 1 > 6}">
+          <a class="page-link svg-icon" href="#">
+            <span data-feather="more-horizontal" width="20" height="20">...</span>
+          </a>
+        </li>
+        <li class="page-item"
+            th:each="i : ${#numbers.sequence( genres.number + 1 > 5 ? genres.number + 1 - 4: 1 , genres.totalPages > 5 + genres.number ? genres.number + 5 : genres.totalPages, 1)}"
+            th:classappend="${i eq genres.number + 1} ? 'active'">
+          <a class="page-link"
+             th:href="@{/genres/show?page={id}&name={toSearch}(id=${i}, toSearch = ${#httpServletRequest.getParameter('toSearch')})}"
+             th:text="${i}"
+             th:title="${'Page '+ i}"
+             rel="tooltip"></a>
+        </li>
+        <li class="page-item disabled" th:if="${genres.number + 1 < genres.totalPages - 5}">
+          <a class="page-link svg-icon" href="#">
+            <span data-feather="more-horizontal" width="20" height="20">...</span>
+          </a>
+        </li>
+        <li class="page-item" th:if="${genres.number + 1 < genres.totalPages - 4}">
+          <a class="page-link"
+             th:href="@{/genres/show?page={id}&name={toSearch}(id=${genres.totalPages}, toSearch = ${#httpServletRequest.getParameter('toSearch')})}"
+             th:text="${genres.totalPages}"
+             th:title="${'Page '+ genres.totalPages}"
+             rel="tooltip"></a>
+        </li>
+        <li class="page-item" th:classappend="${genres.number + 1 eq genres.totalPages} ? 'disabled'">
+          <a class="page-link svg-icon"
+             th:href="@{/genres/show?page={id}&name={toSearch}(id=${genres.number + 2}, toSearch = ${#httpServletRequest.getParameter('toSearch')})}"
+             aria-label="Next"
+             title="Next Page" rel="tooltip">
+            <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+</body>
+</html>

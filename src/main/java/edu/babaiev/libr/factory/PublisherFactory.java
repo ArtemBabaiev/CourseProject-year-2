@@ -1,8 +1,7 @@
 package edu.babaiev.libr.factory;
 
-import edu.babaiev.libr.model.Author;
-import edu.babaiev.libr.model.Publisher;
 import com.github.javafaker.Faker;
+import edu.babaiev.libr.model.Publisher;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="'Тип: ' + ${periodicalType.getName()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+  <div class="section-container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="d-flex justify-content-start align-items-center">
+        <h2 th:text="'Тип збірника: ' + ${periodicalType.getName()}"/>
+      </div>
+      <div class="d-flex justify-content-end align-items-center" style="column-gap: 15px">
+        <a th:href="@{/periodicalTypes/edit/{id}(id = ${periodicalType.getId()})}" class="btn btn-outline-warning">Редагувати</a>
+        <form th:action="@{/periodicalTypes/delete/{id}(id = ${periodicalType.getId()})}" th:method="DELETE">
+          <input type="submit" class="btn btn-outline-danger" value="Видалити">
+        </form>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row border-bottom">
+        <div class="col">
+          <p>Назва</p>
+        </div>
+        <div class="col">
+          <p th:text="${periodicalType.getName()}"></p>
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col">
+          <p>Опис</p>
+        </div>
+        <div class="col">
+          <p th:text="${periodicalType.getDescription()}">
+          </p>
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col">
+          <p>Створено</p>
+        </div>
+        <div class="col">
+          <p th:text="${periodicalType.getCreatedAt()}"></p>
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col">
+          <p>Оновленно</p>
+        </div>
+        <div class="col">
+          <p th:text="${periodicalType.getUpdatedAt()}"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

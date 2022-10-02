@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.PeriodicalType;
 import edu.babaiev.libr.repository.mongo.PeriodicalTypeMongoRepository;
 import edu.babaiev.libr.repository.sql.PeriodicalTypeSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class PeriodicalTypeService {
 
     public PeriodicalType create(PeriodicalType periodicalType) {
         LocalDateTime time = LocalDateTime.now();
-        periodicalType.setCreated_at(time);
-        periodicalType.setUpdated_at(time);
+        periodicalType.setCreatedAt(time);
+        periodicalType.setUpdatedAt(time);
         periodicalTypeMongoRepository.save(periodicalType);
         return periodicalTypeSqlRepository.save(periodicalType);
     }
@@ -44,7 +46,9 @@ public class PeriodicalTypeService {
     }
 
     public PeriodicalType update(PeriodicalType periodicalType) {
-        periodicalType.setUpdated_at(LocalDateTime.now());
+        PeriodicalType oldOne = get(periodicalType.getId());
+        periodicalType.setCreatedAt(oldOne.getCreatedAt());
+        periodicalType.setUpdatedAt(LocalDateTime.now());
         periodicalTypeMongoRepository.save(periodicalType);
         return periodicalTypeSqlRepository.save(periodicalType);
     }
@@ -56,5 +60,9 @@ public class PeriodicalTypeService {
 
     public List<PeriodicalType> getAll() {
         return periodicalTypeSqlRepository.findAll();
+    }
+
+    public Page<PeriodicalType> getByNameContainingPaginated(String name, PageRequest pageRequest){
+        return periodicalTypeSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 }

@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.Collection;
 import edu.babaiev.libr.repository.mongo.CollectionMongoRepository;
 import edu.babaiev.libr.repository.sql.CollectionSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class CollectionService {
 
     public Collection create(Collection collection) {
         LocalDateTime time = LocalDateTime.now();
-        collection.setCreated_at(time);
-        collection.setUpdated_at(time);
+        collection.setCreatedAt(time);
+        collection.setUpdatedAt(time);
         collectionMongoRepository.save(collection);
         return collectionSqlRepository.save(collection);
     }
@@ -44,7 +46,9 @@ public class CollectionService {
     }
 
     public Collection update(Collection collection) {
-        collection.setUpdated_at(LocalDateTime.now());
+        Collection oldOne = get(collection.getId());
+        collection.setCreatedAt(oldOne.getCreatedAt());
+        collection.setUpdatedAt(LocalDateTime.now());
         collectionMongoRepository.save(collection);
         return collectionSqlRepository.save(collection);
     }
@@ -56,5 +60,9 @@ public class CollectionService {
 
     public List<Collection> getAll() {
         return collectionSqlRepository.findAll();
+    }
+
+    public Page<Collection> getByNameContainingPaginated(String name, PageRequest pageRequest){
+        return collectionSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 }

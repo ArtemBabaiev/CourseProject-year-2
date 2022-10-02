@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.Periodical;
 import edu.babaiev.libr.repository.mongo.PeriodicalMongoRepository;
 import edu.babaiev.libr.repository.sql.PeriodicalSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class PeriodicalService {
 
     public Periodical create(Periodical periodical) {
         LocalDateTime time = LocalDateTime.now();
-        periodical.setCreated_at(time);
-        periodical.setUpdated_at(time);
+        periodical.setCreatedAt(time);
+        periodical.setUpdatedAt(time);
         periodicalMongoRepository.save(periodical);
         return periodicalSqlRepository.save(periodical);
     }
@@ -44,7 +46,9 @@ public class PeriodicalService {
     }
 
     public Periodical update(Periodical periodical) {
-        periodical.setUpdated_at(LocalDateTime.now());
+        Periodical oldOne = get(periodical.getId());
+        periodical.setCreatedAt(oldOne.getCreatedAt());
+        periodical.setUpdatedAt(LocalDateTime.now());
         periodicalMongoRepository.save(periodical);
         return periodicalSqlRepository.save(periodical);
     }
@@ -56,5 +60,9 @@ public class PeriodicalService {
 
     public List<Periodical> getAll() {
         return periodicalSqlRepository.findAll();
+    }
+
+    public Page<Periodical> getByNameContainingPaginated(String name, PageRequest pageRequest){
+        return periodicalSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 }

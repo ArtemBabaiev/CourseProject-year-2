@@ -4,6 +4,8 @@ import edu.babaiev.libr.model.Subject;
 import edu.babaiev.libr.repository.mongo.SubjectMongoRepository;
 import edu.babaiev.libr.repository.sql.SubjectSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,8 +35,8 @@ public class SubjectService {
 
     public Subject create(Subject subject) {
         LocalDateTime time = LocalDateTime.now();
-        subject.setCreated_at(time);
-        subject.setUpdated_at(time);
+        subject.setCreatedAt(time);
+        subject.setUpdatedAt(time);
         subjectMongoRepository.save(subject);
         return subjectSqlRepository.save(subject);
     }
@@ -44,7 +46,9 @@ public class SubjectService {
     }
 
     public Subject update(Subject subject) {
-        subject.setUpdated_at(LocalDateTime.now());
+        Subject oldOne = get(subject.getId());
+        subject.setCreatedAt(oldOne.getCreatedAt());
+        subject.setUpdatedAt(LocalDateTime.now());
         subjectMongoRepository.save(subject);
         return subjectSqlRepository.save(subject);
     }
@@ -56,5 +60,8 @@ public class SubjectService {
 
     public List<Subject> getAll() {
         return subjectSqlRepository.findAll();
+    }
+    public Page<Subject> getByNameContainingPaginated(String name, PageRequest pageRequest){
+        return subjectSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 }
