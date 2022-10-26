@@ -17,6 +17,7 @@ import java.util.List;
  */
 public interface CollectionSqlRepository extends JpaRepository<Collection, String> {
     Page<Collection> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
     List<Collection> findAllByNameContainingIgnoreCase(String name, Sort sort);
 
     List<Collection> findAllByNameContainingIgnoreCaseAndNameBetween(String name, String name2, String name3, Sort sort);

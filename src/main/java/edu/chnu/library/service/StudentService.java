@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.Student;
-import edu.chnu.library.model.Student;
 import edu.chnu.library.repository.mongo.StudentMongoRepository;
 import edu.chnu.library.repository.sql.StudentSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,12 +67,12 @@ public class StudentService {
     }
 
     @Transactional
-    public List<Student> getByFaculty(String faculty){
+    public List<Student> getByFaculty(String faculty) {
         return studentSqlRepository.getStudentsByFaculty(faculty);
     }
 
     @Transactional
-    public List<Student> getByUniversity(String university){
+    public List<Student> getByUniversity(String university) {
         return studentSqlRepository.getStudentsByUniversity(university);
     }
 
@@ -93,7 +92,7 @@ public class StudentService {
         }
     }
 
-    public Page<Student> getAllPaginated(PageRequest pageRequest){
+    public Page<Student> getAllPaginated(PageRequest pageRequest) {
         return studentSqlRepository.findAll(pageRequest);
     }
 }

@@ -1,7 +1,6 @@
 package edu.chnu.library.controller.api;
 
 import edu.chnu.library.model.BookType;
-import edu.chnu.library.model.BookType;
 import edu.chnu.library.service.BookTypeService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +58,7 @@ public class BookTypeRestController {
     BookType UpdateOne(@RequestBody BookType bookType) {
         return service.update(bookType);
     }
+
     @ApiOperation(value = "Search by name containing and sort by specified field and order", notes = "to specify order put sort_by=+field_name or -fieldName", httpMethod = "PUT", response = BookType.class, code = 200)
     @GetMapping("/search")
     List<BookType> search(HttpServletRequest request) {
@@ -80,14 +80,15 @@ public class BookTypeRestController {
             try {
                 between1 = ranges[0];
                 between2 = ranges[1];
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
         List<BookType> result = !Objects.equals(between1, "") && !Objects.equals(between2, "") ? service.getAllByNameContainingAndBetween(name, between1, between2, sortBy) : service.getAllByNameContaining(name, sortBy);
         return result;
     }
 
     @GetMapping("/paging")
-    List<BookType> paging(HttpServletRequest request){
+    List<BookType> paging(HttpServletRequest request) {
         int page = 0;
         int size = 10;
         if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {

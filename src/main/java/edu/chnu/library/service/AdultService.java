@@ -81,7 +81,7 @@ public class AdultService {
         }
     }
 
-    public Page<Adult> getAllPaginated(PageRequest pageRequest){
+    public Page<Adult> getAllPaginated(PageRequest pageRequest) {
         return adultSqlRepository.findAll(pageRequest);
     }
 

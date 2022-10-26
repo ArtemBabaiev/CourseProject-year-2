@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.Author;
-import edu.chnu.library.model.Author;
 import edu.chnu.library.repository.mongo.AuthorMongoRepository;
 import edu.chnu.library.repository.sql.AuthorSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +68,7 @@ public class AuthorService {
     public Page<Author> getByNameContainingPaginated(String name, PageRequest pageRequest) {
         return authorSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
+
     public List<Author> getAllByNameContaining(String name, Sort sort) {
         try {
             return authorSqlRepository.findAllByNameContainingIgnoreCase(name, sort);
@@ -85,7 +85,7 @@ public class AuthorService {
         }
     }
 
-    public Page<Author> getAllPaginated(PageRequest pageRequest){
+    public Page<Author> getAllPaginated(PageRequest pageRequest) {
         return authorSqlRepository.findAll(pageRequest);
     }
 }

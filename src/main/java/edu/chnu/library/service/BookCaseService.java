@@ -90,7 +90,7 @@ public class BookCaseService {
         }
     }
 
-    public Page<BookCase> getAllPaginated(PageRequest pageRequest){
+    public Page<BookCase> getAllPaginated(PageRequest pageRequest) {
         return bookCaseSqlRepository.findAll(pageRequest);
     }
 }

@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.Periodical;
-import edu.chnu.library.model.Periodical;
 import edu.chnu.library.repository.mongo.PeriodicalMongoRepository;
 import edu.chnu.library.repository.sql.PeriodicalSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +85,7 @@ public class PeriodicalService {
         }
     }
 
-    public Page<Periodical> getAllPaginated(PageRequest pageRequest){
+    public Page<Periodical> getAllPaginated(PageRequest pageRequest) {
         return periodicalSqlRepository.findAll(pageRequest);
     }
 }

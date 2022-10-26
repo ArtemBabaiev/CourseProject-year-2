@@ -17,6 +17,7 @@ import java.util.List;
  */
 public interface WrittenOffSqlRepository extends JpaRepository<WrittenOff, String> {
     Page<WrittenOff> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
     List<WrittenOff> findAllByNameContainingIgnoreCase(String name, Sort sort);
 
     List<WrittenOff> findAllByNameContainingIgnoreCaseAndNameBetween(String name, String name2, String name3, Sort sort);

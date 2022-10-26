@@ -3,8 +3,8 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.ExemplarInUseException;
 import edu.chnu.library.exception.NotFoundException;
-import edu.chnu.library.model.Record;
 import edu.chnu.library.model.Exemplar;
+import edu.chnu.library.model.Record;
 import edu.chnu.library.repository.mongo.RecordMongoRepository;
 import edu.chnu.library.repository.sql.RecordSqlRepository;
 import edu.chnu.library.security.AuthService;
@@ -81,7 +81,7 @@ public class RecordService {
     public Record prepareRecordForExemplar(String exemplarId) {
         try {
             Exemplar exemplar = exemplarService.getForRecordById(exemplarId);
-            if (!exemplar.getShelf().getBookCase().getReadingRoom().equals(authService.getCurrentEmployee().getReadingRoom())){
+            if (!exemplar.getShelf().getBookCase().getReadingRoom().equals(authService.getCurrentEmployee().getReadingRoom())) {
                 return null;
             }
             Record record = new Record();
@@ -95,7 +95,7 @@ public class RecordService {
     public Record createRecord(Record record, String exemplarId) {
         try {
             Exemplar forRecordById = exemplarService.getForRecordById(exemplarId);
-            if (!forRecordById.getShelf().getBookCase().getReadingRoom().equals(authService.getCurrentEmployee().getReadingRoom())){
+            if (!forRecordById.getShelf().getBookCase().getReadingRoom().equals(authService.getCurrentEmployee().getReadingRoom())) {
                 return null;
             }
             record.setExemplar(forRecordById);
@@ -109,7 +109,7 @@ public class RecordService {
         }
     }
 
-    public Record returnRecord(String recordId){
+    public Record returnRecord(String recordId) {
         Record record = get(recordId);
         exemplarService.returnExemplar(record.getExemplar());
         record.setReturnedAt(LocalDateTime.now());
@@ -119,7 +119,7 @@ public class RecordService {
     }
 
     @Transactional
-    public Object getCountOfServedReaders(){
+    public Object getCountOfServedReaders() {
         return recordSqlRepository.getReadersCountForAllEmployees();
     }
 
@@ -139,7 +139,7 @@ public class RecordService {
         }
     }
 
-    public Page<Record> getAllPaginated(PageRequest pageRequest){
+    public Page<Record> getAllPaginated(PageRequest pageRequest) {
         return recordSqlRepository.findAll(pageRequest);
     }
 }

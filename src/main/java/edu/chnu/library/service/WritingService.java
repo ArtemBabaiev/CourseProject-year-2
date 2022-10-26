@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.Writing;
-import edu.chnu.library.model.Writing;
 import edu.chnu.library.repository.mongo.WritingMongoRepository;
 import edu.chnu.library.repository.sql.WritingSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +72,7 @@ public class WritingService {
     }
 
     @Transactional
-    public List<Writing> getTop10(){
+    public List<Writing> getTop10() {
         List<String> ids = writingSqlRepository.getMostPopularWritings();
         List<Writing> writings = new ArrayList<>();
         for (String id : ids) {
@@ -98,7 +97,7 @@ public class WritingService {
         }
     }
 
-    public Page<Writing> getAllPaginated(PageRequest pageRequest){
+    public Page<Writing> getAllPaginated(PageRequest pageRequest) {
         return writingSqlRepository.findAll(pageRequest);
     }
 }

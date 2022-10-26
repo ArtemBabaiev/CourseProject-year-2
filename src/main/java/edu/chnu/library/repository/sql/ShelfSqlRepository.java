@@ -19,6 +19,7 @@ import java.util.List;
  */
 public interface ShelfSqlRepository extends JpaRepository<Shelf, String> {
     Page<Shelf> findAllByNumberContainingIgnoreCase(String number, Pageable pageable);
+
     List<Shelf> findAllByNumberContainingIgnoreCase(String number, Sort sort);
 
     List<Shelf> findAllByBookCase(BookCase bookCase);

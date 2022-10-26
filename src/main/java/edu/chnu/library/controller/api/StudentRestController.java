@@ -1,7 +1,6 @@
 package edu.chnu.library.controller.api;
 
 import edu.chnu.library.model.Student;
-import edu.chnu.library.model.Student;
 import edu.chnu.library.service.StudentService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +63,7 @@ public class StudentRestController {
     List<Student> byFaculty(@PathVariable String faculty) {
         return service.getByFaculty(faculty);
     }
+
     @GetMapping("/university/{university}")
     List<Student> byUniversity(@PathVariable String university) {
         return service.getByUniversity(university);
@@ -90,14 +90,15 @@ public class StudentRestController {
             try {
                 between1 = ranges[0];
                 between2 = ranges[1];
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
         List<Student> result = !Objects.equals(between1, "") && !Objects.equals(between2, "") ? service.getAllByLastNameContainingAndBetween(lastName, between1, between2, sortBy) : service.getAllByLastNameContaining(lastName, sortBy);
         return result;
     }
 
     @GetMapping("/paging")
-    List<Student> paging(HttpServletRequest request){
+    List<Student> paging(HttpServletRequest request) {
         int page = 0;
         int size = 10;
         if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {

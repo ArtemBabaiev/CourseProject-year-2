@@ -17,6 +17,7 @@ import java.util.List;
  */
 public interface PeriodicalTypeSqlRepository extends JpaRepository<PeriodicalType, String> {
     Page<PeriodicalType> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
     List<PeriodicalType> findAllByNameContainingIgnoreCase(String name, Sort sort);
 
     List<PeriodicalType> findAllByNameContainingIgnoreCaseAndNameBetween(String name, String name2, String name3, Sort sort);

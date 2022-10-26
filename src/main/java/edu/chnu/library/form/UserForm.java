@@ -7,10 +7,6 @@ import edu.chnu.library.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 /**
  * @author artem
@@ -30,7 +26,7 @@ public class UserForm {
     private String password;
     private Role role;
 
-    public UserForm(Employee employee, Key key){
+    public UserForm(Employee employee, Key key) {
         name = employee.getName();
         readingRoom = employee.getReadingRoom();
 

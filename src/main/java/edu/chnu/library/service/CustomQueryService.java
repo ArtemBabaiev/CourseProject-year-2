@@ -13,14 +13,13 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author artem

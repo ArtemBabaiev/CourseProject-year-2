@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.ExemplarInUseException;
 import edu.chnu.library.exception.NotFoundException;
-import edu.chnu.library.model.WrittenOff;
 import edu.chnu.library.model.Exemplar;
 import edu.chnu.library.model.Literature;
 import edu.chnu.library.model.WrittenOff;
@@ -80,14 +79,14 @@ public class WrittenOffService {
         return writtenOffSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
 
-    public WrittenOff writeOffExemplar(String exemplarId){
+    public WrittenOff writeOffExemplar(String exemplarId) {
         Exemplar exemplar = exemplarService.get(exemplarId);
         Literature literature = exemplar.getLiterature();
-        if (exemplar.isLend()){
+        if (exemplar.isLend()) {
             throw new ExemplarInUseException();
         }
         WrittenOff writtenOff = tryGet(literature.getId());
-        if (writtenOff == null){
+        if (writtenOff == null) {
             writtenOff = WrittenOff.builder()
                     .id(literature.getId())
                     .isn(literature.getIsn())
@@ -124,7 +123,7 @@ public class WrittenOffService {
         }
     }
 
-    public Page<WrittenOff> getAllPaginated(PageRequest pageRequest){
+    public Page<WrittenOff> getAllPaginated(PageRequest pageRequest) {
         return writtenOffSqlRepository.findAll(pageRequest);
     }
 }

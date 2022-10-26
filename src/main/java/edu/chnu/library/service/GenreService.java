@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.Genre;
-import edu.chnu.library.model.Genre;
 import edu.chnu.library.repository.mongo.GenreMongoRepository;
 import edu.chnu.library.repository.sql.GenreSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +85,7 @@ public class GenreService {
         }
     }
 
-    public Page<Genre> getAllPaginated(PageRequest pageRequest){
+    public Page<Genre> getAllPaginated(PageRequest pageRequest) {
         return genreSqlRepository.findAll(pageRequest);
     }
 }

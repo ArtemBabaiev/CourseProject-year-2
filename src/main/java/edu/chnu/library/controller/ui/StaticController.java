@@ -26,7 +26,7 @@ public class StaticController {
     }
 
     @GetMapping("/ui/control")
-    public String showControl(){
+    public String showControl() {
         return "control";
     }
 }

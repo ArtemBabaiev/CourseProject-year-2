@@ -2,7 +2,6 @@ package edu.chnu.library.service;
 
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
-import edu.chnu.library.model.Collection;
 import edu.chnu.library.model.CollectionType;
 import edu.chnu.library.repository.mongo.CollectionTypeMongoRepository;
 import edu.chnu.library.repository.sql.CollectionTypeSqlRepository;
@@ -86,7 +85,7 @@ public class CollectionTypeService {
         }
     }
 
-    public Page<CollectionType> getAllPaginated(PageRequest pageRequest){
+    public Page<CollectionType> getAllPaginated(PageRequest pageRequest) {
         return collectionTypeSqlRepository.findAll(pageRequest);
     }
 }

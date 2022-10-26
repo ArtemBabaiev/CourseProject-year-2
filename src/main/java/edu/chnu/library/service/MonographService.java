@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.Monograph;
-import edu.chnu.library.model.Monograph;
 import edu.chnu.library.repository.mongo.MonographMongoRepository;
 import edu.chnu.library.repository.sql.MonographSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +85,7 @@ public class MonographService {
         }
     }
 
-    public Page<Monograph> getAllPaginated(PageRequest pageRequest){
+    public Page<Monograph> getAllPaginated(PageRequest pageRequest) {
         return monographSqlRepository.findAll(pageRequest);
     }
 }

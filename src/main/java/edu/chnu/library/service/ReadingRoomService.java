@@ -2,7 +2,6 @@ package edu.chnu.library.service;
 
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
-import edu.chnu.library.model.ReadingRoom;
 import edu.chnu.library.model.Library;
 import edu.chnu.library.model.ReadingRoom;
 import edu.chnu.library.repository.mongo.ReadingRoomMongoRepository;
@@ -92,7 +91,7 @@ public class ReadingRoomService {
         }
     }
 
-    public Page<ReadingRoom> getAllPaginated(PageRequest pageRequest){
+    public Page<ReadingRoom> getAllPaginated(PageRequest pageRequest) {
         return readingRoomSqlRepository.findAll(pageRequest);
     }
 }

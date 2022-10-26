@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.Library;
-import edu.chnu.library.model.Library;
 import edu.chnu.library.repository.mongo.LibraryMongoRepository;
 import edu.chnu.library.repository.sql.LibrarySqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +85,7 @@ public class LibraryService {
         }
     }
 
-    public Page<Library> getAllPaginated(PageRequest pageRequest){
+    public Page<Library> getAllPaginated(PageRequest pageRequest) {
         return librarySqlRepository.findAll(pageRequest);
     }
 }

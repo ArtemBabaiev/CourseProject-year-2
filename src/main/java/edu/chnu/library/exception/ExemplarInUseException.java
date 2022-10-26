@@ -7,7 +7,7 @@ package edu.chnu.library.exception;
  * @date 16.10.2022 19:28
  * @class ExemplarInUseException
  */
-public class ExemplarInUseException extends RuntimeException{
+public class ExemplarInUseException extends RuntimeException {
     public ExemplarInUseException() {
     }
 

@@ -18,6 +18,7 @@ import java.util.List;
  */
 public interface WritingSqlRepository extends JpaRepository<Writing, String> {
     Page<Writing> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
     List<Writing> findAllByNameContainingIgnoreCase(String name, Sort sort);
 
     @Procedure("getMostPopularWritings")

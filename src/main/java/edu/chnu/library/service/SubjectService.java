@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.Subject;
-import edu.chnu.library.model.Subject;
 import edu.chnu.library.repository.mongo.SubjectMongoRepository;
 import edu.chnu.library.repository.sql.SubjectSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +68,7 @@ public class SubjectService {
     public Page<Subject> getByNameContainingPaginated(String name, PageRequest pageRequest) {
         return subjectSqlRepository.findAllByNameContainingIgnoreCase(name, pageRequest);
     }
+
     public List<Subject> getAllByNameContaining(String name, Sort sort) {
         try {
             return subjectSqlRepository.findAllByNameContainingIgnoreCase(name, sort);
@@ -85,7 +85,7 @@ public class SubjectService {
         }
     }
 
-    public Page<Subject> getAllPaginated(PageRequest pageRequest){
+    public Page<Subject> getAllPaginated(PageRequest pageRequest) {
         return subjectSqlRepository.findAll(pageRequest);
     }
 }

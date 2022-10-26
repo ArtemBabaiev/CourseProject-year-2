@@ -15,5 +15,6 @@ import java.util.List;
  */
 public interface AdultSqlRepository extends JpaRepository<Adult, String> {
     List<Adult> findAllByLastNameContainingIgnoreCase(String lastName, Sort sort);
+
     List<Adult> findAllByLastNameContainingIgnoreCaseAndLastNameBetween(String lastName, String lastName2, String lastName3, Sort sort);
 }

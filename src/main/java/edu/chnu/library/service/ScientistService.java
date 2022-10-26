@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.Scientist;
-import edu.chnu.library.model.Scientist;
 import edu.chnu.library.repository.mongo.ScientistMongoRepository;
 import edu.chnu.library.repository.sql.ScientistSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +81,7 @@ public class ScientistService {
         }
     }
 
-    public Page<Scientist> getAllPaginated(PageRequest pageRequest){
+    public Page<Scientist> getAllPaginated(PageRequest pageRequest) {
         return scientistSqlRepository.findAll(pageRequest);
     }
 }

@@ -80,14 +80,15 @@ public class RecordRestController {
             try {
                 between1 = ranges[0];
                 between2 = ranges[1];
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
         List<Record> result = !Objects.equals(between1, "") && !Objects.equals(between2, "") ? service.getAllByReaderLastNameContainingAndBetween(lastName, between1, between2, sortBy) : service.getAllByReaderLastNameContaining(lastName, sortBy);
         return result;
     }
 
     @GetMapping("/paging")
-    List<Record> paging(HttpServletRequest request){
+    List<Record> paging(HttpServletRequest request) {
         int page = 0;
         int size = 10;
         if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {

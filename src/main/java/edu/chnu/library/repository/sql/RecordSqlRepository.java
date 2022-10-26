@@ -18,6 +18,7 @@ import java.util.List;
  */
 public interface RecordSqlRepository extends JpaRepository<Record, String> {
     Page<Record> findAllByReader_LastNameContainingIgnoreCase(String lastName, Pageable pageable);
+
     List<Record> findAllByReader_LastNameContainingIgnoreCase(String lastName, Sort sort);
 
     @Procedure("getReadersCountForAllEmployees")

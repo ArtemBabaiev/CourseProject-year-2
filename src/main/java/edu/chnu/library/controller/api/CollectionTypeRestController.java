@@ -1,7 +1,6 @@
 package edu.chnu.library.controller.api;
 
 import edu.chnu.library.model.CollectionType;
-import edu.chnu.library.model.CollectionType;
 import edu.chnu.library.service.CollectionTypeService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,14 +80,15 @@ public class CollectionTypeRestController {
             try {
                 between1 = ranges[0];
                 between2 = ranges[1];
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
         List<CollectionType> result = !Objects.equals(between1, "") && !Objects.equals(between2, "") ? service.getAllByNameContainingAndBetween(name, between1, between2, sortBy) : service.getAllByNameContaining(name, sortBy);
         return result;
     }
 
     @GetMapping("/paging")
-    List<CollectionType> paging(HttpServletRequest request){
+    List<CollectionType> paging(HttpServletRequest request) {
         int page = 0;
         int size = 10;
         if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {

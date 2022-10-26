@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.Employee;
-import edu.chnu.library.model.Employee;
 import edu.chnu.library.model.Key;
 import edu.chnu.library.repository.mongo.EmployeeMongoRepository;
 import edu.chnu.library.repository.sql.EmployeeSqlRepository;
@@ -77,7 +76,7 @@ public class EmployeeService {
     }
 
     @Transactional
-    public List<Employee> getEmployeeByReadingRoom(String roomId){
+    public List<Employee> getEmployeeByReadingRoom(String roomId) {
         return employeeSqlRepository.getEmployeesByReadingRoom(roomId);
     }
 
@@ -97,7 +96,7 @@ public class EmployeeService {
         }
     }
 
-    public Page<Employee> getAllPaginated(PageRequest pageRequest){
+    public Page<Employee> getAllPaginated(PageRequest pageRequest) {
         return employeeSqlRepository.findAll(pageRequest);
     }
 }

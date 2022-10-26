@@ -1,9 +1,12 @@
 package edu.chnu.library.dto;
 
 import edu.chnu.library.model.Reader;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -19,7 +22,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-public class ReaderActivityDTO extends Reader{
+public class ReaderActivityDTO extends Reader {
     private LocalDateTime lastTime;
 
     public ReaderActivityDTO(String firstName, String lastName, String address, String readerTicket, String phoneNumber, LocalDate birthday, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime lastTime) {

@@ -1,7 +1,6 @@
 package edu.chnu.library.controller.api;
 
 import edu.chnu.library.model.Writing;
-import edu.chnu.library.model.Writing;
 import edu.chnu.library.service.WritingService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +60,7 @@ public class WritingRestController {
     }
 
     @GetMapping("/top10")
-    List<Writing> topTen(){
+    List<Writing> topTen() {
         return service.getTop10();
     }
 
@@ -86,14 +85,15 @@ public class WritingRestController {
             try {
                 between1 = ranges[0];
                 between2 = ranges[1];
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
         List<Writing> result = !Objects.equals(between1, "") && !Objects.equals(between2, "") ? service.getAllByNameContainingAndBetween(name, between1, between2, sortBy) : service.getAllByNameContaining(name, sortBy);
         return result;
     }
 
     @GetMapping("/paging")
-    List<Writing> paging(HttpServletRequest request){
+    List<Writing> paging(HttpServletRequest request) {
         int page = 0;
         int size = 10;
         if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {

@@ -87,19 +87,20 @@ public class ExemplarService {
         return exemplarSqlRepository.findAllByShelf(shelf);
     }
 
-    public Exemplar getForRecordById(String id){
+    public Exemplar getForRecordById(String id) {
         Exemplar exemplar = get(id);
-        if (exemplar.isLend()){
+        if (exemplar.isLend()) {
             throw new ExemplarInUseException();
         }
         return exemplar;
     }
 
-    public void giveExemplar(Exemplar exemplar){
+    public void giveExemplar(Exemplar exemplar) {
         exemplar.setLend(true);
         update(exemplar);
     }
-    public void returnExemplar(Exemplar exemplar){
+
+    public void returnExemplar(Exemplar exemplar) {
         exemplar.setLend(false);
         update(exemplar);
     }

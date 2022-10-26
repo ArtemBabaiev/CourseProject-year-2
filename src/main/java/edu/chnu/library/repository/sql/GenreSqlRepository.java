@@ -17,6 +17,7 @@ import java.util.List;
  */
 public interface GenreSqlRepository extends JpaRepository<Genre, String> {
     Page<Genre> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
     List<Genre> findAllByNameContainingIgnoreCase(String name, Sort sort);
 
     List<Genre> findAllByNameContainingIgnoreCaseAndNameBetween(String name, String name2, String name3, Sort sort);

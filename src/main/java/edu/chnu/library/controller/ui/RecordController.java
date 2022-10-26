@@ -1,8 +1,6 @@
 package edu.chnu.library.controller.ui;
 
 import edu.chnu.library.model.Record;
-import edu.chnu.library.service.EmployeeService;
-import edu.chnu.library.service.ExemplarService;
 import edu.chnu.library.service.ReaderService;
 import edu.chnu.library.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -78,7 +75,7 @@ public class RecordController {
         try {
             Record record = recordService.returnRecord(id);
             return "redirect:/ui/records/show/" + record.getId();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return "error";

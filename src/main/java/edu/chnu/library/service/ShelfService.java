@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.BookCase;
-import edu.chnu.library.model.Shelf;
 import edu.chnu.library.model.ReadingRoom;
 import edu.chnu.library.model.Shelf;
 import edu.chnu.library.repository.mongo.ShelfMongoRepository;
@@ -96,7 +95,7 @@ public class ShelfService {
         }
     }
 
-    public Page<Shelf> getAllPaginated(PageRequest pageRequest){
+    public Page<Shelf> getAllPaginated(PageRequest pageRequest) {
         return shelfSqlRepository.findAll(pageRequest);
     }
 }

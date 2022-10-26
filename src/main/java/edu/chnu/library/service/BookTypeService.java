@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.BookType;
-import edu.chnu.library.model.BookType;
 import edu.chnu.library.repository.mongo.BookTypeMongoRepository;
 import edu.chnu.library.repository.sql.BookTypeSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +85,7 @@ public class BookTypeService {
         }
     }
 
-    public Page<BookType> getAllPaginated(PageRequest pageRequest){
+    public Page<BookType> getAllPaginated(PageRequest pageRequest) {
         return bookTypeSqlRepository.findAll(pageRequest);
     }
 }

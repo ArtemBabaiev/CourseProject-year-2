@@ -1,6 +1,5 @@
 package edu.chnu.library.repository.sql;
 
-import edu.chnu.library.model.Collection;
 import edu.chnu.library.model.CollectionType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +17,7 @@ import java.util.List;
  */
 public interface CollectionTypeSqlRepository extends JpaRepository<CollectionType, String> {
     Page<CollectionType> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
     List<CollectionType> findAllByNameContainingIgnoreCase(String name, Sort sort);
 
     List<CollectionType> findAllByNameContainingIgnoreCaseAndNameBetween(String name, String name2, String name3, Sort sort);

@@ -82,14 +82,15 @@ public class AdultRestController {
             try {
                 between1 = ranges[0];
                 between2 = ranges[1];
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
         List<Adult> result = !Objects.equals(between1, "") && !Objects.equals(between2, "") ? service.getAllByLastNameContainingAndBetween(lastName, between1, between2, sortBy) : service.getAllByLastNameContaining(lastName, sortBy);
         return result;
     }
 
     @GetMapping("/paging")
-    List<Adult> paging(HttpServletRequest request){
+    List<Adult> paging(HttpServletRequest request) {
         int page = 0;
         int size = 10;
         if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {

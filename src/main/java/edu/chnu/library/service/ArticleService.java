@@ -85,7 +85,7 @@ public class ArticleService {
         }
     }
 
-    public Page<Article> getAllPaginated(PageRequest pageRequest){
+    public Page<Article> getAllPaginated(PageRequest pageRequest) {
         return articleSqlRepository.findAll(pageRequest);
     }
 }

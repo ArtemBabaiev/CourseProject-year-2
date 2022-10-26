@@ -19,7 +19,7 @@ public interface LiteratureSqlRepository extends JpaRepository<Literature, Strin
     Page<Literature> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
 
     @Procedure("getLiteratureCreatedInPeriod")
-    List<Literature> getLiteratureCreatedInPeriod(String lowerDate,String upperDate);
+    List<Literature> getLiteratureCreatedInPeriod(String lowerDate, String upperDate);
 
     @Procedure("getLiteratureUsedByReaderInPeriod")
     List<Literature> getLiteratureUsedByReaderInPeriod(String readerId, String lowerDate, String upperDate);

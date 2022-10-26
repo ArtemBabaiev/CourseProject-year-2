@@ -3,7 +3,6 @@ package edu.chnu.library.service;
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.Pupil;
-import edu.chnu.library.model.Pupil;
 import edu.chnu.library.repository.mongo.PupilMongoRepository;
 import edu.chnu.library.repository.sql.PupilSqlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +81,7 @@ public class PupilService {
         }
     }
 
-    public Page<Pupil> getAllPaginated(PageRequest pageRequest){
+    public Page<Pupil> getAllPaginated(PageRequest pageRequest) {
         return pupilSqlRepository.findAll(pageRequest);
     }
 }

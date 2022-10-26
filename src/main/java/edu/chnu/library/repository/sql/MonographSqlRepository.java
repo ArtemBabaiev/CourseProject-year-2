@@ -17,6 +17,7 @@ import java.util.List;
  */
 public interface MonographSqlRepository extends JpaRepository<Monograph, String> {
     Page<Monograph> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
     List<Monograph> findAllByNameContainingIgnoreCase(String name, Sort sort);
 
     List<Monograph> findAllByNameContainingIgnoreCaseAndNameBetween(String name, String name2, String name3, Sort sort);

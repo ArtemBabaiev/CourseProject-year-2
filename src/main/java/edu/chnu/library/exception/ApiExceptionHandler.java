@@ -37,6 +37,7 @@ public class ApiExceptionHandler {
         );
         return new ResponseEntity<>(apiException, apiException.getHttpStatus());
     }
+
     @ExceptionHandler(value = {RuntimeException.class})
     public ResponseEntity<Object> handleApiRuntimeException(RuntimeException e) {
         ApiException apiException = new ApiException(

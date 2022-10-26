@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
-
 /**
  * @author artem
  * @version: 1.0.0
@@ -30,14 +28,14 @@ public class CustomQueryController {
     }
 
     @GetMapping("")
-    public String showQuery(Model model){
+    public String showQuery(Model model) {
         model.addAttribute("form", new QueryForm());
         model.addAttribute("result", null);
         return "query";
     }
 
     @PostMapping("")
-    public String performQuery(QueryForm form, Model model){
+    public String performQuery(QueryForm form, Model model) {
         String result = null;
 
         try {
@@ -50,7 +48,7 @@ public class CustomQueryController {
                 result = queryService.mongoQueryHandler(form.getQuery());
                 model.addAttribute("result", result);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             model.addAttribute("result", result);
         }
