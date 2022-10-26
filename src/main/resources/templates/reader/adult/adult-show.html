@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Читач: ' + ${adult.getLastName()} + ' ' + ${adult.getFirstName()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div layout:insert="~{/reader/control-panel :: panel(${adult})}">
+        </div>
+        <div class="container">
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Номер читацького квитка</p>
+                </div>
+                <div class="col">
+                    <p th:text="${adult.getReaderTicket()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Прізвище</p>
+                </div>
+                <div class="col">
+                    <p th:text="${adult.getLastName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Ім'я</p>
+                </div>
+                <div class="col">
+                    <p th:text="${adult.getFirstName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Дата народження</p>
+                </div>
+                <div class="col">
+                    <p th:text="${adult.getBirthday()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Адреса</p>
+                </div>
+                <div class="col">
+                    <p th:text="${adult.getAddress()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Номер телефону</p>
+                </div>
+                <div class="col">
+                    <p th:text="${adult.getPhoneNumber()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Місце роботи</p>
+                </div>
+                <div class="col">
+                    <p th:text="${adult.getWorkPlace()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Створено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${adult.getCreatedAt()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Оновлено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${adult.getUpdatedAt()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

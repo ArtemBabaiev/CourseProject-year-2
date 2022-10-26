@@ -1,0 +1,99 @@
+<div layout:fragment="form(monograph)"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     xmlns:th="http://www.thymeleaf.org" th:object="${monograph}">
+    <!--/*@thymesVar id="monograph" type="edu.chnu.library.model.Monograph"*/-->
+    <div class="row mt-4">
+        <div class="col">
+            <label for="isn" class="form-label">ISN</label>
+            <input required type="text" id="isn" class="form-control"
+                   th:field="*{isn}">
+        </div>
+        <div class="col">
+            <label for="name" class="form-label">Назва</label>
+            <input required type="text" id="name" class="form-control"
+                   th:field="*{name}">
+        </div>
+        <div class="col">
+            <label for="publishingYear" class="form-label">Рік видавництва</label>
+            <input required type="number" id="publishingYear" class="form-control"
+                   th:min="1800" th:max="${#dates.format(#dates.createNow(), 'yyyy')}"
+                   th:field="*{publishingYear}">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <label for="numberOfPages" class="form-label">Кількість сторінок</label>
+            <input required type="number" id="numberOfPages" class="form-control"
+                   th:field="*{numberOfPages}">
+        </div>
+        <div class="col">
+            <label for="branch" class="form-label">Напрям/відділення</label>
+            <input required type="text" id="branch" class="form-control"
+                   th:field="*{branch}">
+        </div>
+        <div class="col">
+            <label for="bookType" class="form-label">Тип монографії</label>
+            <select required class="form-select" name="bookType" id="bookType" th:field="*{monographType}">
+                <option selected value="" hidden>----ОБЕРІТЬ ТИП МОНОГРАФІЇ----</option>
+                <option th:each="monographType: ${monographTypes}"
+                        th:value="${monographType.getId()}"
+                        th:text="${monographType.getName()}"/>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col" style="margin-top: 35px;">
+            <input type="checkbox" class="form-check-input" id="isLend"
+                   th:field="*{lendable}"
+                   th:value="true">
+            <label for="isLend" class="form-check-label">Чи видається на руки?</label>
+        </div>
+        <div class="col">
+            <label for="lendPeriodInDays" class="form-label">Період видачі</label>
+            <input required type="number" id="lendPeriodInDays" class="form-control"
+                   th:field="*{lendPeriodInDays}">
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <label for="publisher" class="form-label">Видавництво</label>
+            <select required class="form-select" name="publisher" id="publisher" th:field="*{publisher}">
+                <option selected value="" hidden>----ОБЕРІТЬ ВИДАВНИЦТВО----</option>
+                <option th:each="publisher: ${publishers}"
+                        th:value="${publisher.getId()}"
+                        th:text="${publisher.getName()}"/>
+            </select>
+        </div>
+        <div class="col">
+            <label for="author" class="form-label">Автор</label>
+            <select required class="form-select" name="author" id="author" th:field="*{author}">
+                <option selected value="" hidden>----ОБЕРІТЬ АВТОРА----</option>
+                <option th:each="author: ${authors}"
+                        th:value="${author.getId()}"
+                        th:text="${author.getName()}"/>
+            </select>
+        </div>
+        <div class="col">
+            <label for="defenseCity" class="form-label">Місто захисту</label>
+            <input required type="text" id="defenseCity" class="form-control"
+                   th:field="*{defenseCity}">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <label for="description" class="form-label">Опис</label>
+            <textarea required class="form-control" id="description" rows="3" maxlength="255"
+                      name="description"
+                      th:field="*{description}"></textarea>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-end">
+            <a th:href="@{/ui/literature/show/{id}(id = ${monograph?.getId()})}" class="btn btn-danger">Скасувати</a>
+        </div>
+        <div class="col d-flex justify-content-start">
+            <input type="submit" value="Підтвердити" class="btn btn-success">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Редагувати жанр</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <h2 class="mb-2">Редагувати жанр</h2>
+        <form th:action="@{/ui/genres/edit/{id}(id = ${genre.getId()})}" th:method="PUT" th:object="${genre}">
+            <div layout:insert="~{/genre/form :: form(${genre})}">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

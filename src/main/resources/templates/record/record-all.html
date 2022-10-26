@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Облік видачі книг</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-start align-items-center">
+                <h2>Облік видачі книг</h2>
+            </div>
+            <div class="d-flex justify-content-end align-items-center" style="column-gap: 15px">
+            </div>
+        </div>
+        <div class="container pb-2 border-bottom">
+            <div class="row">
+                <div class="col">
+                    <form th:action="@{/ui/records/show}" th:method="GET" class="d-flex" style="column-gap: 5px">
+                        <input type="search" id="lastName" name="lastName" class="form-control"
+                               th:value="${#httpServletRequest.getParameter('lastName')}">
+                        <button class="btn btn-outline-success" type="submit">
+                            <!--SEARCH ICON-->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Читач</th>
+                <th>Книга-екземпляр</th>
+                <th>Повна інформація</th>
+                <th sec:authorize="hasAnyAuthority('OPERATOR')">Повернути</th>
+                <th sec:authorize="hasAnyAuthority('OPERATOR')">Видалити</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="record: ${records}">
+                <td>
+                    <p th:text="${record.getReader().getLastName()} + ' ' + ${record.getReader().getFirstName()}"/>
+                    <p th:text="${record.getReader().getReaderTicket()}"/>
+                </td>
+                <td>
+                    <p th:text="${record.getExemplar().getLiterature().getName()}"/>
+                    <p th:text="'Екземпляр № ' + ${record.getExemplar().getId()}"/>
+                </td>
+                <td>
+                    <form th:action="@{/ui/records/show/{id}(id=${record.getId()})}" method="get">
+                        <button type="submit" class="btn btn-sm btn-outline-info">Повна інформація</button>
+                    </form>
+                </td>
+                <td sec:authorize="hasAnyAuthority('OPERATOR')">
+                    <form th:action="@{/ui/records/return/{id}(id=${record.getId()})}" th:method="put"
+                          th:if="${record.getExemplar().isLend() == true}">
+                        <button type="submit" class="btn btn-sm btn-outline-primary">Повернути</button>
+                    </form>
+                </td>
+                <td sec:authorize="hasAnyAuthority('OPERATOR')">
+                    <form th:action="@{/ui/records/delete/{id}(id=${record.getId()})}" th:method="DELETE">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Видалити</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <nav aria-label="Pagination" th:if="${records.totalPages gt 0}">
+            <ul class="pagination justify-content-center font-weight-medium">
+                <li class="page-item" th:classappend="${records.number eq 0} ? 'disabled'">
+                    <a class="page-link svg-icon"
+                       th:href="@{/ui/records/show(page=${records.number lt 2 ? 1 : records.number}, lastName = ${#httpServletRequest.getParameter('lastName')})}"
+                       aria-label="Previous"
+                       title="Previous Page" rel="tooltip">
+                        <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item" th:if="${records.number + 1 > 5}">
+                    <a class="page-link"
+                       th:href="@{/ui/records/show(page=${1}, toSearch = ${#httpServletRequest.getParameter('lastName')})}"
+                       th:text="${1}"
+                       th:title="${'Page '+ 1}"
+                       rel="tooltip"></a>
+                </li>
+                <li class="page-item disabled" th:if="${records.number + 1 > 6}">
+                    <a class="page-link svg-icon" href="#">
+                        <span data-feather="more-horizontal" width="20" height="20">...</span>
+                    </a>
+                </li>
+                <li class="page-item"
+                    th:each="i : ${#numbers.sequence( records.number + 1 > 5 ? records.number + 1 - 4: 1 , records.totalPages > 5 + records.number ? records.number + 5 : records.totalPages, 1)}"
+                    th:classappend="${i eq records.number + 1} ? 'active'">
+                    <a class="page-link"
+                       th:href="@{/ui/records/show(page=${i}, lastName = ${#httpServletRequest.getParameter('lastName')})}"
+                       th:text="${i}"
+                       th:title="${'Page '+ i}"
+                       rel="tooltip"></a>
+                </li>
+                <li class="page-item disabled" th:if="${records.number + 1 < records.totalPages - 5}">
+                    <a class="page-link svg-icon" href="#">
+                        <span data-feather="more-horizontal" width="20" height="20">...</span>
+                    </a>
+                </li>
+                <li class="page-item" th:if="${records.number + 1 < records.totalPages - 4}">
+                    <a class="page-link"
+                       th:href="@{/ui/records/show(page=${records.totalPages}, lastName = ${#httpServletRequest.getParameter('lastName')})}"
+                       th:text="${records.totalPages}"
+                       th:title="${'Page '+ records.totalPages}"
+                       rel="tooltip"></a>
+                </li>
+                <li class="page-item" th:classappend="${records.number + 1 eq records.totalPages} ? 'disabled'">
+                    <a class="page-link svg-icon"
+                       th:href="@{/ui/records/show(page=${records.number + 2}, lastName = ${#httpServletRequest.getParameter('lastName')})}"
+                       aria-label="Next"
+                       title="Next Page" rel="tooltip">
+                        <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>
+</body>
+</html>

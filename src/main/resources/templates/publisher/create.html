@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Додати видавця</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <h2 class="mb-2">Створити видавця</h2>
+        <form th:action="@{/ui/publishers/create}" th:method="POST" th:object="${publisher}">
+            <div layout:insert="~{/publisher/form :: form(${publisher})}">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

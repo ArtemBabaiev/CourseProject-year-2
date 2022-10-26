@@ -1,0 +1,35 @@
+<div layout:fragment="form(record)"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     xmlns:th="http://www.thymeleaf.org"
+     th:object="${record}">
+    <!--/*@thymesVar id="record" type="edu.chnu.library.model.Record"*/-->
+    <div class="row mt-4">
+        <div class="col-6">
+            <select name="exemplar" id="examplar" th:field="*{exemplar}" class="form-select" required>
+                <option th:value="${record.exemplar.getId()}"
+                        th:text="${record.exemplar.literature.name} + ' ' + ${record.exemplar.getId()}"></option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="reader" class="form-label">Жанр</label>
+            <input list="readers" id="reader" name="reader">
+            <datalist id="readers">
+                <select class="form-select" th:field="*{reader}" required>
+                    <option value="" selected hidden>----ОБЕРІТЬ ЖАНР----</option>
+                    <option th:each="reader: ${readers}"
+                            th:value="${reader.getId()}"
+                            th:text="${reader.getLastName()} + ' ' + ${reader.getFirstName()}"/>
+                </select>
+            </datalist>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-end">
+            <a th:href="@{/ui/records/show/{id}(id = ${record?.getId()})}" class="btn btn-danger">Скасувати</a>
+        </div>
+        <div class="col d-flex justify-content-start">
+            <input type="submit" value="Підтвердити" class="btn btn-success">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+<div layout:fragment="form(book)"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     xmlns:th="http://www.thymeleaf.org"
+     th:object="${book}">
+    <!--/*@thymesVar id="book" type="edu.chnu.library.model.Book"*/-->
+    <div class="row mt-4">
+        <div class="col">
+            <label for="isn" class="form-label">ISN</label>
+            <input type="text" id="isn" class="form-control"
+                   th:field="*{isn}" required>
+        </div>
+        <div class="col">
+            <label for="name" class="form-label">Назва</label>
+            <input type="text" id="name" class="form-control"
+                   th:field="*{name}" required>
+        </div>
+        <div class="col">
+            <label for="publishingYear" class="form-label">Рік видавництва</label>
+            <input type="number" id="publishingYear" class="form-control"
+                   th:min="1800" th:max="${#dates.format(#dates.createNow(), 'yyyy')}"
+                   th:field="*{publishingYear}" required>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <label for="numberOfPages" class="form-label">Кількість сторінок</label>
+            <input type="number" id="numberOfPages" class="form-control"
+                   th:field="*{numberOfPages}" required>
+        </div>
+        <div class="col">
+            <label for="genre" class="form-label">Жанр</label>
+            <select class="form-select" id="genre" th:field="*{genre}" required>
+                <option value="" selected hidden>----ОБЕРІТЬ ЖАНР----</option>
+                <option th:each="genre: ${genres}"
+                        th:value="${genre.getId()}"
+                        th:text="${genre.getName()}"/>
+            </select>
+        </div>
+        <div class="col">
+            <label for="bookType" class="form-label">Тип книги</label>
+            <select class="form-select" id="bookType" th:field="*{bookType}" required>
+                <option selected value="" hidden>----ОБЕРІТЬ ТИП КНИГИ----</option>
+                <option th:each="bookType: ${bookTypes}"
+                        th:value="${bookType.getId()}"
+                        th:text="${bookType.getName()}"/>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col" style="margin-top: 35px;">
+            <input type="checkbox" class="form-check-input" id="isLend"
+                   th:field="*{lendable}"
+                   th:value="true">
+            <label for="isLend" class="form-check-label">Чи видається на руки?</label>
+        </div>
+        <div class="col">
+            <label for="lendPeriodInDays" class="form-label">Період видачі(у днях)</label>
+            <input type="number" id="lendPeriodInDays" class="form-control"
+                   th:field="*{lendPeriodInDays}" required>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <label for="publisher" class="form-label">Видавництво</label>
+            <select class="form-select" id="publisher" th:field="*{publisher}" required>
+                <option selected value="" hidden>----ОБЕРІТЬ ВИДАВНИЦТВО----</option>
+                <option th:each="publisher: ${publishers}"
+                        th:value="${publisher.getId()}"
+                        th:text="${publisher.getName()}"/>
+            </select>
+        </div>
+        <div class="col">
+            <label for="author" class="form-label">Автор</label>
+            <select class="form-select" name="author" id="author" th:field="*{author}" required>
+                <option selected value="" hidden>----ОБЕРІТЬ АВТОРА----</option>
+                <option th:each="author: ${authors}"
+                        th:value="${author.getId()}"
+                        th:text="${author.getName()}"/>
+            </select>
+        </div>
+        <div class="col">
+            <label for="writing" class="form-label">Твір</label>
+            <select class="form-select" name="writing" id="writing" th:field="*{writing}" required>
+                <option selected value="" hidden>----ОБЕРІТЬ ТВІР----</option>
+                <option th:each="writing: ${writings}"
+                        th:value="${writing.getId()}"
+                        th:text="${writing.getName()}"/>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <label for="description" class="form-label">Опис</label>
+            <textarea class="form-control" id="description"
+                      th:rows="3" th:maxlength="255"
+                      th:field="*{description}" required></textarea>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-end">
+            <a th:href="@{/ui/literature/show/{id}(id = ${book?.getId()})}" class="btn btn-danger">Скасувати</a>
+        </div>
+        <div class="col d-flex justify-content-start">
+            <input type="submit" value="Підтвердити" class="btn btn-success">
+        </div>
+    </div>
+</div>

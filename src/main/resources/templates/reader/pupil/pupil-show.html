@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Читач: ' + ${pupil.getLastName()} + ' ' + ${pupil.getFirstName()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div layout:insert="~{/reader/control-panel :: panel(${pupil})}">
+        </div>
+        <div class="container">
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Номер читацького квитка</p>
+                </div>
+                <div class="col">
+                    <p th:text="${pupil.getReaderTicket()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Прізвище</p>
+                </div>
+                <div class="col">
+                    <p th:text="${pupil.getLastName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Ім'я</p>
+                </div>
+                <div class="col">
+                    <p th:text="${pupil.getFirstName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Дата народження</p>
+                </div>
+                <div class="col">
+                    <p th:text="${pupil.getBirthday()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Адреса</p>
+                </div>
+                <div class="col">
+                    <p th:text="${pupil.getAddress()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Номер телефону</p>
+                </div>
+                <div class="col">
+                    <p th:text="${pupil.getPhoneNumber()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Школа</p>
+                </div>
+                <div class="col">
+                    <p th:text="${pupil.getSchool()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Клас</p>
+                </div>
+                <div class="col">
+                    <p th:text="${pupil.getForm()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Створено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${pupil.getCreatedAt()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Оновлено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${pupil.getUpdatedAt()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

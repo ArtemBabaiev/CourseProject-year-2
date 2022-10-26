@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Ресурси</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a th:href="@{/ui/literature/show}">Література</a></li>
+            <li class="list-group-item"><a th:href="@{/ui/authors/show}">Автори</a></li>
+            <li class="list-group-item"><a th:href="@{/ui/articles/show}">Статті</a></li>
+            <li class="list-group-item"><a th:href="@{/ui/writings/show}">Твори</a></li>
+            <li class="list-group-item"><a th:href="@{/ui/bookTypes/show}">Типи книг</a></li>
+            <li class="list-group-item"><a th:href="@{/ui/monographTypes/show}">Типи монографії</a></li>
+            <li class="list-group-item"><a th:href="@{/ui/collectionTypes/show}">Типи збірників</a></li>
+            <li class="list-group-item"><a th:href="@{/ui/periodicalTypes/show}">Типи публіцистики</a></li>
+            <li class="list-group-item"><a th:href="@{/ui/genres/show}">Жанри</a></li>
+            <li class="list-group-item"><a th:href="@{/ui/subjects/show}">Тематики</a></li>
+            <li class="list-group-item"><a th:href="@{/ui/publishers/show}">Видавці</a></li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

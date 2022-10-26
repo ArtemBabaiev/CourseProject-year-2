@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Редагувати стелаж</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <h2 class="mb-2">Редагувати стелаж</h2>
+        <form th:action="@{/ui/bookCases/edit/{id}(id=${bookCase.getId()})}" th:method="PUT" th:object="${bookCase}">
+            <div layout:insert="~{/bookCase/form :: form(${bookCase})}">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

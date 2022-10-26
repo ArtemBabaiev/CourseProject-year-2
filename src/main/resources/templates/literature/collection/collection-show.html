@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Збірник ' + ${collection.getName()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div layout:insert="~{/literature/control-panel :: panel(${collection})}">
+        </div>
+        <div class="container">
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>ISN</p>
+                </div>
+                <div class="col">
+                    <p th:text="${collection.getIsn()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Назва</p>
+                </div>
+                <div class="col">
+                    <p th:text="${collection.getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Рік видавництва</p>
+                </div>
+                <div class="col">
+                    <p th:text="${collection.getPublishingYear()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Видавництво</p>
+                </div>
+                <div class="col">
+                    <p th:text="${collection.getPublisher().getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Місце читання</p>
+                </div>
+                <div class="col">
+                    <p th:text="${collection.isLendable()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Кількість сторінок</p>
+                </div>
+                <div class="col">
+                    <p th:text="${collection.getNumberOfPages()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Період видачі</p>
+                </div>
+                <div class="col">
+                    <p th:text="${collection.getLendPeriodInDays()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Жанр</p>
+                </div>
+                <div class="col">
+                    <p th:text="${collection.getGenre().getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Тип збірника</p>
+                </div>
+                <div class="col">
+                    <p th:text="${collection.getCollectionType().getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Твір (-и)</p>
+                </div>
+                <div class="col">
+                    <div th:each="writing: ${collection.getWritings()}">
+                        <p th:text="${writing.getName()}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Автори (-и)</p>
+                </div>
+                <div class="col">
+                    <div th:each="writing: ${collection.getWritings()}">
+                        <div th:each="author: ${writing.getAuthors()}">
+                            <p th:text="${author.getName()}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Опис</p>
+                </div>
+                <div class="col">
+                    <p th:text="${collection.getDescription()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Створено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${collection.getCreatedAt()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Оновлено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${collection.getUpdatedAt()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

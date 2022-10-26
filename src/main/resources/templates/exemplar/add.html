@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Додати екземпляри для ' + ${literature.getName()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-start align-items-center">
+                <h2 th:text="'Додати екземпляри до ' + ${literature.getName()}"/>
+            </div>
+        </div>
+        <form th:action="@{/ui/exemplars/create/for/{id}(id = ${literature.getId()})}" th:method="POST"
+              th:object="${exemplarForm}">
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="name" class="form-label">Кількість</label>
+                    <input type="text" id="name" class="form-control"
+                           th:field="*{quantity}" required>
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="shelf" class="form-label">Полиця</label>
+                    <select class="form-select" name="shelf" id="shelf" th:field="*{shelf}" required>
+                        <option selected value="" hidden>----ОБЕРІТЬ ПОЛИЦЮ----</option>
+                        <optgroup th:each="pair :${shelves}" th:label="'Стелаж №'+ ${pair.getKey().getNumber()}">
+                            <option th:each="shelf :${pair.getValue()}" th:value="${shelf.getId()}"
+                                    th:text="'полиця №' + ${shelf.getNumber()}"/>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col d-flex justify-content-end">
+                    <a th:href="@{/ui/exemplars/show/for/{id}(id = ${literature.getId()})}" class="btn btn-danger">Скасувати</a>
+                </div>
+                <div class="col d-flex justify-content-start">
+                    <input type="submit" value="Підтвердити" class="btn btn-success">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

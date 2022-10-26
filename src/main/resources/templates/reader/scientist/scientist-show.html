@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Читач: ' + ${scientist.getLastName()} + ' ' + ${scientist.getFirstName()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div layout:insert="~{/reader/control-panel :: panel(${scientist})}">
+        </div>
+        <div class="container">
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Номер читацького квитка</p>
+                </div>
+                <div class="col">
+                    <p th:text="${scientist.getReaderTicket()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Прізвище</p>
+                </div>
+                <div class="col">
+                    <p th:text="${scientist.getLastName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Ім'я</p>
+                </div>
+                <div class="col">
+                    <p th:text="${scientist.getFirstName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Дата народження</p>
+                </div>
+                <div class="col">
+                    <p th:text="${scientist.getBirthday()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Адреса</p>
+                </div>
+                <div class="col">
+                    <p th:text="${scientist.getAddress()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Номер телефону</p>
+                </div>
+                <div class="col">
+                    <p th:text="${scientist.getPhoneNumber()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Професія</p>
+                </div>
+                <div class="col">
+                    <p th:text="${scientist.getProfession()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Професія</p>
+                </div>
+                <div class="col">
+                    <p th:text="${scientist.getOrganisation()}"></p>
+                </div>
+            </div>
+
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Створено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${scientist.getCreatedAt()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Оновлено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${scientist.getUpdatedAt()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

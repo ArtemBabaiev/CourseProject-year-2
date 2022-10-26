@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Додати запис</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <h2 class="mb-2">Створити запис</h2>
+
+        <form th:action="@{/ui/records/create/exemplar/{id}(id = ${record.getExemplar().getId()})}" th:method="POST"
+              th:object="${record}">
+            <div layout:insert="~{/record/record-form :: form(${record})}">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

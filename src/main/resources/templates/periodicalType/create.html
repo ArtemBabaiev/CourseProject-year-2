@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Додати тип публіцистики</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <h2 class="mb-2">Створити тип публіцистики</h2>
+        <form th:action="@{/ui/periodicalTypes/create}" th:method="POST" th:object="${periodicalType}">
+            <div layout:insert="~{/periodicalType/form :: form(${periodicalType})}">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

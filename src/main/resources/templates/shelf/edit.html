@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Редагувати полицю</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <h2 class="mb-2">Редагувати полицю</h2>
+        <form th:action="@{/ui/shelves/edit/{id}(id=${shelf.getId()})}" th:method="PUT" th:object="${shelf}">
+            <div layout:insert="~{/shelf/form :: form(${shelf})}">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

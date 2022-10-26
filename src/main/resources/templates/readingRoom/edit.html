@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Редагувати читальний зал</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <h2 class="mb-2">Редагувати читальну залу</h2>
+        <form th:href="@{/ui/readingRooms/edit/{id}(id=${readingRoom.getId()})}" th:method="PUT"
+              th:object="${readingRoom}">
+            <div layout:insert="~{/readingRoom/form :: form(${readingRoom})}">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

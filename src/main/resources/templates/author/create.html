@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Додати автора</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <h2 class="mb-2">Створити автора</h2>
+        <form th:action="@{/ui/authors/create}" th:method="POST" th:object="${author}">
+            <div layout:insert="~{/author/form :: form(${author})}">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

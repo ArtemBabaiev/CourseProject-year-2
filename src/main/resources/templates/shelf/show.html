@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Полиця №' + ${shelf.getNumber()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-start align-items-center">
+                <h2 th:text="'Полиця №' + ${shelf.getNumber()}"/>
+            </div>
+            <div class="d-flex justify-content-end align-items-center" style="column-gap: 15px"
+                 sec:authorize="hasAnyAuthority('OPERATOR')">
+                <a th:href="@{/ui/shelves/edit/{id}(id = ${shelf.getId()})}"
+                   class="btn btn-outline-warning">Редагувати</a>
+                <form th:action="@{/ui/shelves/delete/{id}(id = ${shelf.getId()})}" th:method="DELETE">
+                    <input type="submit" class="btn btn-outline-danger" value="Видалити">
+                </form>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Номер</p>
+                </div>
+                <div class="col">
+                    <p th:text="${shelf.getNumber()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Стелаж</p>
+                </div>
+                <div class="col">
+                    <a th:href="@{/ui/bookCases/show/{id}(id = ${shelf.getBookCase().getId()})}"
+                       th:text="${shelf.getBookCase().getNumber()}"></a>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Читальна зала</p>
+                </div>
+                <div class="col">
+                    <a th:href="@{/ui/readingRooms/show/{id}(id = ${shelf.getBookCase().getReadingRoom().getId()})}"
+                       th:text="${shelf.getBookCase().getReadingRoom().getNumber()}"></a>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Бібліотека</p>
+                </div>
+                <div class="col">
+                    <a th:href="@{/ui/libraries/show/{id}(id = ${shelf.getBookCase().getReadingRoom().getLibrary().getId()})}"
+                       th:text="${shelf.getBookCase().getReadingRoom().getLibrary().getNumber()}"></a>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Екземпляри</p>
+                </div>
+                <div class="col">
+                    <p th:each="exemplar: ${exemplars}">
+                        <a th:href="@{/ui/exemplars/show/for/{id}(id = ${exemplar.getLiterature().getId()})}"
+                           th:text="'№ ' + ${exemplar.getId()}"></a>
+                    </p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Створено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${shelf.getCreatedAt()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Оновленно</p>
+                </div>
+                <div class="col">
+                    <p th:text="${shelf.getUpdatedAt()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

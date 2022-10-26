@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Запис №' + ${record}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-start align-items-center">
+                <h2 th:text="'Запис №: ' + ${record.getId()}"/>
+            </div>
+            <div class="d-flex justify-content-end align-items-center" style="column-gap: 15px"
+                 sec:authorize="hasAnyAuthority('OPERATOR')">
+                <a th:href="@{/ui/records/return/{id}(id = ${record.getId()})}"
+                   class="btn btn-outline-warning">Повернути</a>
+                <form th:action="@{/ui/records/delete/{id}(id = ${record.getId()})}" th:method="DELETE">
+                    <input type="submit" class="btn btn-outline-danger" value="Видалити">
+                </form>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Номер</p>
+                </div>
+                <div class="col">
+                    <p th:text="${record.getId()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Література</p>
+                </div>
+                <div class="col">
+                    <p th:text=" ${record.getExemplar().getLiterature().getName()} + ' №' + ${record.getExemplar().getId()}">
+                    </p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Читач</p>
+                </div>
+                <div class="col">
+                    <p th:text=" ${record.getReader().getReaderTicket()} + ' :' + ${record.getReader().getLastName()} + ' ' + ${record.getReader().getFirstName()}">
+                    </p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Видано</p>
+                </div>
+                <div class="col">
+                    <p th:text="${record.getLendAt()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Видано робітником</p>
+                </div>
+                <div class="col">
+                    <p th:text="${record?.getLendBy()?.getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Повернено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${record?.getReturnedAt()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Повернено робітником</p>
+                </div>
+                <div class="col">
+                    <p th:text="${record?.getAcceptedBy()?.getName()}"></p>
+                </div>
+            </div>
+
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Створено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${record.getCreatedAt()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Оновленно</p>
+                </div>
+                <div class="col">
+                    <p th:text="${record.getUpdatedAt()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

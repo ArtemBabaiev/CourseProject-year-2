@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Читальний зал №' + ${readingRoom.getNumber()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-start align-items-center">
+                <h2 th:text="'Читальний зал №' + ${readingRoom.getNumber()}"/>
+            </div>
+            <div class="d-flex justify-content-end align-items-center" style="column-gap: 15px"
+                 sec:authorize="hasAnyAuthority('OPERATOR')">
+                <a th:href="@{/ui/readingRooms/edit/{id}(id = ${readingRoom.getId()})}" class="btn btn-outline-warning">Редагувати</a>
+                <form th:action="@{/ui/readingRooms/delete/{id}(id = ${readingRoom.getId()})}" th:method="DELETE">
+                    <input type="submit" class="btn btn-outline-danger" value="Видалити">
+                </form>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Номер</p>
+                </div>
+                <div class="col">
+                    <p th:text="${readingRoom.getNumber()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Бібліотека</p>
+                </div>
+                <div class="col">
+                    <a th:href="@{/ui/libraries/show/{id}(id = ${readingRoom.getLibrary().getId()})}"
+                       th:text="${readingRoom.getLibrary().getNumber()}"></a>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Стелажі</p>
+                </div>
+                <div class="col">
+                    <p th:each="bookCase: ${bookCases}">
+                        <a th:href="@{/ui/bookCases/show/{id}(id = ${bookCase.getId()})}"
+                           th:text="'№ ' + ${bookCase.getNumber()}"></a>
+                    </p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Створено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${readingRoom.getCreatedAt()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Оновленно</p>
+                </div>
+                <div class="col">
+                    <p th:text="${readingRoom.getUpdatedAt()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

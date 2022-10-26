@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Додати тип монографії</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <h2 class="mb-2">Створити тип монографії</h2>
+        <form th:action="@{/ui/monographTypes/create}" th:method="POST" th:object="${monographType}">
+            <div layout:insert="~{/monographType/form :: form(${monographType})}">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

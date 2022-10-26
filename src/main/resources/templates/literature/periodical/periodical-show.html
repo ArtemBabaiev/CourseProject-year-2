@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Публіцистика ' + ${periodical.getName()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div layout:insert="~{/literature/control-panel :: panel(${periodical})}">
+        </div>
+        <div class="container">
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>ISN</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.getIsn()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Назва</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Рік видавництва</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.getPublishingYear()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Видавництво</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.getPublisher().getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Місце читання</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.isLendable()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Кількість сторінок</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.getNumberOfPages()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Період видачі</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.getLendPeriodInDays()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Жанр</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.getPeriodicalType().getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Жанр</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.getIssue()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Тип публіцистики</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.getSubject()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Автори (-и)</p>
+                </div>
+                <div class="col">
+                    <div th:each="article: ${periodical.getArticles()}">
+                        <p th:text="${article.getName()}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Опис</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.getDescription()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Створено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.getCreatedAt()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Оновлено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${periodical.getUpdatedAt()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

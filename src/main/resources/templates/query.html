@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <script>
+        let result = "[[${result}]]";
+        let description = "[[${description}]]";
+    </script>
+    <script src="/js/queryTable.js"></script>
+    <script src="/js/queryValidation.js"></script>
+    <meta charset="UTF-8">
+    <title>Запит</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <form th:action="@{/ui/query}" th:method="POST" th:object="${form}" onsubmit="return validateQuery()">
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" th:field="*{type}" th:value="SQL" required>
+                        <label class="form-check-label">
+                            MySql query
+                        </label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" th:field="*{type}" th:value="MONGO">
+                        <label class="form-check-label">
+                            MongoDB query
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <label for="query" class="form-label">Запит</label>
+            <textarea th:field="*{query}" class="form-control" id="query" rows="5" required></textarea>
+            <div class="alert alert-danger mt-1" role="alert" id="queryError" style="visibility: hidden;">
+            </div>
+            <div class="row mt-4">
+                <div class="col d-flex justify-content-start">
+                    <input type="submit" value="Підтвердити" class="btn btn-success">
+                </div>
+            </div>
+        </form>
+        <div class="alert alert-danger mt-2" role="alert" th:if="${error}" id="error-message">
+            Не коректний запит: <br><span th:text="${error}"></span>
+        </div>
+        <div class="mt-4" th:if="${form.type} == 'SQL'">
+            <h3>Результат SQL</h3>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table id="resultTable" class="table table-bordered table-striped mb-0 table-hover">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="mt-4" th:if="${form.type} == 'MONGO'">
+            <h3>Результат MongoDB</h3>
+            <div id="mongo-result" class="p-3 border bg-light">
+            </div>
+        </div>
+
+    </div>
+</section>
+</body>
+</html>

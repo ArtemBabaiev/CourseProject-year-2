@@ -1,0 +1,22 @@
+<div layout:fragment="panel(literature)"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+     xmlns:th="http://www.thymeleaf.org">
+    <!--/*@thymesVar id="literature" type="edu.chnu.library.model.Literature"*/-->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-start align-items-center">
+            <h2 th:text="${literature.getName()}"/>
+        </div>
+        <div class="d-flex justify-content-end align-items-center" style="column-gap: 15px"
+             sec:authorize="hasAnyAuthority('OPERATOR')">
+            <a th:href="@{/ui/exemplars/show/for/{id}(id = ${literature.getId()})}" class="btn btn-outline-primary">Переглянути
+                екземпляри</a>
+            <a th:href="@{/ui/exemplars/create/for/{id}(id = ${literature.getId()})}" class="btn btn-outline-secondary">Додати
+                екземпляр(-и) до...</a>
+            <a th:href="@{/ui/literature/edit/{id}(id = ${literature.getId()})}" class="btn btn-outline-warning">Редагувати</a>
+            <form th:action="@{/ui/literature/delete/{id}(id = ${literature.getId()})}" th:method="DELETE">
+                <input type="submit" class="btn btn-outline-danger" value="Видалити">
+            </form>
+        </div>
+    </div>
+</div>

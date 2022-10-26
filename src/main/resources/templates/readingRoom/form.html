@@ -1,0 +1,31 @@
+<div layout:fragment="form(readingRoom)"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     xmlns:th="http://www.thymeleaf.org"
+     th:object="${readingRoom}">
+    <!--/*@thymesVar id="readingRoom" type="edu.chnu.library.model.ReadingRoom"*/-->
+    <div class="row mt-4">
+        <div class="col">
+            <label for="name" class="form-label">Номер</label>
+            <input type="text" id="name" class="form-control"
+                   th:field="*{number}" required>
+        </div>
+        <div class="col"></div>
+        <div class="col">
+            <label for="library" class="form-label">Бібліотека</label>
+            <select class="form-select" id="library" th:field="*{library}" required>
+                <option selected value="" hidden>----ОБЕРІТЬ БІБЛІОТЕКУ----</option>
+                <option th:each="library: ${libraries}"
+                        th:value="${library.getId()}"
+                        th:text="${library.getNumber()}"/>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-end">
+            <a th:href="@{/ui/readingRooms/show/{id}(id=${readingRoom?.getId()})}" class="btn btn-danger">Скасувати</a>
+        </div>
+        <div class="col d-flex justify-content-start">
+            <input type="submit" value="Підтвердити" class="btn btn-success">
+        </div>
+    </div>
+</div>

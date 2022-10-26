@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Ресурси</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div class="alert alert-danger" role="alert" th:if="${loginError}">
+            Wrong user or password
+        </div>
+        <form th:action="@{/login}" method="post">
+            <div class="form-outline mb-4">
+                <input type="text" id="username" name="username" autofocus="autofocus" class="form-control"/>
+                <label for="username" class="form-label">Username</label>
+            </div>
+            <div class="form-outline mb-4">
+                <input type="password" id="password" name="password" class="form-control"/>
+                <label for="password" class="form-label">Password</label>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <!-- Simple link -->
+                    <a th:href="@{/forgetPassword}">Forgot password?</a>
+                </div>
+            </div>
+            <input type="submit" value="Log in" class="btn btn-primary btn-block mb-4"/>
+        </form>
+    </div>
+</section>
+</body>
+</html>

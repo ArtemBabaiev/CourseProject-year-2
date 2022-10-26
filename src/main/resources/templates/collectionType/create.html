@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Додати тип збірника</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <h2 class="mb-2">Створити тип зібрника</h2>
+        <form th:action="@{/ui/collectionTypes/create}" th:method="POST" th:object="${collectionType}">
+            <div layout:insert="~{/collectionType/form :: form(${collectionType})}">
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

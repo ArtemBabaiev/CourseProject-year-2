@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Жанр: ' + ${genre.getName()}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-start align-items-center">
+                <h2 th:text="'Тип збірника: ' + ${genre.getName()}"/>
+            </div>
+            <div class="d-flex justify-content-end align-items-center" style="column-gap: 15px"
+                 sec:authorize="hasAnyAuthority('OPERATOR')">
+                <a th:href="@{/ui/genres/edit/{id}(id = ${genre.getId()})}"
+                   class="btn btn-outline-warning">Редагувати</a>
+                <form th:action="@{/ui/genres/delete/{id}(id = ${genre.getId()})}" th:method="DELETE">
+                    <input type="submit" class="btn btn-outline-danger" value="Видалити">
+                </form>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Назва</p>
+                </div>
+                <div class="col">
+                    <p th:text="${genre.getName()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom">
+                <div class="col">
+                    <p>Опис</p>
+                </div>
+                <div class="col">
+                    <p th:text="${genre.getDescription()}">
+                    </p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Створено</p>
+                </div>
+                <div class="col">
+                    <p th:text="${genre.getCreatedAt()}"></p>
+                </div>
+            </div>
+            <div class="row border-bottom" sec:authorize="isAuthenticated()">
+                <div class="col">
+                    <p>Оновленно</p>
+                </div>
+                <div class="col">
+                    <p th:text="${genre.getUpdatedAt()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

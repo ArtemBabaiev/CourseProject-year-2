@@ -1,0 +1,58 @@
+<div layout:fragment="form(form)"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+     th:object="${form}">
+    <!--/*@thymesVar id="form" type="edu.chnu.library.form.UserForm"*/-->
+    <div class="row mt-4">
+        <div class="col">
+            <label for="name" class="form-label">Назва</label>
+            <input type="text" id="name" class="form-control"
+                   th:field="*{name}" required>
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+            <label for="readingRoom" class="form-label">Читальна зала</label>
+            <select class="form-select" name="readingRoom" id="readingRoom" th:field="*{readingRoom}" required>
+                <option selected value="" hidden>----ОБЕРІТЬ ЗАЛУ----</option>
+                <optgroup th:each="pair :${rooms}" th:label="'Бібліотека №'+ ${pair.getKey().getNumber()}">
+                    <option th:each="room :${pair.getValue()}" th:value="${room.getId()}"
+                            th:text="'зала №' + ${room.getNumber()}"/>
+                </optgroup>
+            </select>
+        </div>
+
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <label for="login" class="form-label">Логігн</label>
+            <input type="text" id="login" class="form-control"
+                   th:field="*{login}" required>
+        </div>
+        <div class="col">
+            <label for="password" class="form-label">Логігн</label>
+            <input type="text" id="password" class="form-control"
+                   th:field="*{password}" required>
+        </div>
+        <div class="col">
+            <label for="role" class="form-label">Роль</label>
+            <select class="form-select" id="role" th:field="*{role}" required>
+                <option selected value="" hidden>----ОБЕРІТЬ РОЛЬ----</option>
+                <!--/*@thymesVar id="roles" type="java.util.List<edu.chnu.library.model.Role>"*/-->
+                <option th:each="role: ${roles}"
+                        th:value="${role.getId()}"
+                        th:text="${role.getName()}"
+                        th:if="(${#authentication.getPrincipal().getKey().getRole.getName().equals('ADMIN')} and ${role.getName().equals('OPERATOR')}) or (${#authentication.getPrincipal().getKey().getRole.getName().equals('OWNER')} and ${role.getName().equals('ADMIN')})"/>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col d-flex justify-content-end">
+            <a th:href="@{/ui/users/show}" class="btn btn-danger">Скасувати</a>
+        </div>
+        <div class="col d-flex justify-content-start">
+            <input type="submit" value="Підтвердити" class="btn btn-success">
+        </div>
+    </div>
+</div>
