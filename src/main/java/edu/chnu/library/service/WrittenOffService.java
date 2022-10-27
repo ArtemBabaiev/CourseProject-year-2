@@ -2,6 +2,7 @@ package edu.chnu.library.service;
 
 import edu.chnu.library.exception.BadRequestException;
 import edu.chnu.library.exception.ExemplarInUseException;
+import edu.chnu.library.exception.LiteratureNotLendableException;
 import edu.chnu.library.exception.NotFoundException;
 import edu.chnu.library.model.Exemplar;
 import edu.chnu.library.model.Literature;
@@ -82,6 +83,9 @@ public class WrittenOffService {
     public WrittenOff writeOffExemplar(String exemplarId) {
         Exemplar exemplar = exemplarService.get(exemplarId);
         Literature literature = exemplar.getLiterature();
+        if (!literature.isLendable()){
+            throw new LiteratureNotLendableException();
+        }
         if (exemplar.isLend()) {
             throw new ExemplarInUseException();
         }
@@ -101,6 +105,7 @@ public class WrittenOffService {
                     .build();
         }
         writtenOff.setQuantity(writtenOff.getQuantity() + 1);
+        writtenOff.setUpdatedAt(LocalDateTime.now());
         writtenOffMongoRepository.save(writtenOff);
         writtenOffSqlRepository.save(writtenOff);
         exemplarService.delete(exemplarId);
