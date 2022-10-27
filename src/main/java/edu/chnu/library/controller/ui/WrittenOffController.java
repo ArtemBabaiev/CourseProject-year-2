@@ -1,6 +1,7 @@
 package edu.chnu.library.controller.ui;
 
 import edu.chnu.library.exception.ExemplarInUseException;
+import edu.chnu.library.exception.LiteratureNotLendableException;
 import edu.chnu.library.service.WrittenOffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -52,12 +53,16 @@ public class WrittenOffController {
     }
 
     @PostMapping("/create/{exemplarId}")
-    public String createWrittenOff(@PathVariable String exemplarId) {
+    public String createWrittenOff(@PathVariable String exemplarId, Model model) {
         try {
             writtenOffService.writeOffExemplar(exemplarId);
             return "redirect:/ui/writtenOffs/show";
         } catch (ExemplarInUseException e) {
-            return "error/constraint";
+            model.addAttribute("error", "Екземпляр вже в користуванні");
+            return "error/notPossibleAction";
+        } catch (LiteratureNotLendableException e){
+            model.addAttribute("error", "Література не доступна для видання");
+            return "error/notPossibleAction";
         }
     }
 
