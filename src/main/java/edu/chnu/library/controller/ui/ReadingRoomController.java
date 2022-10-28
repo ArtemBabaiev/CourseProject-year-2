@@ -40,7 +40,7 @@ public class ReadingRoomController {
     }
 
     @GetMapping("/show")
-    public String articlePage(HttpServletRequest request, Model model) {
+    public String showPage(HttpServletRequest request, Model model) {
 
         int page = 0;
         int size = 10;
@@ -59,7 +59,7 @@ public class ReadingRoomController {
     }
 
     @GetMapping("/show/{id}")
-    public String showArticle(@PathVariable String id, Model model) {
+    public String showOne(@PathVariable String id, Model model) {
         ReadingRoom readingRoom = readingRoomService.get(id);
         model.addAttribute("readingRoom", readingRoom);
         model.addAttribute("bookCases", bookCaseService.getByReadingRoom(readingRoom));
@@ -67,20 +67,20 @@ public class ReadingRoomController {
     }
 
     @GetMapping("/create")
-    public String showCreateArticle(Model model) {
+    public String showCreate(Model model) {
         model.addAttribute("readingRoom", new ReadingRoom());
         model.addAttribute("libraries", libraryService.getAll());
         return "readingRoom/create";
     }
 
     @PostMapping("/create")
-    public String performCreateArticle(ReadingRoom readingRoom) {
+    public String performCreate(ReadingRoom readingRoom) {
         ReadingRoom newOne = readingRoomService.create(readingRoom);
         return "redirect:/ui/readingRooms/show/" + newOne.getId();
     }
 
     @GetMapping("/edit/{id}")
-    public String showEditArticle(@PathVariable String id, Model model) {
+    public String showEdit(@PathVariable String id, Model model) {
         ReadingRoom userReadingRoom = authService.getCurrentEmployee().getReadingRoom();
         ReadingRoom readingRoom = readingRoomService.get(id);
         if (readingRoom.getLibrary().equals(userReadingRoom.getLibrary())) {
@@ -92,13 +92,13 @@ public class ReadingRoomController {
     }
 
     @PutMapping("/edit/{id}")
-    public String performEditArticle(@PathVariable String id, ReadingRoom readingRoom) {
+    public String performEdit(@PathVariable String id, ReadingRoom readingRoom) {
         ReadingRoom updated = readingRoomService.update(readingRoom);
         return "redirect:/ui/readingRooms/show/" + updated.getId();
     }
 
     @DeleteMapping("/delete/{id}")
-    public String performDeleteArticle(@PathVariable String id) {
+    public String performDelete(@PathVariable String id) {
         ReadingRoom userReadingRoom = authService.getCurrentEmployee().getReadingRoom();
         ReadingRoom readingRoom = readingRoomService.get(id);
         if (readingRoom.getLibrary().equals(userReadingRoom.getLibrary())) {

@@ -29,7 +29,7 @@ public class GenreController {
     }
 
     @GetMapping("/show")
-    public String genrePage(HttpServletRequest request, Model model) {
+    public String showPage(HttpServletRequest request, Model model) {
 
         int page = 0;
         int size = 10;
@@ -54,31 +54,31 @@ public class GenreController {
     }
 
     @GetMapping("/create")
-    public String showCreateGenre(Model model) {
+    public String showCreate(Model model) {
         model.addAttribute("genre", new Genre());
         return "genre/create";
     }
 
     @PostMapping("/create")
-    public String performCreateGenre(Genre genre) {
+    public String performCreate(Genre genre) {
         Genre newOne = genreService.create(genre);
         return "redirect:/ui/genres/show/" + newOne.getId();
     }
 
     @GetMapping("/edit/{id}")
-    public String showEditGenre(@PathVariable String id, Model model) {
+    public String showEdit(@PathVariable String id, Model model) {
         model.addAttribute("genre", genreService.get(id));
         return "genre/edit";
     }
 
     @PutMapping("/edit/{id}")
-    public String performEditGenre(@PathVariable String id, Genre genre) {
+    public String performEdit(@PathVariable String id, Genre genre) {
         Genre updated = genreService.update(genre);
         return "redirect:/ui/genres/show/" + updated.getId();
     }
 
     @DeleteMapping("/delete/{id}")
-    public String performDeleteGenre(@PathVariable String id) {
+    public String performDelete(@PathVariable String id) {
         genreService.delete(id);
         return "redirect:/ui/genres/show";
     }

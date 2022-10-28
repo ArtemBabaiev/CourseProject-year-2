@@ -70,7 +70,7 @@ public class UserController {
     }
 
     @GetMapping("/show/{id}")
-    public String show(@PathVariable String id, Model model) {
+    public String showOne(@PathVariable String id, Model model) {
         Employee employee = employeeService.get(id);
         model.addAttribute("employee", employee);
         return "user/show";

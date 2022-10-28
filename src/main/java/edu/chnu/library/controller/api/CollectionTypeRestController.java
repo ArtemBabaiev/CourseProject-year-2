@@ -59,7 +59,7 @@ public class CollectionTypeRestController {
         return service.update(collectionType);
     }
 
-    @ApiOperation(value = "Search by name containing and sort by specified field and order", notes = "to specify order put sort_by=+field_name or -fieldName", httpMethod = "PUT", response = CollectionType.class, code = 200)
+    @ApiOperation(value = "Search by name containing and sort by specified field and order", notes = "to specify order put sort_by=+field_name or -fieldName", httpMethod = "GET", response = CollectionType.class, code = 200)
     @GetMapping("/search")
     List<CollectionType> search(HttpServletRequest request) {
         String name = "";

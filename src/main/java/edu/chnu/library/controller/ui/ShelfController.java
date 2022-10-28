@@ -47,7 +47,7 @@ public class ShelfController {
     }
 
     @GetMapping("/show")
-    public String articlePage(HttpServletRequest request, Model model) {
+    public String showPage(HttpServletRequest request, Model model) {
 
         int page = 0;
         int size = 10;
@@ -66,7 +66,7 @@ public class ShelfController {
     }
 
     @GetMapping("/show/{id}")
-    public String showArticle(@PathVariable String id, Model model) {
+    public String showOne(@PathVariable String id, Model model) {
         Shelf shelf = shelfService.get(id);
         model.addAttribute("shelf", shelf);
         model.addAttribute("exemplars", exemplarService.getAllByShelf(shelf));
@@ -74,7 +74,7 @@ public class ShelfController {
     }
 
     @GetMapping("/create")
-    public String showCreateArticle(Model model) {
+    public String showCreate(Model model) {
         ReadingRoom userReadingRoom = authService.getCurrentEmployee().getReadingRoom();
         Map<ReadingRoom, List<BookCase>> bookCasesByRoom = bookCaseService.getByReadingRoom(userReadingRoom).stream()
                 .collect(Collectors.groupingBy(BookCase::getReadingRoom));
@@ -85,13 +85,13 @@ public class ShelfController {
     }
 
     @PostMapping("/create")
-    public String performCreateArticle(Shelf shelf) {
+    public String performCreate(Shelf shelf) {
         Shelf newOne = shelfService.create(shelf);
         return "redirect:/ui/shelves/show/" + newOne.getId();
     }
 
     @GetMapping("/edit/{id}")
-    public String showEditArticle(@PathVariable String id, Model model) {
+    public String showEdit(@PathVariable String id, Model model) {
         ReadingRoom userReadingRoom = authService.getCurrentEmployee().getReadingRoom();
         Shelf shelf = shelfService.get(id);
         if (!shelf.getBookCase().getReadingRoom().equals(userReadingRoom)) {
@@ -106,13 +106,13 @@ public class ShelfController {
     }
 
     @PutMapping("/edit/{id}")
-    public String performEditArticle(@PathVariable String id, Shelf shelf) {
+    public String performEdit(@PathVariable String id, Shelf shelf) {
         Shelf updated = shelfService.update(shelf);
         return "redirect:/ui/shelves/show/" + updated.getId();
     }
 
     @DeleteMapping("/delete/{id}")
-    public String performDeleteArticle(@PathVariable String id) {
+    public String performDelete(@PathVariable String id) {
         ReadingRoom userReadingRoom = authService.getCurrentEmployee().getReadingRoom();
         Shelf shelf = shelfService.get(id);
         if (!shelf.getBookCase().getReadingRoom().equals(userReadingRoom)) {

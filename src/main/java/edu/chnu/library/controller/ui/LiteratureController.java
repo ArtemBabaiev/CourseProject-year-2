@@ -70,7 +70,7 @@ public class LiteratureController {
 
 
     @GetMapping("/show")
-    public String literaturePage(HttpServletRequest request, Model model) {
+    public String showPage(HttpServletRequest request, Model model) {
         int page = 0;
         int size = 10;
         String name = "";

@@ -75,7 +75,7 @@ public class ExemplarController {
     }
 
     @GetMapping("/create/for/{id}")
-    public String showAddExemplar(@PathVariable String id, Model model) {
+    public String showCreate(@PathVariable String id, Model model) {
         model.addAttribute("literature", literatureService.get(id));
         ReadingRoom readingRoom = getAuthEmployee().getReadingRoom();
         Map<BookCase, List<Shelf>> casesContent = shelfService.getByReadingRoom(readingRoom).stream()
@@ -86,7 +86,7 @@ public class ExemplarController {
     }
 
     @PostMapping("/create/for/{id}")
-    public String performAddExemplar(@PathVariable String id, ExemplarForm exemplarForm) {
+    public String performCreate(@PathVariable String id, ExemplarForm exemplarForm) {
         Literature literature = literatureService.get(id);
         for (int i = 0; i < exemplarForm.getQuantity(); i++) {
             Exemplar exemplar = new Exemplar();
@@ -99,7 +99,7 @@ public class ExemplarController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String performDeleteExemplar(@PathVariable String id) {
+    public String performDelete(@PathVariable String id) {
         String toId = exemplarService.get(id).getLiterature().getId();
         exemplarService.delete(id);
         return "redirect:/ui/exemplars/show/for/" + toId;

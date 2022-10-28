@@ -59,7 +59,7 @@ public class BookCaseRestController {
         return service.update(bookCase);
     }
 
-    @ApiOperation(value = "Search by name containing and sort by specified field and order", notes = "to specify order put sort_by=+field_name or -fieldName", httpMethod = "PUT", response = BookCase.class, code = 200)
+    @ApiOperation(value = "Search by name containing and sort by specified field and order", notes = "to specify order put sort_by=+field_name or -fieldName", httpMethod = "GET", response = BookCase.class, code = 200)
     @GetMapping("/search")
     List<BookCase> search(HttpServletRequest request) {
         String number = "";
