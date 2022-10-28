@@ -59,7 +59,7 @@ public class ReadingRoomRestController {
         return service.update(readingRoom);
     }
 
-    @ApiOperation(value = "Search by name containing and sort by specified field and order", notes = "to specify order put sort_by=+field_name or -fieldName", httpMethod = "PUT", response = ReadingRoom.class, code = 200)
+    @ApiOperation(value = "Search by name containing and sort by specified field and order", notes = "to specify order put sort_by=+field_name or -fieldName", httpMethod = "GET", response = ReadingRoom.class, code = 200)
     @GetMapping("/search")
     List<ReadingRoom> search(HttpServletRequest request) {
         String number = "";

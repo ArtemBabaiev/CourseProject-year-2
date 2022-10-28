@@ -29,7 +29,7 @@ public class SubjectController {
     }
 
     @GetMapping("/show")
-    public String subjectPage(HttpServletRequest request, Model model) {
+    public String showPage(HttpServletRequest request, Model model) {
 
         int page = 0;
         int size = 10;
@@ -54,31 +54,31 @@ public class SubjectController {
     }
 
     @GetMapping("/create")
-    public String showCreateSubject(Model model) {
+    public String showCreate(Model model) {
         model.addAttribute("subject", new Subject());
         return "subject/create";
     }
 
     @PostMapping("/create")
-    public String performCreateSubject(Subject subject) {
+    public String performCreate(Subject subject) {
         Subject newOne = subjectService.create(subject);
         return "redirect:/ui/subjects/show/" + newOne.getId();
     }
 
     @GetMapping("/edit/{id}")
-    public String showEditSubject(@PathVariable String id, Model model) {
+    public String showEdit(@PathVariable String id, Model model) {
         model.addAttribute("subject", subjectService.get(id));
         return "subject/edit";
     }
 
     @PutMapping("/edit/{id}")
-    public String performEditSubject(@PathVariable String id, Subject subject) {
+    public String performEdit(@PathVariable String id, Subject subject) {
         Subject updated = subjectService.update(subject);
         return "redirect:/ui/subjects/show/" + updated.getId();
     }
 
     @DeleteMapping("/delete/{id}")
-    public String performDeleteSubject(@PathVariable String id) {
+    public String performDelete(@PathVariable String id) {
         subjectService.delete(id);
         return "redirect:/ui/subjects/show";
     }

@@ -59,15 +59,15 @@ public class RecordRestController {
         return service.update(record);
     }
 
-    @ApiOperation(value = "Search by name containing and sort by specified field and order", notes = "to specify order put sort_by=+field_name or -fieldName", httpMethod = "PUT", response = Record.class, code = 200)
+    @ApiOperation(value = "Search by name containing and sort by specified field and order", notes = "to specify order put sort_by=+field_name or -fieldName", httpMethod = "GET", response = Record.class, code = 200)
     @GetMapping("/search")
     List<Record> search(HttpServletRequest request) {
         String lastName = "";
         Sort sortBy = Sort.by(Sort.Direction.ASC, "id");
         String between1 = "";
         String between2 = "";
-        if (request.getParameter("lastName") != null && !request.getParameter("lastName").isEmpty()) {
-            lastName = request.getParameter("lastName");
+        if (request.getParameter("last_name") != null && !request.getParameter("last_name").isEmpty()) {
+            lastName = request.getParameter("last_name");
         }
         if (request.getParameter("sort_by") != null && !request.getParameter("sort_by").isEmpty()) {
             StringBuilder requestParameter = new StringBuilder(request.getParameter("sort_by"));

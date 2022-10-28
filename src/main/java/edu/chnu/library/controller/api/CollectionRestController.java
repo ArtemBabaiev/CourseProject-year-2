@@ -20,7 +20,7 @@ import java.util.Objects;
  * @class CollectionRestController
  */
 @RestController
-@RequestMapping("/api/collections")
+@RequestMapping("/api/literature/collections")
 public class CollectionRestController {
     CollectionService service;
 
@@ -59,7 +59,7 @@ public class CollectionRestController {
         return service.update(collection);
     }
 
-    @ApiOperation(value = "Search by name containing and sort by specified field and order", notes = "to specify order put sort_by=+field_name or -fieldName", httpMethod = "PUT", response = Collection.class, code = 200)
+    @ApiOperation(value = "Search by name containing and sort by specified field and order", notes = "to specify order put sort_by=+field_name or -fieldName", httpMethod = "GET", response = Collection.class, code = 200)
     @GetMapping("/search")
     List<Collection> search(HttpServletRequest request) {
         String name = "";

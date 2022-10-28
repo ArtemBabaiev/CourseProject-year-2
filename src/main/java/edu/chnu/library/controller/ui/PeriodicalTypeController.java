@@ -29,7 +29,7 @@ public class PeriodicalTypeController {
     }
 
     @GetMapping("/show")
-    public String periodicalTypePage(HttpServletRequest request, Model model) {
+    public String showPage(HttpServletRequest request, Model model) {
 
         int page = 0;
         int size = 10;
@@ -54,31 +54,31 @@ public class PeriodicalTypeController {
     }
 
     @GetMapping("/create")
-    public String showCreatePeriodicalType(Model model) {
+    public String showCreate(Model model) {
         model.addAttribute("periodicalType", new PeriodicalType());
         return "periodicalType/create";
     }
 
     @PostMapping("/create")
-    public String performCreatePeriodicalType(PeriodicalType periodicalType) {
+    public String performCreate(PeriodicalType periodicalType) {
         PeriodicalType newOne = periodicalTypeService.create(periodicalType);
         return "redirect:/ui/periodicalTypes/show/" + newOne.getId();
     }
 
     @GetMapping("/edit/{id}")
-    public String showEditPeriodicalType(@PathVariable String id, Model model) {
+    public String showEdit(@PathVariable String id, Model model) {
         model.addAttribute("periodicalType", periodicalTypeService.get(id));
         return "periodicalType/edit";
     }
 
     @PutMapping("/edit/{id}")
-    public String performEditPeriodicalType(@PathVariable String id, PeriodicalType periodicalType) {
+    public String performEdit(@PathVariable String id, PeriodicalType periodicalType) {
         PeriodicalType updated = periodicalTypeService.update(periodicalType);
         return "redirect:/ui/periodicalTypes/show/" + updated.getId();
     }
 
     @DeleteMapping("/delete/{id}")
-    public String performDeletePeriodicalType(@PathVariable String id) {
+    public String performDelete(@PathVariable String id) {
         periodicalTypeService.delete(id);
         return "redirect:/ui/periodicalTypes/show";
     }

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author artem
@@ -40,6 +41,7 @@ public class ReaderService {
         LocalDateTime time = LocalDateTime.now();
         reader.setCreatedAt(time);
         reader.setUpdatedAt(time);
+        reader.setReaderTicket(UUID.randomUUID().toString());
         readerMongoRepository.save(reader);
         return readerSqlRepository.save(reader);
     }
