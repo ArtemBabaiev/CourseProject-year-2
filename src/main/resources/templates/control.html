@@ -30,6 +30,7 @@
                     <li class="list-group-item"><a th:href="@{/ui/readingRooms/show}">Читальні зали</a></li>
                     <li class="list-group-item"><a th:href="@{/ui/bookCases/show}">Стелажі</a></li>
                     <li class="list-group-item"><a th:href="@{/ui/shelves/show}">Полиці</a></li>
+                    <li class="list-group-item"><a th:href="@{/ui/readers/show}">Читачі</a></li>
                     <li class="list-group-item" sec:authorize="hasAnyAuthority('OWNER', 'ADMIN')"><a
                             th:href="@{/ui/users/show}">Робітники(Юзери)</a></li>
                 </ul>
@@ -37,11 +38,6 @@
             <li class="list-group-item"> Кастомний запит до БД
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><a th:href="@{/ui/query}">Запит</a></li>
-                </ul>
-            </li>
-            <li class="list-group-item"> Агрегації (збережені процедури)
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a th:href="@{/ui/procedures}">Процедури</a></li>
                 </ul>
             </li>
         </ul>

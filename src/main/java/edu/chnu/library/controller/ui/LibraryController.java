@@ -32,7 +32,7 @@ public class LibraryController {
     }
 
     @GetMapping("/show")
-    public String articlePage(HttpServletRequest request, Model model) {
+    public String showPage(HttpServletRequest request, Model model) {
 
         int page = 0;
         int size = 10;
@@ -51,7 +51,7 @@ public class LibraryController {
     }
 
     @GetMapping("/show/{id}")
-    public String showArticle(@PathVariable String id, Model model) {
+    public String showOne(@PathVariable String id, Model model) {
         Library library = libraryService.get(id);
         model.addAttribute("library", library);
         model.addAttribute("readingRooms", readingRoomService.getByLibrary(library));
@@ -59,7 +59,7 @@ public class LibraryController {
     }
 
     @GetMapping("/create")
-    public String showCreateArticle(Model model) {
+    public String showCreate(Model model) {
         model.addAttribute("library", new Library());
         return "library/create";
     }
@@ -71,23 +71,21 @@ public class LibraryController {
     }
 
     @GetMapping("/edit/{id}")
-    public String showEditArticle(@PathVariable String id, Model model) {
+    public String showEdit(@PathVariable String id, Model model) {
         model.addAttribute("library", libraryService.get(id));
         model.addAttribute("libraries", libraryService.getAll());
         return "library/edit";
     }
 
     @PutMapping("/edit/{id}")
-    public String performEditArticle(@PathVariable String id, Library library) {
+    public String performEdit(@PathVariable String id, Library library) {
         Library updated = libraryService.update(library);
         return "redirect:/ui/libraries/show/" + updated.getId();
     }
 
     @DeleteMapping("/delete/{id}")
-    public String performDeleteArticle(@PathVariable String id) {
+    public String performDelete(@PathVariable String id) {
         libraryService.delete(id);
         return "redirect:/ui/libraries/show";
     }
-    //http://localhost:8080/ui/authors/edit/634302ddbd551b57900d51cf
-    ////ui/articles/edit/634302f6bd551b57900d51d0
 }

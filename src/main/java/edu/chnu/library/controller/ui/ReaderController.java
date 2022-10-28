@@ -30,7 +30,7 @@ public class ReaderController {
     }
 
     @GetMapping("/show")
-    public String readersPage(HttpServletRequest request, Model model) {
+    public String showPage(HttpServletRequest request, Model model) {
 
         int page = 0;
         int size = 10;

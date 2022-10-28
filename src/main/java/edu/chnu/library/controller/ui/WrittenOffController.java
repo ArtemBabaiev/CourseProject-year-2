@@ -53,7 +53,7 @@ public class WrittenOffController {
     }
 
     @PostMapping("/create/{exemplarId}")
-    public String createWrittenOff(@PathVariable String exemplarId, Model model) {
+    public String performCreate(@PathVariable String exemplarId, Model model) {
         try {
             writtenOffService.writeOffExemplar(exemplarId);
             return "redirect:/ui/writtenOffs/show";

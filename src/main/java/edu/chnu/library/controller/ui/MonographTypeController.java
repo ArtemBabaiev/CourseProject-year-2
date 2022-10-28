@@ -29,7 +29,7 @@ public class MonographTypeController {
     }
 
     @GetMapping("/show")
-    public String monographTypePage(HttpServletRequest request, Model model) {
+    public String showPage(HttpServletRequest request, Model model) {
 
         int page = 0;
         int size = 10;
@@ -53,31 +53,31 @@ public class MonographTypeController {
     }
 
     @GetMapping("/create")
-    public String showCreateMonographType(Model model) {
+    public String showCreate(Model model) {
         model.addAttribute("monographType", new MonographType());
         return "monographType/create";
     }
 
     @PostMapping("/create")
-    public String performCreateMonographType(MonographType monographType) {
+    public String performCreate(MonographType monographType) {
         MonographType newOne = monographTypeService.create(monographType);
         return "redirect:/ui/monographTypes/show/" + newOne.getId();
     }
 
     @GetMapping("/edit/{id}")
-    public String showEditMonographType(@PathVariable String id, Model model) {
+    public String showEdit(@PathVariable String id, Model model) {
         model.addAttribute("monographType", monographTypeService.get(id));
         return "monographType/edit";
     }
 
     @PutMapping("/edit/{id}")
-    public String performEditMonographType(@PathVariable String id, MonographType monographType) {
+    public String performEdit(@PathVariable String id, MonographType monographType) {
         MonographType updated = monographTypeService.update(monographType);
         return "redirect:/ui/monographTypes/show/" + updated.getId();
     }
 
     @DeleteMapping("/delete/{id}")
-    public String performDeleteMonographType(@PathVariable String id) {
+    public String performDelete(@PathVariable String id) {
         monographTypeService.delete(id);
         return "redirect:/ui/monographTypes/show";
     }

@@ -29,7 +29,7 @@ public class PublisherController {
     }
 
     @GetMapping("/show")
-    public String publisherPage(HttpServletRequest request, Model model) {
+    public String showPage(HttpServletRequest request, Model model) {
 
         int page = 0;
         int size = 10;
@@ -54,31 +54,31 @@ public class PublisherController {
     }
 
     @GetMapping("/create")
-    public String showCreatePublisher(Model model) {
+    public String showCreate(Model model) {
         model.addAttribute("publisher", new Publisher());
         return "publisher/create";
     }
 
     @PostMapping("/create")
-    public String performCreatePublisher(Publisher publisher) {
+    public String performCreate(Publisher publisher) {
         Publisher newOne = publisherService.create(publisher);
         return "redirect:/ui/publishers/show/" + newOne.getId();
     }
 
     @GetMapping("/edit/{id}")
-    public String showEditPublisher(@PathVariable String id, Model model) {
+    public String showEdit(@PathVariable String id, Model model) {
         model.addAttribute("publisher", publisherService.get(id));
         return "publisher/edit";
     }
 
     @PutMapping("/edit/{id}")
-    public String performEditPublisher(@PathVariable String id, Publisher publisher) {
+    public String performEdit(@PathVariable String id, Publisher publisher) {
         Publisher updated = publisherService.update(publisher);
         return "redirect:/ui/publishers/show/" + updated.getId();
     }
 
     @DeleteMapping("/delete/{id}")
-    public String performDeletePublisher(@PathVariable String id) {
+    public String performDelete(@PathVariable String id) {
         publisherService.delete(id);
         return "redirect:/ui/publishers/show";
     }

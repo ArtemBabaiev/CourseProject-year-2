@@ -45,14 +45,14 @@ public class RecordController {
     }
 
     @GetMapping("/show/{id}")
-    public String showRecord(@PathVariable String id, Model model) {
+    public String showOne(@PathVariable String id, Model model) {
         model.addAttribute(recordService.get(id));
         return "record/record-show";
     }
 
 
     @GetMapping("/create/exemplar/{id}")
-    public String showCreateRecord(@PathVariable String id, Model model) {
+    public String showCreate(@PathVariable String id, Model model) {
         Record record = recordService.prepareRecordForExemplar(id);
         if (record == null) {
             return "in-use";
@@ -64,14 +64,14 @@ public class RecordController {
 
 
     @PostMapping("/create/exemplar/{id}")
-    public String performCreateRecord(@PathVariable String id, Record record) {
+    public String performCreate(@PathVariable String id, Record record) {
         Record createdOne = recordService.createRecord(record, id);
         if (createdOne == null) return "redirect: /error";
         return "redirect:/ui/records/show/" + createdOne.getId();
     }
 
     @PutMapping("/return/{id}")
-    public String performReturnRecord(@PathVariable String id) {
+    public String performReturn(@PathVariable String id) {
         try {
             Record record = recordService.returnRecord(id);
             return "redirect:/ui/records/show/" + record.getId();
@@ -83,7 +83,7 @@ public class RecordController {
 
 
     @DeleteMapping("/delete/{id}")
-    public String performDeleteRecord(@PathVariable String id) {
+    public String performDelete(@PathVariable String id) {
         recordService.delete(id);
         return "redirect:/ui/records/show";
     }
